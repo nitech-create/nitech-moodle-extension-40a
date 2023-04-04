@@ -13,9 +13,16 @@
   // Optional
   author: "nitech Create",
   // background: {}
-  content_scripts: {
-
-  },
+  content_scripts: [
+    {
+      // dashboard
+      matches: [
+        "https://cms7.ict.nitech.ac.jp/moodle40a/my/",
+        "https://cms7.ict.nitech.ac.jp/moodle40a/my/index.php"
+      ],
+      js: ['content_scripts/dashboard/dashboard.js']
+    }
+  ],
   content_security_policy: {
     extension_pages: "script-src 'self'; object-src 'self';",
   },
