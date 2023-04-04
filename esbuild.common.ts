@@ -20,21 +20,28 @@ const manifest = JSON5.parse(
 const contentScripts = Array.from(new Set(
   manifest['content_scripts']
     .flatMap((entry) => entry['js'] ?? [])
-    .map((path) => {
-      return posix.resolve(srcPath, path);
-    })
+    .map((path) => posix.resolve(srcPath, path.replace(/\.js$/, '.ts')))
+));
+
+const contentStyleSheets = Array.from(new Set(
+  manifest['content_scripts']
+    .flatMap((entry) => entry['css'] ?? [])
+    .map((path) => posix.resolve(srcPath, path.replace(/\.css$/, '.scss')))
 ));
 
 const config: Partial<esbuild.BuildOptions> = {
   entryPoints: [
     posix.resolve(srcPath, 'manifest.json5'),
-    ...contentScripts
+    ...contentScripts,
+    ...contentStyleSheets
   ],
   bundle: true,
   outdir: destPath,
   platform: 'browser',
   loader: {
   },
+  jsxFactory: 'h',
+  jsxFragment: 'Fragment',
   plugins: [
     esbuildCachePlugin({
       directory: cachePath

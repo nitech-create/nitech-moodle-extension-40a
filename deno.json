@@ -10,7 +10,8 @@
       "DOM",
       "ESNext",
       "deno.window"
-    ]
+    ],
+    "jsx": "react-jsx"
   },
   "lint": {
     "files": {

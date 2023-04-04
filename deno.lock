@@ -1,6 +1,9 @@
 {
   "version": "2",
   "remote": {
+    "https://cdnjs.cloudflare.com/ajax/libs/preact/10.13.2/preact.min.js": "d85f7c4c1a0a76cc0ef8ecfac4b10697e70b70beef9b26e61d16410a786ff5c9",
+    "https://cdnjs.cloudflare.com/ajax/libs/preact/10.13.2/preact.min.module.min.js": "bf1c40bca7d5ed0fb729e8d897f9375956d87fd877342463f27d0ea1c299eff6",
+    "https://cdnjs.cloudflare.com/ajax/libs/preact/10.13.2/preact.module.min.js": "708b0373a7064fd52122ff824782ee88f164e520939c6648776f627e174be796",
     "https://deno.land/std@0.131.0/_util/assert.ts": "e94f2eb37cebd7f199952e242c77654e43333c1ac4c5c700e929ea3aa5489f74",
     "https://deno.land/std@0.131.0/_util/os.ts": "49b92edea1e82ba295ec946de8ffd956ed123e2948d9bd1d3e901b04e4307617",
     "https://deno.land/std@0.131.0/path/_constants.ts": "df1db3ffa6dd6d1252cc9617e5d72165cd2483df90e93833e13580687b6083c3",
@@ -224,7 +227,8 @@
     "https://raw.githubusercontent.com/Tsukina-7mochi/esbuild-plugin-result-deno/v1.0.6/deps.ts": "52f9b211881877360510f936c59c846fe742f63f1709c20ffd60b87631c4828c",
     "https://raw.githubusercontent.com/Tsukina-7mochi/esbuild-plugin-result-deno/v1.0.6/mod.ts": "fb11c4ee4102510bfc58811cd3567f11df746b009b0bacc7b1110f79409a38a3",
     "https://raw.githubusercontent.com/Tsukina-7mochi/esbuild-plugin-sass-deno/v0.2.2/deps.ts": "abba3b0fed617299c9710250f951029a04630f1e1da604cf57b910e0a7c31aeb",
-    "https://raw.githubusercontent.com/Tsukina-7mochi/esbuild-plugin-sass-deno/v0.2.2/mod.ts": "a83c499a6801370d493d2572b059fd43b46921c30a2827b1122f13d9e6212c5d"
+    "https://raw.githubusercontent.com/Tsukina-7mochi/esbuild-plugin-sass-deno/v0.2.2/mod.ts": "a83c499a6801370d493d2572b059fd43b46921c30a2827b1122f13d9e6212c5d",
+    "https://raw.githubusercontent.com/preactjs/preact/10.13.2/src/index.d.ts": "fe07909b6c09957750bed556acb4b11cb3fdd0c634fa0645dcb66cb919db7e2d"
   },
   "npm": {
     "specifiers": {

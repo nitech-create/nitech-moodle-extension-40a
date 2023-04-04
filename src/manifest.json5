@@ -20,7 +20,8 @@
         "https://cms7.ict.nitech.ac.jp/moodle40a/my/",
         "https://cms7.ict.nitech.ac.jp/moodle40a/my/index.php"
       ],
-      js: ['content_scripts/dashboard/dashboard.js']
+      js: ['content_scripts/dashboard/dashboard.js'],
+      css: ['content_scripts/dashboard/dashboard.css']
     }
   ],
   content_security_policy: {

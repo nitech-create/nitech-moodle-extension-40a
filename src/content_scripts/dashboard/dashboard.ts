@@ -1,4 +1,5 @@
 import waitForPageLoad from './waitForPageLoad.ts';
+import renderQuickCourseView from './renderQuickCourseView.tsx';
 
 globalThis.addEventListener('load', async () => {
   console.log('Extension loaded.');
@@ -11,4 +12,6 @@ globalThis.addEventListener('load', async () => {
     console.error(`Error occurred in ${waitForPageLoad.uniqueName}`);
     throw err;
   });
+
+  await renderQuickCourseView.loader();
 });
