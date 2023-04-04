@@ -17,14 +17,18 @@ const manifest = JSON5.parse(
   Deno.readTextFileSync(posix.resolve(srcPath, 'manifest.json5'))
 ) as ManifestType;
 
+const contentScripts = Array.from(new Set(
+  manifest['content_scripts']
+    .flatMap((entry) => entry['js'] ?? [])
+    .map((path) => {
+      return posix.resolve(srcPath, path);
+    })
+));
+
 const config: Partial<esbuild.BuildOptions> = {
   entryPoints: [
     posix.resolve(srcPath, 'manifest.json5'),
-    ...manifest['content_scripts']
-      .flatMap((entry) => entry['js'] ?? [])
-      .map((path) => {
-        return posix.resolve(srcPath, path);
-      }),
+    ...contentScripts
   ],
   bundle: true,
   outdir: destPath,
