@@ -1,3 +1,5 @@
+/** @jsxImportSource https://esm.sh/preact */
+
 // @deno-types=https://raw.githubusercontent.com/preactjs/preact/10.13.2/src/index.d.ts
 import {
   ComponentChild,
@@ -16,7 +18,7 @@ const CourseItem = (props: { name: string }) => (
 );
 
 const ListGroup = (props: { items: ComponentChild[] }) => (
-  <ul clasName='list-group'>
+  <ul className='list-group'>
     {props.items.map((item) => (
       <li className='list-group-item course-listitem border-left-0 border-right-0 border-top-0 px-2 rounded-0'>
         {item}
