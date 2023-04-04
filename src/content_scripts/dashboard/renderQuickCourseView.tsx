@@ -1,3 +1,6 @@
+/** @jsxImportSource https://esm.sh/preact */
+/** @jsxRuntime automatic */
+
 import type { Feature } from '../common/types.ts';
 // @deno-types=https://raw.githubusercontent.com/preactjs/preact/10.13.2/src/index.d.ts
 import {

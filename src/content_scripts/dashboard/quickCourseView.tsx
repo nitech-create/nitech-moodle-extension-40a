@@ -1,4 +1,5 @@
 /** @jsxImportSource https://esm.sh/preact */
+/** @jsxRuntime automatic */
 
 // @deno-types=https://raw.githubusercontent.com/preactjs/preact/10.13.2/src/index.d.ts
 import {
