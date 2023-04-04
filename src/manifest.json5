@@ -1,0 +1,24 @@
+{
+  // Required
+  manifest_version: 3,
+  name: "NITech Moodle Extension (40a)",
+  version: "0.1.0",
+
+  // Recommended
+  // action: {},
+  // default_locale: "ja",
+  description: "extension for moodle 4.0 of NITeach",
+  // icons: {},
+
+  // Optional
+  author: "nitech Create",
+  // background: {}
+  content_scripts: {
+
+  },
+  content_security_policy: {
+    extension_pages: "script-src 'self'; object-src 'self';",
+  },
+  permissions: ["background", "storage"],
+  host_permissions: ["https://cms7.ict.nitech.ac.jp/moodle40a/*/*"]
+}

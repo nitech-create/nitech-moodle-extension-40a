@@ -225,5 +225,16 @@
     "https://raw.githubusercontent.com/Tsukina-7mochi/esbuild-plugin-result-deno/v1.0.6/mod.ts": "fb11c4ee4102510bfc58811cd3567f11df746b009b0bacc7b1110f79409a38a3",
     "https://raw.githubusercontent.com/Tsukina-7mochi/esbuild-plugin-sass-deno/v0.2.2/deps.ts": "abba3b0fed617299c9710250f951029a04630f1e1da604cf57b910e0a7c31aeb",
     "https://raw.githubusercontent.com/Tsukina-7mochi/esbuild-plugin-sass-deno/v0.2.2/mod.ts": "a83c499a6801370d493d2572b059fd43b46921c30a2827b1122f13d9e6212c5d"
+  },
+  "npm": {
+    "specifiers": {
+      "json5@2.2.3": "json5@2.2.3"
+    },
+    "packages": {
+      "json5@2.2.3": {
+        "integrity": "sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==",
+        "dependencies": {}
+      }
+    }
   }
 }
