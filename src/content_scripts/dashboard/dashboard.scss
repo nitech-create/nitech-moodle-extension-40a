@@ -1,7 +1,21 @@
+// セクション下の謎の空白を修正
 div .block_myoverview .content {
   min-height: unset;
 }
-
 div .block_myoverview .paged-content-page-container {
   min-height: unset;
+}
+
+// コース概要のリング要素の大きさを修正
+section#inst19090 ul li div.row {
+  display: flex;
+  margin: 0;
+
+  > div:first-child {
+    flex-grow: 1;
+    max-width: unset;
+  }
+  > div:nth-child(2) {
+    flex-basis: unset;
+  }
 }
