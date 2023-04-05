@@ -5,12 +5,14 @@ on:
     tags:
       - 'v*'
 
-permissions: read-all|write-all
+permissions:
+  contents: read
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 1
+    permissions: write-all
 
     steps:
       - uses: actions/checkout@v3
