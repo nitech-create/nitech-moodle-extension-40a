@@ -1,9 +1,10 @@
 /** @jsxImportSource preact */
 // @deno-types=https://raw.githubusercontent.com/preactjs/preact/10.13.2/src/index.d.ts
-import * as preact from 'preact';
 
+import * as preact from 'preact';
 import type { Feature } from '../common/types.ts';
 import { QuickCourseView } from './quickCourseView.tsx';
+import { getCourses } from '../../common/storage/course.ts';
 
 const renderQuickCourseView: Feature<void, void> = {
   uniqueName: 'dashboard-quick-course-view',
@@ -24,13 +25,15 @@ const renderQuickCourseView: Feature<void, void> = {
       wrapperSection.dataset['block'] = 'myoverview';
       cardBlock.insertBefore(wrapperSection, cardBlock.childNodes?.[0] ?? null);
 
-      preact.render(
-        <QuickCourseView
-          courses={[{ name: 'Class 1' }, { name: 'Class 2' }]}
-        />,
-        wrapperSection,
-      );
-      resolve();
+      getCourses().then((courses) => {
+        preact.render(
+          <QuickCourseView
+            courses={courses}
+          />,
+          wrapperSection,
+        );
+        resolve();
+      });
     }),
 };
 

@@ -9,7 +9,7 @@ globalThis.addEventListener('load', async () => {
     timeout: 5000,
   });
 
-  await renderQuickCourseView.loader();
-
   await updateCourseRepository.loader();
+
+  await renderQuickCourseView.loader();
 });
