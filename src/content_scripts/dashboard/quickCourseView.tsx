@@ -96,7 +96,7 @@ const QuickCourseViewControl = (
   <div
     data-region='filter'
     className='d-flex align-items-center my-2'
-    aria-label='スケジュールコントロール'
+    aria-label='コースリンクコントロール'
   >
     <div className='dropdown mb-1 mr-auto'>
       <button
@@ -299,7 +299,7 @@ const QuickCourseView = (props: { courses: Course[] }) => {
 
   return (
     <div id='moodle_ext_quick_course_view' className='card-body p-3'>
-      <h5 class='card-title d-inline'>スケジュール</h5>
+      <h5 class='card-title d-inline'>コースリンク</h5>
       <div className='card-text content mt-3'>
         <div
           className='block-myoverview block-cards'
