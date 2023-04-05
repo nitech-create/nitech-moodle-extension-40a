@@ -19,3 +19,7 @@ section#inst19090 ul li div.row {
     flex-basis: unset;
   }
 }
+
+section.block ul li:last-child {
+  border-bottom: none;
+}
