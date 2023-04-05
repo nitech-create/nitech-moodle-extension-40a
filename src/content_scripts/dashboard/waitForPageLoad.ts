@@ -16,7 +16,7 @@ const waitForPageLoad: Feature<Options, void> = {
       // WANTFIX: 登録コース数が0だと動かないかもしれない？
       const checkPageContent = () => {
         const loadingContent = document.querySelector(
-          '#inst19090 div[data-region="paged-content-page"]'
+          '#inst19090 div[data-region="paged-content-page"]',
         );
 
         if (loadingContent !== null) {

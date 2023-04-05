@@ -13,5 +13,5 @@ export interface Feature<T, U> {
   /** 依存する機能の `uniqueName` */
   dependencies?: (Feature<unknown, unknown>['uniqueName'])[];
   /** 機能の本体 (同期でも非同期でも良い) */
-  loader: (options: T) => (U | Promise<U>);
+  loader: (options: T) => U | Promise<U>;
 }
