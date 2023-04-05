@@ -4,13 +4,34 @@ import * as preact from 'preact';
 import * as hooks from 'preact/hooks';
 import { Course } from '../../common/storage/course.ts';
 
+const dayOfTheWeekMap = {
+  'sun': '日曜',
+  'mon': '月曜',
+  'tue': '火曜',
+  'wed': '水曜',
+  'thu': '木曜',
+  'fri': '金曜',
+  'sat': '土曜',
+} as const;
+
 const CourseItem = (
-  props: { name: string, pageId: number }
-) => (
-  <a href={`https://cms7.ict.nitech.ac.jp/moodle40a/course/view.php?id=${props.pageId}`}>
-    {props.name}
-  </a>
-);
+  props: { course: Course }
+) => {
+  const course = props.course;
+  if(course.type === 'regular-lecture') {
+    return (
+      <a href={`https://cms7.ict.nitech.ac.jp/moodle40a/course/view.php?id=${course.pageId}`}>
+        {dayOfTheWeekMap[course.weekOfDay]} {course.period[0]}-{course.period[1]}限 {course.name}
+      </a>
+    );
+  } else {
+    return (
+      <a href={`https://cms7.ict.nitech.ac.jp/moodle40a/course/view.php?id=${course.pageId}`}>
+        {course.name}
+      </a>
+    );
+  }
+};
 
 const ListGroup = (props: { items: preact.ComponentChild[] }) => (
   <ul className='list-group'>
@@ -92,8 +113,7 @@ const QuickCourseViewBody = (props: { courses: Course[] }) => (
             <ListGroup
               items={props.courses.map((course) => (
                 <CourseItem
-                  name={course.name}
-                  pageId={course.pageId} />
+                  course={course} />
               ))}
             />
           </div>
