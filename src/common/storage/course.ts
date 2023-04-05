@@ -17,7 +17,9 @@ export interface RegularLectureCourse {
   /** 開講する曜日 */
   weekOfDay: 'sun' | 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat',
   /** 開口する時間 (コマ) [`start`, `end`] */
-  period: [number, number]
+  period: [number, number],
+  /** moodle ページのID */
+  pageId: number,
 }
 
 export interface SpecialCourse {
@@ -27,7 +29,9 @@ export interface SpecialCourse {
   /** moodle での表示名 */
   fullName: string,
   /** 開講する年度 */
-  fullYear?: number
+  fullYear?: number,
+  /** moodle ページのID */
+  pageId: number,
 }
 
 export type Course = RegularLectureCourse | SpecialCourse;

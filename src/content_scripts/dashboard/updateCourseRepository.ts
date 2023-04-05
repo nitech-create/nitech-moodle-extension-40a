@@ -16,7 +16,10 @@ const weekOfDayMap = {
   '金曜': 'fri' as const,
   '土曜': 'sat' as const
 };
-const decodeRegularLectureCourseText = function(text: string): Course {
+const decodeRegularLectureCourseText = function(
+  text: string,
+  pageId: number
+): Course {
   const match = regularCourseRegExp.exec(text);
   if(match === null) {
     throw Error(`"${text}" does not matches to the pattern`);
@@ -45,9 +48,11 @@ const decodeRegularLectureCourseText = function(text: string): Course {
     semester,
     weekOfDay,
     period: [parseInt(match[7]), parseInt(match[8])],
+    pageId
   };
 }
 
+const pageLinkIdRegExp = /id=(\d+)/;
 /** コースのリストを「コース概要」のセクションから
  * 読み取り、ストレージに保存する */
 const updateCourseRepository: Feature<void, void> = {
@@ -68,19 +73,24 @@ const updateCourseRepository: Feature<void, void> = {
     const courses: Course[] = [];
     const elItemLinks = Array.from(elMyOverview.querySelectorAll('ul.list-group li a.aalink.coursename')) as HTMLAnchorElement[];
     for(const elItemLink of elItemLinks) {
+      const search = new URL(elItemLink.href).search;
+      const pageIdMatch = pageLinkIdRegExp.exec(search);
+      const pageId = parseInt(pageIdMatch?.[1] ?? '0');
+
       const text = Array.from(elItemLink.childNodes)
         .filter(v => v.nodeType === 3)
         .map(v => v.textContent)
         .join('')
         .trim();
       try {
-        courses.push(decodeRegularLectureCourseText(text));
+        courses.push(decodeRegularLectureCourseText(text, pageId));
       } catch {
         courses.push({
           type: 'special',
           name: text,
           fullName: text,
-          fullYear: text.includes(thisYearStr) ? thisYear : undefined
+          fullYear: text.includes(thisYearStr) ? thisYear : undefined,
+          pageId
         });
       }
     }
