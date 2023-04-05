@@ -19,8 +19,6 @@ const get = async function <Key extends keyof StoredValue>(
 ): Promise<StoredValue[Key]> {
   const value = await browser.storage[storageArea].get(key);
 
-  console.log(`[storage get]: ${key}`, value);
-
   return value?.[key] ?? defaultValue[key];
 };
 
