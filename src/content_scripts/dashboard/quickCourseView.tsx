@@ -185,6 +185,8 @@ const filterCourse = function (courses: Course[], filter: string) {
     return yearFiltered;
   }
 
+  // TODO: 範囲に共通部分がある場合 (前期と通年, 前期とQ1など) もマッチさせる
+
   return yearFiltered
     .filter((course) =>
       course.type === 'regular-lecture' && course.semester === semester
