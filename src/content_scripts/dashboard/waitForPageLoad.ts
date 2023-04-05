@@ -13,12 +13,13 @@ const waitForPageLoad: Feature<Options, void> = {
     new Promise((resolve, reject) => {
       const startTime = Date.now();
 
+      // WANTFIX: 登録コース数が0だと動かないかもしれない？
       const checkPageContent = () => {
         const loadingContent = document.querySelector(
-          'div[data-region="loading-placeholder-content"]',
+          '#inst19090 div[data-region="paged-content-page"]'
         );
 
-        if (loadingContent === null) {
+        if (loadingContent !== null) {
           resolve();
         } else {
           const timePassed = Date.now() - startTime;
