@@ -1,27 +1,41 @@
-# Building browser content with esbuild and Deno
+# Web Extension for NITech moodle 4.0
 
-## Abstract
+[開発者向けドキュメント](./readme.dev.md)
 
-This repository is a experiment of building browser content with [https://esbuild.github.io/](esbuild) and [https://deno.land/](Deno).
+## 概要
 
-In this experiment, we build a tiny web application and build them for browser.
-The specific tasks are:
+名古屋工業大学の moodle 4.0 の機能を改善・拡張する拡張機能です。
 
-- build `.ts` files into one `.js` files with source map
-  - source map is linked when production build, or inline when development build
-- build `.scss` file and bundle into `.js` file
-- copy `.html` files
-- import `React` and compile JSX
+### 主な機能
 
-## Usage
+- ダッシュボードに講義へのショートカットアクセスを追加
+  - 今受けている講義だけを曜日・時間でソートして一覧表示
+- 時間割表の追加 (予定)
+- 締め切りカウントダウン表示の追加 (予定)
+- 動画を画面内で大きく表示するように変更 (予定)
+- 倍速ボタンの追加 (予定)
+- ナビゲーションにすべての講義が表示されるように変更 (予定)
+- 強制ダウンロードリンクの無効化 (予定)
+- 全体的なスタイルの修正
 
-- build
-  ```sh
-  $deno task build
-  ```
-- development build
-  ```sh
-  $deno task dev
-  # or
-  $deno task watch
-  ```
+## ブラウザ対応状況
+
+|              ブラウザ               | 対応状況 |
+| ----------------------------------- | -------- |
+| Chrome (Windows 11, 111.0.5563.147) | 開発中   |
+| Firefox                             | 未確認   |
+
+## 利用方法
+
+### Chrome Web Store からインストール
+
+準備中です
+
+### GitHub からインストール
+
+1. Releases (リンクを貼る) から .zip ファイルをダウンロードして展開する
+    - または [ビルド手順](./readme.dev.md) に従ってビルドする
+2. 拡張機能ページを開く
+    - [Chrome](chrome://extensions)
+3. `manifest.json` が含まれるフォルダをドロップ
+    - または「パッケージ化されていない拡張機能を読み込む」
