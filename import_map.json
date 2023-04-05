@@ -8,6 +8,9 @@
     "esbuild-plugin-sass": "https://raw.githubusercontent.com/Tsukina-7mochi/esbuild-plugin-sass-deno/v0.2.2/mod.ts",
     "json5": "npm:json5@2.2.3",
     "posix": "https://deno.land/std@0.182.0/path/mod.ts",
+    "preact": "https://esm.sh/preact@10.13.2",
+    "preact/jsx-runtime": "https://esm.sh/preact@10.13.2/jsx-runtime",
+    "preact/jsx-dev-runtime": "https://esm.sh/preact@10.13.2/jsx-dev-runtime",
     "std/": "https://deno.land/std@0.182.0/"
   }
 }

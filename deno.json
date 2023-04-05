@@ -11,9 +11,9 @@
       "ESNext",
       "deno.window"
     ],
-    "jsx": "react",
-    "jsxFactory": "h",
-    "jsxFragmentFactory": "Fragment"
+    "jsx": "react-jsx",
+    "jsxFactory": "preact.h",
+    "jsxFragmentFactory": "preact.Fragment"
   },
   "lint": {
     "files": {
