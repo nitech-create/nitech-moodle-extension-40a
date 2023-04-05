@@ -116,7 +116,7 @@ const QuickCourseView = (props: { courses: Course[] }) => {
   );
 
   return (
-    <div className='card-body p-3'>
+    <div id="moodle_ext_quick_course_view" className='card-body p-3'>
       <h5 class='card-title d-inline'>スケジュール</h5>
       <div className='card-text content mt-3'>
         <div

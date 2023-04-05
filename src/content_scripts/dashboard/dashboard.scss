@@ -1,3 +1,5 @@
+@import './quickCourseView.scss';
+
 // セクション下の謎の空白を修正
 div .block_myoverview .content {
   min-height: unset;
@@ -20,6 +22,7 @@ section#inst19090 ul li div.row {
   }
 }
 
+// リスト末尾の下境界線を消す
 section.block ul li:last-child {
   border-bottom: none;
 }
