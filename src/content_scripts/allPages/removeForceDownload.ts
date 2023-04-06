@@ -13,8 +13,8 @@ const removeForceDownload: Feature<void, void> = {
       link.href = link.href.replace('forcedownload=1', '');
     });
 
-    console.log(('removed forcedownload'));
-  }
+    console.log('removed forcedownload');
+  },
 };
 
 export default removeForceDownload;
