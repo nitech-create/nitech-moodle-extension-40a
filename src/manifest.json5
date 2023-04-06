@@ -38,6 +38,14 @@
       ],
       js: ['content_scripts/scorm/scorm.js'],
     },
+    {
+      // scorm content page
+      matches: [
+        "https://cms7.ict.nitech.ac.jp/moodle40a/pluginfile.php/*/mod_scorm/content/*/*",
+      ],
+      "all_frames": true,
+      css: ['content_scripts/scorm/scorm.css'],
+    }
   ],
   content_security_policy: {
     extension_pages: "script-src 'self'; object-src 'self';",
