@@ -1,4 +1,8 @@
-import { Course, storeCourseByMerge } from '../../common/storage/course.ts';
+import {
+  Course,
+  RegularLectureCourse,
+  storeCourseByMerge,
+} from '../../common/storage/course.ts';
 import type { Feature } from '../common/types.ts';
 import waitForPageLoad from './waitForPageLoad.ts';
 
@@ -17,10 +21,22 @@ const weekOfDayMap = {
   '金曜': 'fri' as const,
   '土曜': 'sat' as const,
 };
+
+interface DecodedLectureCourse {
+  type: RegularLectureCourse['type'];
+  name: RegularLectureCourse['name'];
+  fullName: RegularLectureCourse['fullName'];
+  fullYear: RegularLectureCourse['fullYear'];
+  curriculumPart: RegularLectureCourse['curriculumPart'];
+  code: RegularLectureCourse['code'];
+  semester: RegularLectureCourse['semester'];
+  weekOfDay: RegularLectureCourse['weekOfDay'];
+  period: RegularLectureCourse['period'];
+}
+
 const decodeRegularLectureCourseText = function (
   text: string,
-  pageId: number,
-): Course {
+): DecodedLectureCourse {
   const match = regularCourseRegExp.exec(text);
   if (match === null) {
     throw Error(`"${text}" does not matches to the pattern`);
@@ -49,7 +65,6 @@ const decodeRegularLectureCourseText = function (
     semester,
     weekOfDay,
     period: [parseInt(match[7]), parseInt(match[8])],
-    pageId,
   };
 };
 
@@ -81,6 +96,14 @@ const updateCourseRepository: Feature<void, void> = {
       const search = new URL(elItemLink.href).search;
       const pageIdMatch = pageLinkIdRegExp.exec(search);
       const pageId = parseInt(pageIdMatch?.[1] ?? '0');
+      const elShortName = elItemLink.previousElementSibling?.querySelector(
+        'div > div',
+      );
+
+      if (!elShortName) {
+        continue;
+      }
+      const shortName = elShortName.textContent ?? '';
 
       const text = Array.from(elItemLink.childNodes)
         .filter((v) => v.nodeType === 3)
@@ -88,7 +111,11 @@ const updateCourseRepository: Feature<void, void> = {
         .join('')
         .trim();
       try {
-        courses.push(decodeRegularLectureCourseText(text, pageId));
+        courses.push({
+          ...decodeRegularLectureCourseText(text),
+          pageId,
+          shortName,
+        });
       } catch {
         courses.push({
           type: 'special',
@@ -96,6 +123,7 @@ const updateCourseRepository: Feature<void, void> = {
           fullName: text,
           fullYear: text.includes(thisYearStr) ? thisYear : undefined,
           pageId,
+          shortName,
         });
       }
     }
