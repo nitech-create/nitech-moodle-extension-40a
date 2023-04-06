@@ -1,4 +1,4 @@
-export interface RegularLectureCourse {
+interface RegularLectureCourse {
   type: 'regular-lecture';
   /** 講義名 */
   name: string;
@@ -22,7 +22,7 @@ export interface RegularLectureCourse {
   shortName: string;
 }
 
-export interface SpecialCourse {
+interface SpecialCourse {
   type: 'special';
   /** 講義名 */
   name: string;
@@ -36,4 +36,6 @@ export interface SpecialCourse {
   shortName: string;
 }
 
-export type Course = RegularLectureCourse | SpecialCourse;
+type Course = RegularLectureCourse | SpecialCourse;
+
+export type { Course, RegularLectureCourse, SpecialCourse }
