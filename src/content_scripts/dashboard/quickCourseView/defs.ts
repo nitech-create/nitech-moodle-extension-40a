@@ -42,9 +42,4 @@ const weekOfDayOrder = {
   'sat': 5,
 } as const;
 
-export {
-  semesterMap,
-  semesterOrder,
-  weekOfDayMap,
-  weekOfDayOrder
-};
+export { semesterMap, semesterOrder, weekOfDayMap, weekOfDayOrder };
