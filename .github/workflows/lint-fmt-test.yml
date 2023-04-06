@@ -1,10 +1,6 @@
-name: lint, check format and run build for test
+name: lint, check format and run build as a test
 
-on:
-  push:
-    branches: [main, dev]
-    pull_request:
-      branches: [main, dev]
+on: push
 
 permissions:
   contents: read
