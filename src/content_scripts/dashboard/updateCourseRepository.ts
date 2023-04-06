@@ -1,4 +1,8 @@
-import { Course, RegularLectureCourse, storeCourseByMerge } from '../../common/storage/course.ts';
+import {
+  Course,
+  RegularLectureCourse,
+  storeCourseByMerge,
+} from '../../common/storage/course.ts';
 import type { Feature } from '../common/types.ts';
 import waitForPageLoad from './waitForPageLoad.ts';
 
@@ -19,15 +23,15 @@ const weekOfDayMap = {
 };
 
 interface DecodedLectureCourse {
-  type: RegularLectureCourse["type"];
-  name: RegularLectureCourse["name"],
-  fullName: RegularLectureCourse["fullName"];
-  fullYear: RegularLectureCourse["fullYear"];
-  curriculumPart: RegularLectureCourse["curriculumPart"];
-  code: RegularLectureCourse["code"];
-  semester: RegularLectureCourse["semester"];
-  weekOfDay: RegularLectureCourse["weekOfDay"];
-  period: RegularLectureCourse["period"];
+  type: RegularLectureCourse['type'];
+  name: RegularLectureCourse['name'];
+  fullName: RegularLectureCourse['fullName'];
+  fullYear: RegularLectureCourse['fullYear'];
+  curriculumPart: RegularLectureCourse['curriculumPart'];
+  code: RegularLectureCourse['code'];
+  semester: RegularLectureCourse['semester'];
+  weekOfDay: RegularLectureCourse['weekOfDay'];
+  period: RegularLectureCourse['period'];
 }
 
 const decodeRegularLectureCourseText = function (
@@ -92,9 +96,11 @@ const updateCourseRepository: Feature<void, void> = {
       const search = new URL(elItemLink.href).search;
       const pageIdMatch = pageLinkIdRegExp.exec(search);
       const pageId = parseInt(pageIdMatch?.[1] ?? '0');
-      const elShortName = elItemLink.previousElementSibling?.querySelector('div > div');
+      const elShortName = elItemLink.previousElementSibling?.querySelector(
+        'div > div',
+      );
 
-      if(!elShortName) {
+      if (!elShortName) {
         continue;
       }
       const shortName = elShortName.textContent ?? '';
