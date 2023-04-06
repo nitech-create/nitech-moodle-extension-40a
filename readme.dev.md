@@ -19,6 +19,7 @@
 
 - `check-version-increase.yml`
   - `main` ブランチへの PR を作成した際にバージョンが増えていることを確認する
+  - バージョンは [Semantic Versioning 2.0](https://semver.org/lang/ja/) に準拠しています
 - `deploy.yml`
   - タグが作成された際に自動でビルドし、 Release を作成して成果物を追加する
 - `lint-fmt-test.yml`
