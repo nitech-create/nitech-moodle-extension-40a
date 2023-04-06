@@ -1,0 +1,27 @@
+name: check latest version
+
+on:
+  pull_request:
+    types:
+      - opened
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  lint-and-fmt:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Check version
+        run: deno task check-version-increase
