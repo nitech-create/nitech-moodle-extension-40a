@@ -3,10 +3,7 @@
 // @deno-types=https://raw.githubusercontent.com/preactjs/preact/10.13.2/src/index.d.ts
 import * as preact from 'preact';
 import * as hooks from 'preact/hooks';
-import {
-  Course,
-  RegularLectureCourse,
-} from '../../../common/course.ts';
+import { Course, RegularLectureCourse } from '../../../common/course.ts';
 import QuickCourseViewControl from './QuickCourseViewControl.tsx';
 import QuickCourseViewBody from './QuickCourseViewBody.tsx';
 import { Filter, semesterMap, semesterOrder, weekOfDayOrder } from './defs.ts';
