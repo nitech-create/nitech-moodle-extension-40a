@@ -20,6 +20,8 @@ export interface RegularLectureCourse {
   period: [number, number];
   /** moodle ページのID */
   pageId: number;
+  /** moodle のコース省略名 */
+  shortName: string;
 }
 
 export interface SpecialCourse {
@@ -32,6 +34,8 @@ export interface SpecialCourse {
   fullYear?: number;
   /** moodle ページのID */
   pageId: number;
+  /** moodle のコース省略名 */
+  shortName: string;
 }
 
 export type Course = RegularLectureCourse | SpecialCourse;
