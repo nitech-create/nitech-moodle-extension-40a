@@ -1,5 +1,5 @@
 import browser from 'webextension-polyfill';
-import type { Course } from './course.ts';
+import type { Course } from '../course.ts';
 
 /** `storage["local" | "managed" | "sync"]` に保存されている値の型 */
 interface StoredValue {

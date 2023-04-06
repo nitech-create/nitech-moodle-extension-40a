@@ -1,26 +1,11 @@
-import {
-  Course,
-  RegularLectureCourse,
-  storeCourseByMerge,
-} from '../../common/storage/course.ts';
+import { Course, RegularLectureCourse } from '../../common/course.ts';
+import { storeCourseByMerge } from '../../common/storage/course.ts';
 import type { Feature } from '../common/types.ts';
 import waitForPageLoad from './waitForPageLoad.ts';
+import { textToSemesterMap, textToWeekOfDayMap } from '../../common/course.ts';
 
 const regularCourseRegExp =
   /^(.+)\s*(\d{4})(\d)(\d{4})\s*(前期|後期)\s*((?:日|月|火|水|木|金|土)曜)\s*(\d)-(\d\d?)限/;
-const semesterMap = {
-  '前期': '1/2' as const,
-  '後期': '2/2' as const,
-};
-const weekOfDayMap = {
-  '日曜': 'sun' as const,
-  '月曜': 'mon' as const,
-  '火曜': 'tue' as const,
-  '水曜': 'wed' as const,
-  '木曜': 'thu' as const,
-  '金曜': 'fri' as const,
-  '土曜': 'sat' as const,
-};
 
 interface DecodedLectureCourse {
   type: RegularLectureCourse['type'];
@@ -46,14 +31,16 @@ const decodeRegularLectureCourseText = function (
   if (curriculumPart !== 1 && curriculumPart !== 2) {
     throw Error(`${curriculumPart} is not a valid curriculum part`);
   }
-  if (!(match[5] in semesterMap)) {
+  if (!(match[5] in textToSemesterMap)) {
     throw Error(`${match[5]} is not a valid semester`);
   }
-  const semester = semesterMap[match[5] as keyof typeof semesterMap];
-  if (!(match[6] in weekOfDayMap)) {
+  const semester =
+    textToSemesterMap[match[5] as keyof typeof textToSemesterMap];
+  if (!(match[6] in textToWeekOfDayMap)) {
     throw Error(`${match[6]} is not a valid week of day`);
   }
-  const weekOfDay = weekOfDayMap[match[6] as keyof typeof weekOfDayMap];
+  const weekOfDay =
+    textToWeekOfDayMap[match[6] as keyof typeof textToWeekOfDayMap];
 
   return {
     type: 'regular-lecture',

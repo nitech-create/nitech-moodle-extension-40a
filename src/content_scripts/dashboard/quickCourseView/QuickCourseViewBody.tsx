@@ -2,7 +2,7 @@
 
 // @deno-types=https://raw.githubusercontent.com/preactjs/preact/10.13.2/src/index.d.ts
 import * as preact from 'preact';
-import { Course } from '../../../common/storage/course.ts';
+import { Course } from '../../../common/course.ts';
 import ListGroup from './ListGroup.tsx';
 import CourseItem from './CourseItem.tsx';
 
