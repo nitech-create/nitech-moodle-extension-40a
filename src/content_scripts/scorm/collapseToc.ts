@@ -9,10 +9,10 @@ const collapseToc: Feature<void, void> = {
     const elScormToc = document.getElementById('scorm_toc');
     console.log('EXT: ', elScormToc);
 
-    if(!elScormToc) {
+    if (!elScormToc) {
       return;
     }
-    if(elScormToc.classList.contains('disabled')) {
+    if (elScormToc.classList.contains('disabled')) {
       // すでに折りたたまれている
       return;
     }
