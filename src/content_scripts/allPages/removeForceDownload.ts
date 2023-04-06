@@ -12,8 +12,6 @@ const removeForceDownload: Feature<void, void> = {
     document.querySelectorAll('a').forEach((link) => {
       link.href = link.href.replace('forcedownload=1', '');
     });
-
-    console.log('removed forcedownload');
   },
 };
 
