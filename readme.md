@@ -1,5 +1,8 @@
 # Web Extension for NITech moodle 4.0
 
+[![deploy](https://github.com/nitech-create/nitech-moodle-extension-40a/actions/workflows/deploy.yml/badge.svg)](https://github.com/nitech-create/nitech-moodle-extension-40a/actions/workflows/deploy.yml)
+[![release](https://img.shields.io/github/v/release/nitech-create/nitech-moodle-extension-40a?include_prereleases)](https://github.com/nitech-create/nitech-moodle-extension-40a/releases/latest)
+
 [開発者向けドキュメント](./readme.dev.md)
 
 ## 概要
