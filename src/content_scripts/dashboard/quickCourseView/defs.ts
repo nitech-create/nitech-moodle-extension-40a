@@ -1,9 +1,8 @@
 export type Filter = string;
 
 export {
-  semesterToTextMap as semesterMap,
   semesterOrdering,
+  semesterToTextMap as semesterMap,
+  weekOfDayOrdering,
   weekOfDayToTextMap as weekOfDayMap,
-  weekOfDayOrdering
 } from '../../../common/course.ts';
-

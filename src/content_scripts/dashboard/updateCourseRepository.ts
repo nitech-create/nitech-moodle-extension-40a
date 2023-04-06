@@ -34,11 +34,13 @@ const decodeRegularLectureCourseText = function (
   if (!(match[5] in textToSemesterMap)) {
     throw Error(`${match[5]} is not a valid semester`);
   }
-  const semester = textToSemesterMap[match[5] as keyof typeof textToSemesterMap];
+  const semester =
+    textToSemesterMap[match[5] as keyof typeof textToSemesterMap];
   if (!(match[6] in textToWeekOfDayMap)) {
     throw Error(`${match[6]} is not a valid week of day`);
   }
-  const weekOfDay = textToWeekOfDayMap[match[6] as keyof typeof textToWeekOfDayMap];
+  const weekOfDay =
+    textToWeekOfDayMap[match[6] as keyof typeof textToWeekOfDayMap];
 
   return {
     type: 'regular-lecture',

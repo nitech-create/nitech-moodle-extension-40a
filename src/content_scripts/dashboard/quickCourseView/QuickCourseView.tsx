@@ -6,7 +6,12 @@ import * as hooks from 'preact/hooks';
 import { Course, RegularLectureCourse } from '../../../common/course.ts';
 import QuickCourseViewControl from './QuickCourseViewControl.tsx';
 import QuickCourseViewBody from './QuickCourseViewBody.tsx';
-import { Filter, semesterMap, semesterOrdering, weekOfDayOrdering } from './defs.ts';
+import {
+  Filter,
+  semesterMap,
+  semesterOrdering,
+  weekOfDayOrdering,
+} from './defs.ts';
 
 const filterCourse = function (courses: Course[], filter: string) {
   if (filter === 'all') {
@@ -38,7 +43,8 @@ const compareCourse = function (course1: Course, course2: Course) {
       return course1.fullYear - course2.fullYear;
     }
     if (course1.semester !== course2.semester) {
-      return semesterOrdering[course1.semester] - semesterOrdering[course2.semester];
+      return semesterOrdering[course1.semester] -
+        semesterOrdering[course2.semester];
     }
     if (course1.weekOfDay !== course2.weekOfDay) {
       return weekOfDayOrdering[course1.weekOfDay] -

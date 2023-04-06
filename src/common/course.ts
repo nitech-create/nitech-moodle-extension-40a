@@ -101,14 +101,13 @@ const weekOfDayOrdering = {
   'sat': 5,
 } as const;
 
-
-export type { Course, RegularLectureCourse, SpecialCourse }
+export type { Course, RegularLectureCourse, SpecialCourse };
 
 export {
+  semesterOrdering,
   semesterToTextMap,
   textToSemesterMap,
-  semesterOrdering,
-  weekOfDayToTextMap,
   textToWeekOfDayMap,
   weekOfDayOrdering,
+  weekOfDayToTextMap,
 };
