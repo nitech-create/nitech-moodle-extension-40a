@@ -15,6 +15,13 @@
   // background: {}
   content_scripts: [
     {
+      // all pages
+      matches: [
+        "https://cms7.ict.nitech.ac.jp/moodle40a/*/*",
+      ],
+      js: ['content_scripts/allPages/allPages.js'],
+    },
+    {
       // dashboard
       matches: [
         "https://cms7.ict.nitech.ac.jp/moodle40a/my/",
