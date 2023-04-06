@@ -10,10 +10,9 @@ globalThis.addEventListener('load', async () => {
 
   await Promise.all([
     addEventsCountdown.loader(),
-    (async() => {
+    (async () => {
       await updateCourseRepository.loader();
       await renderQuickCourseView.loader();
     })(),
   ]);
-
 });

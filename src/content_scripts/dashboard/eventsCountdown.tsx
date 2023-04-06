@@ -3,7 +3,9 @@
 // @deno-types=https://raw.githubusercontent.com/preactjs/preact/10.13.2/src/index.d.ts
 import * as preact from 'preact';
 import type { Feature } from '../common/types.ts';
-import EventsCountdown, { EventsCountdownProps } from './eventsCountdown/EventsCountdown.tsx';
+import EventsCountdown, {
+  EventsCountdownProps,
+} from './eventsCountdown/EventsCountdown.tsx';
 
 const CalendarLinkDateNumRegExp = /\?.*time=(\d+).*$/;
 
@@ -14,7 +16,7 @@ const addEventsCountdown: Feature<void, void> = {
   pathnameFilter: /^\/moodle40a\/my\/(index\.php)?/,
   loader: () => {
     const elUpcomingEvents = document.getElementById('inst81');
-    if(!elUpcomingEvents) {
+    if (!elUpcomingEvents) {
       return;
     }
 
@@ -23,23 +25,26 @@ const addEventsCountdown: Feature<void, void> = {
     elUpcomingEvents.append(appRoot);
 
     const elEventItems = Array.from(
-      elUpcomingEvents.querySelectorAll<HTMLElement>('div[data-region="event-item"]'));
+      elUpcomingEvents.querySelectorAll<HTMLElement>(
+        'div[data-region="event-item"]',
+      ),
+    );
 
     // 締め切り時間とそれを描画する DOM 要素のリストを作成
-    const eventItems: EventsCountdownProps["items"] = [];
-    for(const elEventItem of elEventItems) {
+    const eventItems: EventsCountdownProps['items'] = [];
+    for (const elEventItem of elEventItems) {
       const elLabel = elEventItem.querySelector('div.date');
-      if(!elLabel) {
+      if (!elLabel) {
         continue;
       }
       const elLink = elLabel.querySelector('a');
-      if(!elLink) {
+      if (!elLink) {
         continue;
       }
       // elLink.href の例:
       //   https://cms7.ict.nitech.ac.jp/moodle40a/calendar/view.php?view=day&time=1680940800
       const dateNumMatch = CalendarLinkDateNumRegExp.exec(elLink.href);
-      if(!dateNumMatch) {
+      if (!dateNumMatch) {
         continue;
       }
 
@@ -66,9 +71,9 @@ const addEventsCountdown: Feature<void, void> = {
     });
     observer.observe(elUpcomingEvents, {
       childList: true,
-      subtree: true
+      subtree: true,
     });
-  }
+  },
 };
 
 export default addEventsCountdown;
