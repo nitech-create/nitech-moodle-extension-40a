@@ -2,7 +2,7 @@
   // Required
   manifest_version: 3,
   name: "NITech Moodle Extension (40a)",
-  version: "0.3.2",
+  version: "0.4.0",
 
   // Recommended
   // action: {},
@@ -25,11 +25,27 @@
       // dashboard
       matches: [
         "https://cms7.ict.nitech.ac.jp/moodle40a/my/",
-        "https://cms7.ict.nitech.ac.jp/moodle40a/my/index.php"
+        "https://cms7.ict.nitech.ac.jp/moodle40a/my/index.php",
       ],
       js: ['content_scripts/dashboard/dashboard.js'],
       css: ['content_scripts/dashboard/dashboard.css'],
     },
+    {
+      // video page
+      matches: [
+        "https://cms7.ict.nitech.ac.jp/moodle40a/mod/scorm/*",
+        "https://cms7.ict.nitech.ac.jp/moodle40a/mod/scorm/*/*",
+      ],
+      js: ['content_scripts/scorm/scorm.js'],
+    },
+    {
+      // scorm content page
+      matches: [
+        "https://cms7.ict.nitech.ac.jp/moodle40a/pluginfile.php/*/mod_scorm/content/*/*",
+      ],
+      "all_frames": true,
+      css: ['content_scripts/scorm/scorm.css'],
+    }
   ],
   content_security_policy: {
     extension_pages: "script-src 'self'; object-src 'self';",
