@@ -1,9 +1,9 @@
 /** @jsxImportSource preact */
-// @deno-types=https://raw.githubusercontent.com/preactjs/preact/10.13.2/src/index.d.ts
 
+// @deno-types=https://raw.githubusercontent.com/preactjs/preact/10.13.2/src/index.d.ts
 import * as preact from 'preact';
 import type { Feature } from '../common/types.ts';
-import { QuickCourseView } from './quickCourseView.tsx';
+import { QuickCourseView } from './quickCourseView/QuickCourseView.tsx';
 import { getCourses } from '../../common/storage/course.ts';
 
 const renderQuickCourseView: Feature<void, void> = {
