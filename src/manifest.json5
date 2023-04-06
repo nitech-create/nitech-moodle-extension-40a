@@ -25,10 +25,18 @@
       // dashboard
       matches: [
         "https://cms7.ict.nitech.ac.jp/moodle40a/my/",
-        "https://cms7.ict.nitech.ac.jp/moodle40a/my/index.php"
+        "https://cms7.ict.nitech.ac.jp/moodle40a/my/index.php",
       ],
       js: ['content_scripts/dashboard/dashboard.js'],
       css: ['content_scripts/dashboard/dashboard.css'],
+    },
+    {
+      // video page
+      matches: [
+        "https://cms7.ict.nitech.ac.jp/moodle40a/mod/scorm/*",
+        "https://cms7.ict.nitech.ac.jp/moodle40a/mod/scorm/*/*",
+      ],
+      js: ['content_scripts/scorm/scorm.js'],
     },
   ],
   content_security_policy: {
