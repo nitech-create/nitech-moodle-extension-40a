@@ -6,7 +6,7 @@ import * as hooks from 'preact/hooks';
 import {
   Course,
   RegularLectureCourse,
-} from '../../../common/storage/course.ts';
+} from '../../../common/course.ts';
 import QuickCourseViewControl from './QuickCourseViewControl.tsx';
 import QuickCourseViewBody from './QuickCourseViewBody.tsx';
 import { Filter, semesterMap, semesterOrder, weekOfDayOrder } from './defs.ts';

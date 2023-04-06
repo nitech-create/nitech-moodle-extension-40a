@@ -1,8 +1,5 @@
-import {
-  Course,
-  RegularLectureCourse,
-  storeCourseByMerge,
-} from '../../common/storage/course.ts';
+import { Course, RegularLectureCourse } from '../../common/course.ts';
+import { storeCourseByMerge } from '../../common/storage/course.ts';
 import type { Feature } from '../common/types.ts';
 import waitForPageLoad from './waitForPageLoad.ts';
 
