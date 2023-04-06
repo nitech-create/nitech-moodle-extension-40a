@@ -41,19 +41,15 @@ const msUntilNextUpdate = function (duration: number, currentTime: number) {
 
   const refreshRateMs = refreshRate * 1000;
 
-  return (refreshRateMs - currentTime % refreshRateMs);
+  return refreshRateMs - currentTime % refreshRateMs;
 };
 
-type ArrayItem<T> = T extends Array<infer S> ? S : never;
-
-export interface EventsCountdownProps {
-  items: {
-    expireDate: Date;
-    portalTarget: HTMLElement;
-  }[];
+interface CountdownProps {
+  expireDate: Date;
+  portalTarget: HTMLElement;
 }
 
-const Countdown = (props: ArrayItem<EventsCountdownProps['items']>) => {
+const Countdown = (props: CountdownProps) => {
   const [currentTime, setCurrentTime] = useState(Date.now());
 
   const duration = Math.floor(
@@ -83,6 +79,13 @@ const Countdown = (props: ArrayItem<EventsCountdownProps['items']>) => {
   );
 };
 
+interface EventsCountdownProps {
+  items: {
+    expireDate: Date;
+    portalTarget: HTMLElement;
+  }[];
+}
+
 const EventsCountdown = (props: EventsCountdownProps) => (
   <>
     {props.items.map((item) => (
@@ -95,3 +98,5 @@ const EventsCountdown = (props: EventsCountdownProps) => (
 );
 
 export default EventsCountdown;
+
+export type { EventsCountdownProps };
