@@ -6,7 +6,7 @@ import * as hooks from 'preact/hooks';
 import { Course, RegularLectureCourse } from '../../../common/course.ts';
 import QuickCourseViewControl from './QuickCourseViewControl.tsx';
 import QuickCourseViewBody from './QuickCourseViewBody.tsx';
-import { Filter, semesterMap, semesterOrder, weekOfDayOrder } from './defs.ts';
+import { Filter, semesterMap, semesterOrdering, weekOfDayOrdering } from './defs.ts';
 
 const filterCourse = function (courses: Course[], filter: string) {
   if (filter === 'all') {
@@ -38,11 +38,11 @@ const compareCourse = function (course1: Course, course2: Course) {
       return course1.fullYear - course2.fullYear;
     }
     if (course1.semester !== course2.semester) {
-      return semesterOrder[course1.semester] - semesterOrder[course2.semester];
+      return semesterOrdering[course1.semester] - semesterOrdering[course2.semester];
     }
     if (course1.weekOfDay !== course2.weekOfDay) {
-      return weekOfDayOrder[course1.weekOfDay] -
-        weekOfDayOrder[course2.weekOfDay];
+      return weekOfDayOrdering[course1.weekOfDay] -
+        weekOfDayOrdering[course2.weekOfDay];
     }
     const periodDiff = (course1.period[1] - course2.period[1]) * 10 -
       (course1.period[0] - course2.period[0]);
@@ -113,7 +113,7 @@ const QuickCourseView = (props: { courses: Course[] }) => {
     if (a[0] !== b[0]) {
       return a[0] - b[0];
     }
-    return semesterOrder[a[1]] - semesterOrder[b[1]];
+    return semesterOrdering[a[1]] - semesterOrdering[b[1]];
   });
   // 年だけのフィルター
   const years = Array.from(
