@@ -11,9 +11,9 @@ const CalendarLinkDateNumRegExp = /\?.*time=(\d+).*$/;
 
 /** 直近イベントにカウントダウンを追加 */
 const addEventsCountdown: Feature = {
-  uniqueName: 'dashboard-wait-for-page-load',
+  uniqueName: 'dashboard-events-countdown',
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
-  pathnameFilter: /^\/moodle40a\/my\/(index\.php)?/,
+  pathnameFilter: /^\/moodle40a\/my\/(index\.php)?$/,
   loader: () => {
     const elUpcomingEvents = document.getElementById('inst81');
     if (!elUpcomingEvents) {

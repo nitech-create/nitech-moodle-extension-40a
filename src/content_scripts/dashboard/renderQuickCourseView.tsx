@@ -9,7 +9,7 @@ import { getCourses } from '../../common/storage/course.ts';
 const renderQuickCourseView: Feature = {
   uniqueName: 'dashboard-quick-course-view',
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
-  pathnameFilter: /\/moodle40a\/my\/(index\.php)?/,
+  pathnameFilter: /^\/moodle40a\/my\/(index\.php)?$/,
   loader: () =>
     new Promise((resolve, reject) => {
       const cardBlock = document.querySelector('aside#block-region-content');

@@ -61,7 +61,7 @@ const pageLinkIdRegExp = /id=(\d+)/;
 const updateCourseRepository: Feature = {
   uniqueName: 'dashboard-update-course-repository',
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
-  pathnameFilter: /\/moodle40a\/my\/(index\.php)?/,
+  pathnameFilter: /^\/moodle40a\/my\/(index\.php)?$/,
   dependencies: [waitForPageLoad.uniqueName],
   loader: () => {
     const thisYear = new Date().getFullYear();

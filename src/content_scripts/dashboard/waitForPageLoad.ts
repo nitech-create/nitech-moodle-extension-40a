@@ -6,7 +6,7 @@ const timeout = 5000;
 const waitForPageLoad: Feature = {
   uniqueName: 'dashboard-wait-for-page-load',
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
-  pathnameFilter: /\/moodle40a\/my\/(index\.php)?/,
+  pathnameFilter: /^\/moodle40a\/my\/(index\.php)?$/,
   propagateError: false,
   loader: () =>
     new Promise((resolve, reject) => {
