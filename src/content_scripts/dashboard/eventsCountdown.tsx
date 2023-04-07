@@ -10,7 +10,7 @@ import EventsCountdown, {
 const CalendarLinkDateNumRegExp = /\?.*time=(\d+).*$/;
 
 /** 直近イベントにカウントダウンを追加 */
-const addEventsCountdown: Feature<void, void> = {
+const addEventsCountdown: Feature = {
   uniqueName: 'dashboard-wait-for-page-load',
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
   pathnameFilter: /^\/moodle40a\/my\/(index\.php)?/,

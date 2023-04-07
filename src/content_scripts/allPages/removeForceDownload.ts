@@ -1,7 +1,7 @@
 import type { Feature } from '../common/types.ts';
 
 /** 強制ダウンロードのリンクをブラウザで開くようにする */
-const removeForceDownload: Feature<void, void> = {
+const removeForceDownload: Feature = {
   uniqueName: 'all-pages-remove-force-download',
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
   pathnameFilter: /^\/moodle40a\//,
