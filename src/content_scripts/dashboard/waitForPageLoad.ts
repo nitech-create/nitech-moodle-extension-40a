@@ -1,15 +1,14 @@
 import type { Feature } from '../common/types.ts';
 
-interface Options {
-  timeout: number;
-}
+const timeout = 5000;
 
 /** ダッシュボードの内容が読み込まれるまで待つ */
-const waitForPageLoad: Feature<Options, void> = {
+const waitForPageLoad: Feature = {
   uniqueName: 'dashboard-wait-for-page-load',
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
-  pathnameFilter: /\/moodle40a\/my\/(index\.php)?/,
-  loader: (options: Options) =>
+  pathnameFilter: /^\/moodle40a\/my\/(index\.php)?$/,
+  propagateError: false,
+  loader: () =>
     new Promise((resolve, reject) => {
       const startTime = Date.now();
 
@@ -24,7 +23,7 @@ const waitForPageLoad: Feature<Options, void> = {
         } else {
           const timePassed = Date.now() - startTime;
 
-          if (timePassed > options.timeout) {
+          if (timePassed > timeout) {
             reject(Error(`[${waitForPageLoad.uniqueName}] timeout`));
           } else {
             setTimeout(checkPageContent, 100);

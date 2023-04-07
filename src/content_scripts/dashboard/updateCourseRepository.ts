@@ -58,10 +58,10 @@ const decodeRegularLectureCourseText = function (
 const pageLinkIdRegExp = /id=(\d+)/;
 /** コースのリストを「コース概要」のセクションから
  * 読み取り、ストレージに保存する */
-const updateCourseRepository: Feature<void, void> = {
+const updateCourseRepository: Feature = {
   uniqueName: 'dashboard-update-course-repository',
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
-  pathnameFilter: /\/moodle40a\/my\/(index\.php)?/,
+  pathnameFilter: /^\/moodle40a\/my\/(index\.php)?$/,
   dependencies: [waitForPageLoad.uniqueName],
   loader: () => {
     const thisYear = new Date().getFullYear();

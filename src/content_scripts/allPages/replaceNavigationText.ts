@@ -2,7 +2,7 @@ import type { Feature } from '../common/types.ts';
 import { getCourses } from '../../common/storage/course.ts';
 
 /** ナビゲーションのコース表示名をわかりやすい表示に変更する */
-const replaceNavigationText: Feature<void, void> = {
+const replaceNavigationText: Feature = {
   uniqueName: 'all-pages-replace-navigation-texts',
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
   pathnameFilter: /^\/moodle40a\//,
