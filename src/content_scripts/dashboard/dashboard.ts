@@ -5,10 +5,14 @@ import updateCourseRepository from './updateCourseRepository.ts';
 import addEventsCountdown from './eventsCountdown.tsx';
 
 globalThis.addEventListener('load', () => {
-  loadFeature([
-    waitForPageLoad,
-    renderQuickCourseView,
-    updateCourseRepository,
-    addEventsCountdown,
-  ], new URL(location.href), true);
+  loadFeature(
+    [
+      waitForPageLoad,
+      renderQuickCourseView,
+      updateCourseRepository,
+      addEventsCountdown,
+    ],
+    new URL(location.href),
+    true,
+  );
 });
