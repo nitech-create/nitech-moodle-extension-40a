@@ -14,4 +14,6 @@ export interface Feature<T, U> {
   dependencies?: (Feature<unknown, unknown>['uniqueName'])[];
   /** 機能の本体 (同期でも非同期でも良い) */
   loader: (options: T) => U | Promise<U>;
+  /** エラーを伝播するかどうか (デフォルト: `true`) */
+  propagateError?: boolean;
 }
