@@ -18,9 +18,9 @@ const sortFeatures = function (features: Feature[]) {
     featureNameMap.set(feature.uniqueName, feature);
   }
 
-  const visited = new Set<string>();
+  const visited = new Set<UniqueName>();
   const result: Feature[] = [];
-  const visit = function (feature: Feature, localVisited: Set<string>) {
+  const visit = function (feature: Feature, localVisited: Set<UniqueName>) {
     if (visited.has(feature.uniqueName)) {
       return;
     }
@@ -78,7 +78,7 @@ const loadFeature = function (
   // 特定のページでのみ依存関係の解決に失敗するとバグの発見がしづらいため
   // 実行時に URL をチェックする
   const sortedFeatures = sortFeatures(features);
-  const loaderPromiseMap = new Map<string, Promise<void>>();
+  const loaderPromiseMap = new Map<UniqueName, Promise<void>>();
 
   const rootPromiseEventTarget = new EventTarget();
   const rootPromise = new Promise<void>((resolve) => {
