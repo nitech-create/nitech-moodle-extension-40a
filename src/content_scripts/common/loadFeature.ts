@@ -1,15 +1,6 @@
 import type { Feature } from '../common/types.ts';
 
 type UniqueName = Feature['uniqueName'];
-type NonNullish<T> = T extends (null | undefined) ? never : T;
-
-const nonNullish = function <T>(value: T): NonNullish<T> {
-  if (value === null || value === undefined) {
-    throw Error('value required to be non-nullish');
-  }
-  // WANTFIX: 強制型変換を避けたい
-  return value as NonNullish<T>;
-};
 
 /** feature を依存関係に従ってトポロジカルソートする */
 // DFS を用いて探索
