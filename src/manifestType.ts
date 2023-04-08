@@ -22,6 +22,11 @@ export default interface ManifestType {
     extension_pages?: string;
     sandbox?: string;
   };
+  options_ui: {
+    page: string;
+    js: string[];
+  };
+
   permissions: string[];
   host_permissions: string[];
 }

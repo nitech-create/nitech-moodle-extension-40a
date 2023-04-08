@@ -47,6 +47,10 @@
       css: ['content_scripts/scorm/scorm.css'],
     }
   ],
+  options_ui: {
+    page: 'options/options.html',
+    js: ['options/options.js'],
+  },
   content_security_policy: {
     extension_pages: "script-src 'self'; object-src 'self';",
   },
