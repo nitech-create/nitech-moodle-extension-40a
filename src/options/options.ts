@@ -1,5 +1,5 @@
-import { getOptions, storeOptionsByMerge } from "../common/storage/options.ts";
-import { renderApp } from "./App.tsx";
+import { getOptions, storeOptionsByMerge } from '../common/storage/options.ts';
+import { renderApp } from './App.tsx';
 
 globalThis.addEventListener('load', () => {
   getOptions().then((options) => {
@@ -7,7 +7,7 @@ globalThis.addEventListener('load', () => {
   });
 
   const elAppRoot = document.getElementById('app_root');
-  if(!elAppRoot) {
+  if (!elAppRoot) {
     throw Error(`element #app_root is not found`);
   }
   renderApp(elAppRoot);
