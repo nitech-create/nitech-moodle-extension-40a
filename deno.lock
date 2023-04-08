@@ -229,6 +229,7 @@
     "https://deno.land/x/esbuild@v0.17.15/mod.js": "48c352114a13824dae4fe8b6dd6fb074ef3a972eba0cddddc339d2f5c679f780",
     "https://deno.land/x/esbuild_cache_plugin@v0.1.4/deps.ts": "9620bdef1b7eb5fd1681e58254f1bde08b4355336b7ef0849a216916739c0cfe",
     "https://deno.land/x/esbuild_cache_plugin@v0.1.4/mod.ts": "f2d29661d3aa6bfbf80557c0015eddbc41ef0a13d6f4fc3c8014e1c2c0d06fdc",
+    "https://deno.land/x/lodash@4.17.19/lodash.js": "efa0ecfaf5548e32a16e18d3700436cd146c48b4f3712f095dae6f00100018e5",
     "https://esm.sh/preact@10.13.2": "5ebf0838bbc3c32fc6e78a4cd9dd672f2c36386d0595815d721a6b0941278488",
     "https://esm.sh/preact@10.13.2/compat": "1cf68e0c8c6c84b60d42f30665403b67229c16ff5206824709b19df60ba9cdc3",
     "https://esm.sh/preact@10.13.2/hooks": "884334b1560448cf16b4f14841fffdb8707615373a3c76c676a6f9e5c77e43b2",
@@ -388,9 +389,14 @@
   },
   "npm": {
     "specifiers": {
+      "@types/lodash": "@types/lodash@4.14.192",
       "json5@2.2.3": "json5@2.2.3"
     },
     "packages": {
+      "@types/lodash@4.14.192": {
+        "integrity": "sha512-km+Vyn3BYm5ytMO13k9KTp27O75rbQ0NFw+U//g+PX7VZyjCioXaRFisqSIJRECljcTv73G3i6BpglNGHgUQ5A==",
+        "dependencies": {}
+      },
       "json5@2.2.3": {
         "integrity": "sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==",
         "dependencies": {}
