@@ -49,6 +49,9 @@
   ],
   options_ui: {
     page: 'options/options.html',
+    open_in_tab: true,
+    browser_style: true,
+    // 本当は存在しないフィールド, ビルドのために追加
     js: ['options/options.js'],
   },
   content_security_policy: {
