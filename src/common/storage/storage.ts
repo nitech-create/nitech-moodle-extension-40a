@@ -2,19 +2,19 @@ import browser from 'webextension-polyfill';
 // @deno-types=npm:@types/lodash
 import * as lodash from 'lodash';
 import type { Course } from '../course.ts';
-import { Options, defaultValue as defaultOptions } from '../options.ts';
+import { defaultValue as defaultOptions, Options } from '../options.ts';
 
 /** `storage["local" | "managed" | "sync"]` に保存されている値の型 */
 interface StoredValue {
   courses: Course[];
-  options: Options
+  options: Options;
 }
 
 type StorageArea = 'local' | 'managed' | 'sync';
 
 const defaultValue: StoredValue = {
   courses: [],
-  options: defaultOptions
+  options: defaultOptions,
 };
 
 /** ストレージから値を取得 */
@@ -22,7 +22,9 @@ const get = async function <Key extends keyof StoredValue>(
   key: Key,
   storageArea: StorageArea = 'local',
 ): Promise<StoredValue[Key]> {
-  const value = await browser.storage[storageArea].get(key) as Partial<StoredValue>;
+  const value = await browser.storage[storageArea].get(key) as Partial<
+    StoredValue
+  >;
 
   return lodash.defaults(value?.[key], defaultValue[key]);
 };

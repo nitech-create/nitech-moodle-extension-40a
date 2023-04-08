@@ -54,7 +54,7 @@ const defaultValue: Options = {
       },
     },
   },
-}
+};
 
 export type { Options };
 

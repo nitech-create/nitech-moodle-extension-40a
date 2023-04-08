@@ -35,7 +35,8 @@ const contentStyleSheets = Array.from(new Set(
 
 const optionsResources = [
   manifest['options_ui']['page'],
-  ...manifest['options_ui']['js'],
+  ...manifest['options_ui']['js'].map((path) => path.replace(/\.js$/, '.ts')),
+  ...manifest['options_ui']['css'].map((path) => path.replace(/\.css$/, '.scss')),
 ].map((path) => posix.resolve(srcPath, path));
 
 const config: Partial<esbuild.BuildOptions> = {

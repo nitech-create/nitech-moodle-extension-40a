@@ -53,6 +53,7 @@
     browser_style: true,
     // 本当は存在しないフィールド, ビルドのために追加
     js: ['options/options.js'],
+    css: ['options/options.css']
   },
   content_security_policy: {
     extension_pages: "script-src 'self'; object-src 'self';",
