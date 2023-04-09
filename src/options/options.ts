@@ -1,5 +1,5 @@
 import { getOptions, storeOptionsByMerge } from '../common/storage/options.ts';
-import { renderApp } from './App.tsx';
+import { renderApp } from './app/App.tsx';
 
 globalThis.addEventListener('load', () => {
   getOptions().then((options) => {
