@@ -15,7 +15,7 @@ const waitForPageLoad: Feature = {
   pathnameFilter: /^\/moodle40a\/my\/(index\.php)?$/,
   propagateError: false,
   loader: (options?: FeatureOption) => {
-    if(options?.enabled === false) {
+    if (options?.enabled === false) {
       return;
     }
 
@@ -43,7 +43,7 @@ const waitForPageLoad: Feature = {
 
       checkPageContent();
     });
-  }
+  },
 };
 
 export default waitForPageLoad;

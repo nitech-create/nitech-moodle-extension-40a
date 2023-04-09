@@ -22,7 +22,8 @@ const ToggleBox = (props: ToggleBoxProps) => (
         type='checkbox'
         id={props.uniqueId}
         checked={props.checked}
-        onClick={props.onClick} />
+        onClick={props.onClick}
+      />
       <label htmlFor={props.uniqueId} />
     </div>
   </li>

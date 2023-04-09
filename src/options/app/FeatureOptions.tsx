@@ -2,19 +2,26 @@
 
 // @deno-types=https://raw.githubusercontent.com/preactjs/preact/10.13.2/src/index.d.ts
 import * as preact from 'preact';
-import { Options, FeatureOption } from '../../common/options.ts';
+import { FeatureOption, Options } from '../../common/options.ts';
 import optionText from './optionText.json' assert { type: 'json' };
 
 import ToggleBox from './ToggleBox.tsx';
 
 interface FeatureOptionsProps {
-  options: Options["features"];
-  setOptions: (key: (keyof Options["features"]), value: Partial<FeatureOption>) => void
+  options: Options['features'];
+  setOptions: (
+    key: keyof Options['features'],
+    value: Partial<FeatureOption>,
+  ) => void;
 }
 
 const FeatureOptions = (props: FeatureOptionsProps) => {
   const featureUniqueNames = Object.keys(props.options)
-    .filter((uniqName) => (uniqName in optionText.features)) as (keyof typeof optionText["features"])[];
+    .filter((
+      uniqName,
+    ) => (uniqName in optionText.features)) as (keyof typeof optionText[
+      'features'
+    ])[];
 
   return (
     <section>
@@ -24,17 +31,18 @@ const FeatureOptions = (props: FeatureOptionsProps) => {
         {featureUniqueNames.map((uniqueName) => (
           <ToggleBox
             uniqueId={`features-${uniqueName}`}
-            labelText={optionText["features"][uniqueName]["_category"]}
+            labelText={optionText['features'][uniqueName]['_category']}
             checked={props.options[uniqueName].enabled}
             onClick={() => {
               props.setOptions(uniqueName, {
                 enabled: !props.options[uniqueName].enabled,
               });
-            }} />
+            }}
+          />
         ))}
       </ul>
     </section>
   );
-}
+};
 
 export default FeatureOptions;

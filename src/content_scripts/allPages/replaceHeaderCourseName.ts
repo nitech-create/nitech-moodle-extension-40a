@@ -11,7 +11,7 @@ const replaceHeaderCourseName: Feature = {
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
   pathnameFilter: /^\/moodle40a\//,
   loader: async (options?: Options) => {
-    if(options?.enabled === false) {
+    if (options?.enabled === false) {
       return;
     }
 

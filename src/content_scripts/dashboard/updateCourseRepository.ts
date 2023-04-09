@@ -68,7 +68,7 @@ const updateCourseRepository: Feature = {
   pathnameFilter: /^\/moodle40a\/my\/(index\.php)?$/,
   dependencies: [waitForPageLoad.uniqueName],
   loader: (options?: Options) => {
-    if(options?.enabled === false) {
+    if (options?.enabled === false) {
       return;
     }
 

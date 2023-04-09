@@ -10,7 +10,7 @@ const collapseToc: Feature = {
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
   pathnameFilter: /^\/moodle40a\/mod\/scorm/,
   loader: (options?: Options) => {
-    if(options?.enabled === false) {
+    if (options?.enabled === false) {
       return;
     }
 

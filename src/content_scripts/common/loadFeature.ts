@@ -130,12 +130,14 @@ const loadFeature = async function (
 
         if (feature.propagateError === false) {
           // 失敗しても警告として出力するだけ
-          return Promise.resolve(feature.loader(option)).catch((err: unknown) => {
-            console.warn(
-              `Uncaught error in feature loader ${feature.uniqueName}: `,
-              err,
-            );
-          });
+          return Promise.resolve(feature.loader(option)).catch(
+            (err: unknown) => {
+              console.warn(
+                `Uncaught error in feature loader ${feature.uniqueName}: `,
+                err,
+              );
+            },
+          );
         }
 
         return Promise.resolve(feature.loader(option)).catch((err: unknown) => {

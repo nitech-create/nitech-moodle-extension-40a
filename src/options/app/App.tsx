@@ -7,7 +7,10 @@ import * as hooks from 'preact/hooks';
 import * as lodash from 'lodash';
 import FeatureOptions from './FeatureOptions.tsx';
 
-import { getOptions, storeOptionsByMerge } from '../../common/storage/options.ts';
+import {
+  getOptions,
+  storeOptionsByMerge,
+} from '../../common/storage/options.ts';
 import { FeatureOption, Options } from '../../common/options.ts';
 
 interface AppProps {
@@ -20,21 +23,30 @@ const App = (props: AppProps) => {
   hooks.useEffect(() => {
     getOptions().then(setOptionsRaw);
   });
-  const setFeatureOptions = (key: (keyof Options["features"]), value: Partial<FeatureOption>) => {
-    const newPartialOption = lodash.defaults(value, options.features[key]) as FeatureOption;
-    const newOptions = lodash.merge(options, { features: { [key]: newPartialOption } }) as Options;
+  const setFeatureOptions = (
+    key: keyof Options['features'],
+    value: Partial<FeatureOption>,
+  ) => {
+    const newPartialOption = lodash.defaults(
+      value,
+      options.features[key],
+    ) as FeatureOption;
+    const newOptions = lodash.merge(options, {
+      features: { [key]: newPartialOption },
+    }) as Options;
     setOptionsRaw(newOptions);
     storeOptionsByMerge(newOptions);
-  }
+  };
 
   return (
     <>
       <FeatureOptions
         options={options.features}
-        setOptions={setFeatureOptions} />
+        setOptions={setFeatureOptions}
+      />
     </>
   );
-}
+};
 
 const renderApp = function (targetElement: HTMLElement) {
   getOptions().then((options) => {

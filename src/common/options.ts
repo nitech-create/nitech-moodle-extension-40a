@@ -1,6 +1,6 @@
 interface FeatureOption {
   enabled: boolean;
-  [key: string]: unknown
+  [key: string]: unknown;
 }
 
 interface Options {
@@ -39,6 +39,6 @@ const defaultValue: Options = {
   },
 };
 
-export type { Options, FeatureOption };
+export type { FeatureOption, Options };
 
 export { defaultValue };

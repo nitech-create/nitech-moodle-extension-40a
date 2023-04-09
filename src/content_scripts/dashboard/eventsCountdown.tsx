@@ -19,7 +19,7 @@ const addEventsCountdown: Feature = {
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
   pathnameFilter: /^\/moodle40a\/my\/(index\.php)?$/,
   loader: (options?: Options) => {
-    if(options?.enabled === false) {
+    if (options?.enabled === false) {
       return;
     }
 
