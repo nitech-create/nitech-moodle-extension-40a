@@ -1,6 +1,12 @@
+import { FeatureOption } from '../../common/options.ts';
 import type { Feature } from '../common/types.ts';
 
-const timeout = 5000;
+interface Options extends FeatureOption {
+  enabled: boolean;
+  timeout: number;
+}
+
+const defaultTimeout = 5000;
 
 /** ダッシュボードの内容が読み込まれるまで待つ */
 const waitForPageLoad: Feature = {
@@ -8,8 +14,12 @@ const waitForPageLoad: Feature = {
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
   pathnameFilter: /^\/moodle40a\/my\/(index\.php)?$/,
   propagateError: false,
-  loader: () =>
-    new Promise((resolve, reject) => {
+  loader: (options?: FeatureOption) => {
+    if(options?.enabled === false) {
+      return;
+    }
+
+    return new Promise((resolve, reject) => {
       const startTime = Date.now();
 
       // WANTFIX: 登録コース数が0だと動かないかもしれない？
@@ -23,7 +33,7 @@ const waitForPageLoad: Feature = {
         } else {
           const timePassed = Date.now() - startTime;
 
-          if (timePassed > timeout) {
+          if (timePassed > ((options as Options)?.timeout ?? defaultTimeout)) {
             reject(Error(`[${waitForPageLoad.uniqueName}] timeout`));
           } else {
             setTimeout(checkPageContent, 100);
@@ -32,7 +42,8 @@ const waitForPageLoad: Feature = {
       };
 
       checkPageContent();
-    }),
+    });
+  }
 };
 
 export default waitForPageLoad;

@@ -7,6 +7,10 @@ import EventsCountdown, {
   EventsCountdownProps,
 } from './eventsCountdown/EventsCountdown.tsx';
 
+interface Options {
+  enabled: boolean;
+}
+
 const CalendarLinkDateNumRegExp = /\?.*time=(\d+).*$/;
 
 /** 直近イベントにカウントダウンを追加 */
@@ -14,7 +18,11 @@ const addEventsCountdown: Feature = {
   uniqueName: 'dashboard-events-countdown',
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
   pathnameFilter: /^\/moodle40a\/my\/(index\.php)?$/,
-  loader: () => {
+  loader: (options?: Options) => {
+    if(options?.enabled === false) {
+      return;
+    }
+
     const elUpcomingEvents = document.getElementById('inst81');
     if (!elUpcomingEvents) {
       return;

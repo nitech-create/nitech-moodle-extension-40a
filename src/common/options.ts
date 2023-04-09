@@ -26,6 +26,13 @@ const defaultValue: Options = {
     'dashboard-quick-course-view': {
       enabled: true,
     },
+    'dashboard-update-course-repository': {
+      enabled: true,
+    },
+    'dashboard-wait-for-page-load': {
+      enabled: true,
+      timeout: 5000,
+    },
     'scorm-collapse-toc': {
       enabled: true,
     },

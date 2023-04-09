@@ -1,4 +1,5 @@
 import type { Feature } from '../common/types.ts';
+import { getOptions } from '../../common/storage/options.ts';
 
 type UniqueName = Feature['uniqueName'];
 
@@ -67,11 +68,12 @@ const testByStringOrRegExp = function (test: string | RegExp, target: string) {
 };
 
 /** `Feature` を依存関係を解決しながら読み込む */
-const loadFeature = function (
+const loadFeature = async function (
   features: Feature[],
   contextUrl: URL,
   showLog = false,
 ) {
+  const options = await getOptions();
   const contextHost = contextUrl.hostname;
   const contextPath = contextUrl.pathname;
   // ここで URL のフィルターをかけたほうが処理量は減るが、
@@ -124,9 +126,11 @@ const loadFeature = function (
           console.log(`[FeatureLoader] Loading ${feature.uniqueName}`);
         }
 
+        const option = options.features[feature.uniqueName];
+
         if (feature.propagateError === false) {
           // 失敗しても警告として出力するだけ
-          return Promise.resolve(feature.loader()).catch((err: unknown) => {
+          return Promise.resolve(feature.loader(option)).catch((err: unknown) => {
             console.warn(
               `Uncaught error in feature loader ${feature.uniqueName}: `,
               err,
@@ -134,7 +138,7 @@ const loadFeature = function (
           });
         }
 
-        return Promise.resolve(feature.loader()).catch((err: unknown) => {
+        return Promise.resolve(feature.loader(option)).catch((err: unknown) => {
           return Promise.reject(Error(
             `Uncaught error in feature loader ${feature.uniqueName}`,
             { cause: err },
@@ -145,7 +149,7 @@ const loadFeature = function (
   }
 
   rootPromiseEventTarget.dispatchEvent(new CustomEvent('start'));
-  return Promise.all(loaderPromiseMap.values());
+  await Promise.all(loaderPromiseMap.values());
 };
 
 export default loadFeature;

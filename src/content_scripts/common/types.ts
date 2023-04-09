@@ -1,3 +1,4 @@
+import { FeatureOption } from "../../common/options.ts";
 /**
  * 独立した機能を表す
  */
@@ -11,7 +12,7 @@ export interface Feature {
   /** 依存する機能の `uniqueName` */
   dependencies?: (Feature['uniqueName'])[];
   /** 機能の本体 (同期でも非同期でも良い) */
-  loader: () => void | Promise<void>;
+  loader: (options?: FeatureOption) => void | Promise<void>;
   /** エラーを伝播するかどうか (デフォルト: `true`) */
   propagateError?: boolean;
 }

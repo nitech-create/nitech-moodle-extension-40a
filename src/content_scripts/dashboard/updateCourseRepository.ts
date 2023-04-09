@@ -4,6 +4,10 @@ import type { Feature } from '../common/types.ts';
 import waitForPageLoad from './waitForPageLoad.ts';
 import { textToSemesterMap, textToWeekOfDayMap } from '../../common/course.ts';
 
+interface Options {
+  enabled: boolean;
+}
+
 const regularCourseRegExp =
   /^(.+)\s*(\d{4})(\d)(\d{4})\s*(前期|後期)\s*((?:日|月|火|水|木|金|土)曜)\s*(\d)-(\d\d?)限/;
 
@@ -63,7 +67,11 @@ const updateCourseRepository: Feature = {
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
   pathnameFilter: /^\/moodle40a\/my\/(index\.php)?$/,
   dependencies: [waitForPageLoad.uniqueName],
-  loader: () => {
+  loader: (options?: Options) => {
+    if(options?.enabled === false) {
+      return;
+    }
+
     const thisYear = new Date().getFullYear();
     const thisYearStr = `${thisYear}`;
     const elMyOverview = document.getElementById('inst19090');
