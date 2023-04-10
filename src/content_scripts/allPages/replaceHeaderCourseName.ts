@@ -1,12 +1,23 @@
 import type { Feature } from '../common/types.ts';
 import { getCourses } from '../../common/storage/course.ts';
 
+type ReplaceHeaderCourseName = {
+  enabled: boolean;
+};
+
 /** ヘッダーのコース表示名をわかりやすい表示に変更する */
-const replaceHeaderCourseName: Feature = {
+const replaceHeaderCourseName: Feature<ReplaceHeaderCourseName> = {
   uniqueName: 'all-pages-replace-header-course-name',
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
   pathnameFilter: /^\/moodle40a\//,
-  loader: async () => {
+  defaultOption: {
+    enabled: true,
+  },
+  loader: async (options) => {
+    if (!options.enabled) {
+      return;
+    }
+
     const elHeader = document.getElementById('page-header');
     if (!elHeader) {
       return;

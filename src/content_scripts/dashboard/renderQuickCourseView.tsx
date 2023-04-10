@@ -6,12 +6,23 @@ import type { Feature } from '../common/types.ts';
 import { QuickCourseView } from './quickCourseView/QuickCourseView.tsx';
 import { getCourses } from '../../common/storage/course.ts';
 
-const renderQuickCourseView: Feature = {
+type RenderQuickCourseViewOptions = {
+  enabled: boolean;
+};
+
+const renderQuickCourseView: Feature<RenderQuickCourseViewOptions> = {
   uniqueName: 'dashboard-quick-course-view',
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
   pathnameFilter: /^\/moodle40a\/my\/(index\.php)?$/,
-  loader: () =>
-    new Promise((resolve, reject) => {
+  defaultOption: {
+    enabled: true,
+  },
+  loader: (options) => {
+    if (!options.enabled) {
+      return;
+    }
+
+    return new Promise((resolve, reject) => {
       const cardBlock = document.querySelector('aside#block-region-content');
       if (cardBlock === null) {
         reject(
@@ -34,7 +45,8 @@ const renderQuickCourseView: Feature = {
         );
         resolve();
       });
-    }),
+    });
+  },
 };
 
 export default renderQuickCourseView;

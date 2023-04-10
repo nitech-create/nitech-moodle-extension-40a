@@ -1,15 +1,26 @@
 import type { Feature } from '../common/types.ts';
 
-const timeout = 5000;
+type WaitForPageLoadOptions = {
+  enabled: boolean;
+  timeout: number;
+};
 
 /** ダッシュボードの内容が読み込まれるまで待つ */
-const waitForPageLoad: Feature = {
+const waitForPageLoad: Feature<WaitForPageLoadOptions> = {
   uniqueName: 'dashboard-wait-for-page-load',
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
   pathnameFilter: /^\/moodle40a\/my\/(index\.php)?$/,
   propagateError: false,
-  loader: () =>
-    new Promise((resolve, reject) => {
+  defaultOption: {
+    enabled: true,
+    timeout: 5000,
+  },
+  loader: (options) => {
+    if (!options.enabled) {
+      return;
+    }
+
+    return new Promise((resolve, reject) => {
       const startTime = Date.now();
 
       // WANTFIX: 登録コース数が0だと動かないかもしれない？
@@ -23,7 +34,7 @@ const waitForPageLoad: Feature = {
         } else {
           const timePassed = Date.now() - startTime;
 
-          if (timePassed > timeout) {
+          if (timePassed > options.timeout) {
             reject(Error(`[${waitForPageLoad.uniqueName}] timeout`));
           } else {
             setTimeout(checkPageContent, 100);
@@ -32,7 +43,8 @@ const waitForPageLoad: Feature = {
       };
 
       checkPageContent();
-    }),
+    });
+  },
 };
 
 export default waitForPageLoad;

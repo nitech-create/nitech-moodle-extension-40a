@@ -1,10 +1,12 @@
-import type { Feature } from '../common/types.ts';
-
-type UniqueName = Feature['uniqueName'];
+// @deno-types=npm:@types/lodash
+import * as lodash from 'lodash';
+import type { Feature, FeatureUniqueName } from '../common/types.ts';
+import { getOptions } from '../../common/storage/options.ts';
+import { FeatureOption } from '../../common/options.ts';
 
 /** feature を依存関係に従ってトポロジカルソートする */
 // DFS を用いて探索
-const sortFeatures = function (features: Feature[]) {
+const sortFeatures = function (features: Feature<FeatureOption>[]) {
   // 重複チェック
   const featureNames = features.map((feature) => feature.uniqueName);
   if (new Set(featureNames).size !== features.length) {
@@ -13,14 +15,17 @@ const sortFeatures = function (features: Feature[]) {
     );
   }
 
-  const featureNameMap = new Map<UniqueName, Feature>();
+  const featureNameMap = new Map<FeatureUniqueName, Feature<FeatureOption>>();
   for (const feature of features) {
     featureNameMap.set(feature.uniqueName, feature);
   }
 
-  const visited = new Set<UniqueName>();
-  const result: Feature[] = [];
-  const visit = function (feature: Feature, localVisited: Set<UniqueName>) {
+  const visited = new Set<FeatureUniqueName>();
+  const result: Feature<FeatureOption>[] = [];
+  const visit = function (
+    feature: Feature<FeatureOption>,
+    localVisited: Set<FeatureUniqueName>,
+  ) {
     if (visited.has(feature.uniqueName)) {
       return;
     }
@@ -67,18 +72,19 @@ const testByStringOrRegExp = function (test: string | RegExp, target: string) {
 };
 
 /** `Feature` を依存関係を解決しながら読み込む */
-const loadFeature = function (
-  features: Feature[],
+const loadFeature = async function (
+  features: Feature<FeatureOption>[],
   contextUrl: URL,
   showLog = false,
 ) {
+  const options = await getOptions();
   const contextHost = contextUrl.hostname;
   const contextPath = contextUrl.pathname;
   // ここで URL のフィルターをかけたほうが処理量は減るが、
   // 特定のページでのみ依存関係の解決に失敗するとバグの発見がしづらいため
   // 実行時に URL をチェックする
   const sortedFeatures = sortFeatures(features);
-  const loaderPromiseMap = new Map<UniqueName, Promise<void>>();
+  const loaderPromiseMap = new Map<FeatureUniqueName, Promise<void>>();
 
   const rootPromiseEventTarget = new EventTarget();
   const rootPromise = new Promise<void>((resolve) => {
@@ -124,17 +130,24 @@ const loadFeature = function (
           console.log(`[FeatureLoader] Loading ${feature.uniqueName}`);
         }
 
+        const option = lodash.defaults(
+          options.features[feature.uniqueName],
+          feature.defaultOption,
+        );
+
         if (feature.propagateError === false) {
           // 失敗しても警告として出力するだけ
-          return Promise.resolve(feature.loader()).catch((err: unknown) => {
-            console.warn(
-              `Uncaught error in feature loader ${feature.uniqueName}: `,
-              err,
-            );
-          });
+          return Promise.resolve(feature.loader(option)).catch(
+            (err: unknown) => {
+              console.warn(
+                `Uncaught error in feature loader ${feature.uniqueName}: `,
+                err,
+              );
+            },
+          );
         }
 
-        return Promise.resolve(feature.loader()).catch((err: unknown) => {
+        return Promise.resolve(feature.loader(option)).catch((err: unknown) => {
           return Promise.reject(Error(
             `Uncaught error in feature loader ${feature.uniqueName}`,
             { cause: err },
@@ -145,7 +158,7 @@ const loadFeature = function (
   }
 
   rootPromiseEventTarget.dispatchEvent(new CustomEvent('start'));
-  return Promise.all(loaderPromiseMap.values());
+  await Promise.all(loaderPromiseMap.values());
 };
 
 export default loadFeature;

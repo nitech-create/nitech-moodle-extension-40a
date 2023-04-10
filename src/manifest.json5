@@ -2,7 +2,7 @@
   // Required
   manifest_version: 3,
   name: "NITech Moodle Extension (40a)",
-  version: "0.7.1",
+  version: "0.8.0",
 
   // Recommended
   // action: {},
@@ -47,6 +47,14 @@
       css: ['content_scripts/scorm/scorm.css'],
     }
   ],
+  options_ui: {
+    page: 'options/options.html',
+    open_in_tab: true,
+    browser_style: true,
+    // 本当は存在しないフィールド, ビルドのために追加
+    js: ['options/options.js'],
+    css: ['options/options.css']
+  },
   content_security_policy: {
     extension_pages: "script-src 'self'; object-src 'self';",
   },

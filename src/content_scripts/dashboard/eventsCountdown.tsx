@@ -7,14 +7,25 @@ import EventsCountdown, {
   EventsCountdownProps,
 } from './eventsCountdown/EventsCountdown.tsx';
 
+type AddEventCountdownOptions = {
+  enabled: boolean;
+};
+
 const CalendarLinkDateNumRegExp = /\?.*time=(\d+).*$/;
 
 /** 直近イベントにカウントダウンを追加 */
-const addEventsCountdown: Feature = {
+const addEventsCountdown: Feature<AddEventCountdownOptions> = {
   uniqueName: 'dashboard-events-countdown',
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
   pathnameFilter: /^\/moodle40a\/my\/(index\.php)?$/,
-  loader: () => {
+  defaultOption: {
+    enabled: true,
+  },
+  loader: (options) => {
+    if (!options.enabled) {
+      return;
+    }
+
     const elUpcomingEvents = document.getElementById('inst81');
     if (!elUpcomingEvents) {
       return;
@@ -67,7 +78,7 @@ const addEventsCountdown: Feature = {
     const observer = new MutationObserver(() => {
       observer.disconnect();
       // `preact.render(...)` ではうまくいかなかった
-      addEventsCountdown.loader();
+      addEventsCountdown.loader(options);
     });
     observer.observe(elUpcomingEvents, {
       childList: true,
