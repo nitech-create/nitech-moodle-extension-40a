@@ -7,6 +7,6 @@ globalThis.addEventListener('load', () => {
       collapseToc,
     ],
     new URL(location.href),
-    true,
+    false,
   );
 });
