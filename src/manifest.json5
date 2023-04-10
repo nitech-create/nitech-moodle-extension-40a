@@ -60,4 +60,15 @@
   },
   permissions: ["background", "storage"],
   host_permissions: ["https://cms7.ict.nitech.ac.jp/moodle40a/*/*"],
+  web_accessible_resources: [
+    // import maps
+    {
+      resources: [
+        "content_scripts/allPages/allPages.js.map",
+        "content_scripts/dashboard/dashboard.js.map",
+        "content_scripts/scorm/scorm.js.map",
+      ],
+      matches: [ "<all_urls>" ],
+    },
+  ],
 }
