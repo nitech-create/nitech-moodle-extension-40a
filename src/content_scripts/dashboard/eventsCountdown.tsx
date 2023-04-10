@@ -26,7 +26,9 @@ const addEventsCountdown: Feature<AddEventCountdownOptions> = {
       return;
     }
 
-    const elUpcomingEvents = document.getElementById('inst81');
+    const elUpcomingEvents = document.querySelector(
+      'section.block_calendar_upcoming',
+    );
     if (!elUpcomingEvents) {
       return;
     }

@@ -17,6 +17,6 @@ globalThis.addEventListener('load', () => {
       addEventsCountdown,
     ],
     new URL(location.href),
-    false,
+    true,
   );
 });

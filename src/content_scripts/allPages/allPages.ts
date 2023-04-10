@@ -13,6 +13,6 @@ globalThis.addEventListener('load', () => {
       replaceHeaderCourseName,
     ],
     new URL(location.href),
-    false,
+    true,
   );
 });

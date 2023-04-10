@@ -77,7 +77,7 @@ const updateCourseRepository: Feature<UpdateCourseRepositoryOptions> = {
 
     const thisYear = new Date().getFullYear();
     const thisYearStr = `${thisYear}`;
-    const elMyOverview = document.getElementById('inst19090');
+    const elMyOverview = document.querySelector('section.block_myoverview');
     if (!elMyOverview) {
       throw Error(
         `[${updateCourseRepository.uniqueName}] Failed to get "my overview" section`,

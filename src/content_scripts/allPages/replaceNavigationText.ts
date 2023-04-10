@@ -18,7 +18,7 @@ const replaceNavigationText: Feature<ReplaceNavigationText> = {
       return;
     }
 
-    const elNavigation = document.getElementById('inst9');
+    const elNavigation = document.querySelector('section.block_navigation');
     if (!elNavigation) {
       return;
     }
