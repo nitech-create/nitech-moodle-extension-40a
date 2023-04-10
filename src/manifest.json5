@@ -2,7 +2,7 @@
   // Required
   manifest_version: 3,
   name: "NITech Moodle Extension (40a)",
-  version: "0.8.2",
+  version: "0.8.3",
 
   // Recommended
   // action: {},
@@ -60,4 +60,13 @@
   },
   permissions: ["background", "storage"],
   host_permissions: ["https://cms7.ict.nitech.ac.jp/moodle40a/*/*"],
+  web_accessible_resources: [
+    // import maps
+    {
+      resources: [
+        "content_scripts/*/*.map",
+      ],
+      matches: [ "<all_urls>" ],
+    },
+  ],
 }
