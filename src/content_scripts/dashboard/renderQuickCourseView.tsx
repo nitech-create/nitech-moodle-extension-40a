@@ -6,16 +6,19 @@ import type { Feature } from '../common/types.ts';
 import { QuickCourseView } from './quickCourseView/QuickCourseView.tsx';
 import { getCourses } from '../../common/storage/course.ts';
 
-interface Options {
+type RenderQuickCourseViewOptions = {
   enabled: boolean;
-}
+};
 
-const renderQuickCourseView: Feature = {
+const renderQuickCourseView: Feature<RenderQuickCourseViewOptions> = {
   uniqueName: 'dashboard-quick-course-view',
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
   pathnameFilter: /^\/moodle40a\/my\/(index\.php)?$/,
-  loader: (options?: Options) => {
-    if (options?.enabled === false) {
+  defaultOption: {
+    enabled: true,
+  },
+  loader: (options) => {
+    if (!options.enabled) {
       return;
     }
 

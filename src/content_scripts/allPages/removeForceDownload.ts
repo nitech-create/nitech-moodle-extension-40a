@@ -1,16 +1,19 @@
 import type { Feature } from '../common/types.ts';
 
-interface Options {
+type RemoveForceDownloadOptions = {
   enabled: boolean;
-}
+};
 
 /** 強制ダウンロードのリンクをブラウザで開くようにする */
-const removeForceDownload: Feature = {
+const removeForceDownload: Feature<RemoveForceDownloadOptions> = {
   uniqueName: 'all-pages-remove-force-download',
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
   pathnameFilter: /^\/moodle40a\//,
-  loader: async (options?: Options) => {
-    if (options?.enabled === false) {
+  defaultOption: {
+    enabled: true,
+  },
+  loader: async (options) => {
+    if (!options.enabled) {
       return;
     }
 

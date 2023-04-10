@@ -1,17 +1,20 @@
 import type { Feature } from '../common/types.ts';
 import { getCourses } from '../../common/storage/course.ts';
 
-interface Options {
+type ReplaceHeaderCourseName = {
   enabled: boolean;
-}
+};
 
 /** ヘッダーのコース表示名をわかりやすい表示に変更する */
-const replaceHeaderCourseName: Feature = {
+const replaceHeaderCourseName: Feature<ReplaceHeaderCourseName> = {
   uniqueName: 'all-pages-replace-header-course-name',
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
   pathnameFilter: /^\/moodle40a\//,
-  loader: async (options?: Options) => {
-    if (options?.enabled === false) {
+  defaultOption: {
+    enabled: true,
+  },
+  loader: async (options) => {
+    if (!options.enabled) {
       return;
     }
 

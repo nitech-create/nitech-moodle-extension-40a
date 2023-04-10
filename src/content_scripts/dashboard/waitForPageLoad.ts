@@ -1,21 +1,22 @@
-import { FeatureOption } from '../../common/options.ts';
 import type { Feature } from '../common/types.ts';
 
-interface Options extends FeatureOption {
+type WaitForPageLoadOptions = {
   enabled: boolean;
   timeout: number;
-}
-
-const defaultTimeout = 5000;
+};
 
 /** ダッシュボードの内容が読み込まれるまで待つ */
-const waitForPageLoad: Feature = {
+const waitForPageLoad: Feature<WaitForPageLoadOptions> = {
   uniqueName: 'dashboard-wait-for-page-load',
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
   pathnameFilter: /^\/moodle40a\/my\/(index\.php)?$/,
   propagateError: false,
-  loader: (options?: FeatureOption) => {
-    if (options?.enabled === false) {
+  defaultOption: {
+    enabled: true,
+    timeout: 5000,
+  },
+  loader: (options) => {
+    if (!options.enabled) {
       return;
     }
 
@@ -33,7 +34,7 @@ const waitForPageLoad: Feature = {
         } else {
           const timePassed = Date.now() - startTime;
 
-          if (timePassed > ((options as Options)?.timeout ?? defaultTimeout)) {
+          if (timePassed > options.timeout) {
             reject(Error(`[${waitForPageLoad.uniqueName}] timeout`));
           } else {
             setTimeout(checkPageContent, 100);

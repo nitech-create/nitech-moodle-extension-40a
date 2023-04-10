@@ -4,10 +4,6 @@ import type { Feature } from '../common/types.ts';
 import waitForPageLoad from './waitForPageLoad.ts';
 import { textToSemesterMap, textToWeekOfDayMap } from '../../common/course.ts';
 
-interface Options {
-  enabled: boolean;
-}
-
 const regularCourseRegExp =
   /^(.+)\s*(\d{4})(\d)(\d{4})\s*(前期|後期)\s*((?:日|月|火|水|木|金|土)曜)\s*(\d)-(\d\d?)限/;
 
@@ -59,16 +55,23 @@ const decodeRegularLectureCourseText = function (
   };
 };
 
+type UpdateCourseRepositoryOptions = {
+  enabled: boolean;
+};
+
 const pageLinkIdRegExp = /id=(\d+)/;
 /** コースのリストを「コース概要」のセクションから
  * 読み取り、ストレージに保存する */
-const updateCourseRepository: Feature = {
+const updateCourseRepository: Feature<UpdateCourseRepositoryOptions> = {
   uniqueName: 'dashboard-update-course-repository',
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
   pathnameFilter: /^\/moodle40a\/my\/(index\.php)?$/,
   dependencies: [waitForPageLoad.uniqueName],
-  loader: (options?: Options) => {
-    if (options?.enabled === false) {
+  defaultOption: {
+    enabled: true,
+  },
+  loader: (options) => {
+    if (!options.enabled) {
       return;
     }
 

@@ -1,5 +1,8 @@
-interface FeatureOption {
+interface FeatureOptionBase {
   enabled: boolean;
+}
+
+interface FeatureOption extends FeatureOptionBase {
   [key: string]: unknown;
 }
 
@@ -39,6 +42,6 @@ const defaultValue: Options = {
   },
 };
 
-export type { FeatureOption, Options };
+export type { FeatureOption, FeatureOptionBase, Options };
 
 export { defaultValue };

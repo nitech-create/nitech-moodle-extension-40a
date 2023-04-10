@@ -1,16 +1,19 @@
 import type { Feature } from '../common/types.ts';
 
-interface Options {
+type CollapseTocOptions = {
   enabled: boolean;
-}
+};
 
 /** TOCを折りたたむ */
-const collapseToc: Feature = {
+const collapseToc: Feature<CollapseTocOptions> = {
   uniqueName: 'scorm-collapse-toc',
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
   pathnameFilter: /^\/moodle40a\/mod\/scorm/,
-  loader: (options?: Options) => {
-    if (options?.enabled === false) {
+  defaultOption: {
+    enabled: true,
+  },
+  loader: (options) => {
+    if (!options.enabled) {
       return;
     }
 
