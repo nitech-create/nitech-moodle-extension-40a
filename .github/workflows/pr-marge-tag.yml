@@ -22,10 +22,10 @@ jobs:
         run: echo "github context ${{ toJson(github) }}"
 
       - name: get-commit-url
-        run: echo "commit_url=${{ github.events.pull_request.base.repo.commits_url }}" | sed -e "s#{/sha}#/${{ github.sha }}#" >> $GITHUB_ENV
+        run: echo "commit_url=${{ github.event.pull_request.base.repo.commits_url }}" | sed -e "s#{/sha}#/${{ github.sha }}#" >> $GITHUB_ENV
 
       - name: test-output
-        run: echo "commit_url=${{ github.events.pull_request.base.repo.commits_url }}"
+        run: echo "commit_url=${{ github.event.pull_request.base.repo.commits_url }}"
 
       - name: get-commit-message
         run: curl ${{ env.commit_url }} | jq ".commit.message"
