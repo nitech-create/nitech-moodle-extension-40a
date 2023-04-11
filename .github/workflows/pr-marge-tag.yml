@@ -21,14 +21,21 @@ jobs:
         run: echo "commit_url=${{ github.event.pull_request.base.repo.commits_url }}" | sed -e "s#{/sha}#/${{ github.sha }}#" >> $GITHUB_ENV
 
       - name: Get Commit Message
-        run: 'echo "message=$(curl -s -L -H ''Accept: application/vnd.github+json'' ${{ env.commit_url }} | jq ''.commit.message'')" | sed -e ''s/\\n/\n/g'' >> $GITHUB_ENV'
+        run: |
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          echo "MESSAGE<<$EOF" >> $GITHUB_ENV
+          curl -s -L -H "Accept: application/vnd.github+json" ${{ env.commit_url }} | jq ".commit.message" | sed -e "s/\\n/\n/g" >> $GITHUB_ENV
+          echo "$EOF" >> $GITHUB_ENV
 
-      - name: Create Tag
-        uses: rickstaa/action-create-tag@v1
-        id: create-tag
-        with:
-          tag: ${{ env.version }}
-          force_push_tag: true
-          tag_exists_error: false
-          commit_sha: ${{ github.sha }}
-          message: ${{ env.message }}
+      - name: Test print
+        run: echo ${{ toJson(env) }}
+
+      # - name: Create Tag
+      #   uses: rickstaa/action-create-tag@v1
+      #   id: create-tag
+      #   with:
+      #     tag: ${{ env.version }}
+      #     force_push_tag: true
+      #     tag_exists_error: false
+      #     commit_sha: ${{ github.sha }}
+      #     message: ${{ env.message }}
