@@ -9,21 +9,26 @@ jobs:
   create_tag:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    timeout-minutes: 1
+
     steps:
       - uses: actions/checkout@v3
 
-      - name: extract-version
+      - name: Extract Version
         run: echo "version=v$(sh scripts/get-manifest-version.sh)" >> $GITHUB_ENV
 
-      - name: get-commit-url
+      - name: Get Commit URL
         run: echo "commit_url=${{ github.event.pull_request.base.repo.commits_url }}" | sed -e "s#{/sha}#/${{ github.sha }}#" >> $GITHUB_ENV
 
-      - name: get-commit-message
+      - name: Get Commit Message
         run: 'echo "message=$(curl -s -L -H ''Accept: application/vnd.github+json'' ${{ env.commit_url }} | jq ''.commit.message'')" >> $GITHUB_ENV'
 
-      - uses: rickstaa/action-create-tag@v1
-        id: "create_tag"
+      - name: Create Tag
+        uses: rickstaa/action-create-tag@v1
+        id: create-tag
         with:
           tag: ${{ env.version }}
+          force_push_tag: true
           tag_exists_error: false
+          commit_sha: ${{ github.sha }}
           message: ${{ env.message }}
