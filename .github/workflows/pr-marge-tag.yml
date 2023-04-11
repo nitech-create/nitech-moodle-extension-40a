@@ -21,12 +21,9 @@ jobs:
       - name: get-commit-message
         run: 'echo "message=$(curl -s -L -H ''Accept: application/vnd.github+json'' ${{ env.commit_url }} | jq ''.commit.message'')" >> $GITHUB_ENV'
 
-      - name: debug-print
-        run: 'echo "version=${{ env.version }}, message=${{ env.message }}"'
-
-    # - uses: rickstaa/action-create-tag@v1
-    #     id: "create_tag"
-    #     with:
-    #       tag: ${{ env.version_in_manifest }}
-    #       tag_exists_error: false
-    #       message: "Latest release"
+    - uses: rickstaa/action-create-tag@v1
+        id: "create_tag"
+        with:
+          tag: ${{ env.version }}
+          tag_exists_error: false
+          message: ${{ env.message }}
