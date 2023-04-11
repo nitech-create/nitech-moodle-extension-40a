@@ -24,11 +24,6 @@ jobs:
         run: 'echo "message=$(curl -s -L -H ''Accept: application/vnd.github+json'' ${{ env.commit_url }} | jq ''.commit.message'')" >> $GITHUB_ENV'
 
       - name: Create Tag
-        uses: rickstaa/action-create-tag@v1
-        id: create-tag
-        with:
-          tag: ${{ env.version }}
-          force_push_tag: true
-          tag_exists_error: false
-          commit_sha: ${{ github.sha }}
-          message: ${{ env.message }}
+        run: |
+          git tag -a ${{ env.version }} -m ${{ env.message }}
+          git tag push origin ${{ env.version }}
