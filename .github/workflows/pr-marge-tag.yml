@@ -24,7 +24,7 @@ jobs:
         run: |
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
           echo "message<<$EOF" >> $GITHUB_ENV
-          curl -s -L -H "Accept: application/vnd.github+json" ${{ env.commit_url }} | jq ".commit.message" | sed -e "s/\\n/\n/g" >> $GITHUB_ENV
+          echo -e $(curl -s -L -H "Accept: application/vnd.github+json" ${{ env.commit_url }} | jq ".commit.message" | sed -E 's/^"//' | sed -E 's/"$//') >> $GITHUB_ENV
           echo "$EOF" >> $GITHUB_ENV
 
       - name: Create Tag
