@@ -3,7 +3,7 @@ name: check latest version
 on:
   pull_request:
     types:
-      - opened
+      - [opened, synchronize]
     branches:
       - main
 
