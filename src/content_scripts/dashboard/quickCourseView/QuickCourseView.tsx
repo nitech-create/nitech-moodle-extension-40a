@@ -165,4 +165,14 @@ const QuickCourseView = (props: { courses: Course[] }) => {
   );
 };
 
-export { QuickCourseView };
+const renderQuickCourseView = function (
+  courses: Course[],
+  targetElement: HTMLElement,
+) {
+  preact.render(
+    <QuickCourseView courses={courses} />,
+    targetElement,
+  );
+};
+
+export { renderQuickCourseView };

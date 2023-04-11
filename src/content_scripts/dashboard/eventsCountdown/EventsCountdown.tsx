@@ -97,6 +97,16 @@ const EventsCountdown = (props: EventsCountdownProps) => (
   </>
 );
 
-export default EventsCountdown;
+const renderEventsCountdown = function (
+  props: EventsCountdownProps,
+  targetElement: HTMLElement,
+) {
+  preact.render(
+    <EventsCountdown items={props.items} />,
+    targetElement,
+  );
+};
+
+export { renderEventsCountdown };
 
 export type { EventsCountdownProps };
