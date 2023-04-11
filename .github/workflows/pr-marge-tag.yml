@@ -24,8 +24,8 @@ jobs:
       - name: print-comments
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          URL: ${{ github.event.pull_request._links.html }}
-        run: gh pr view ${{ env.URL }}
+          URL: ${{ github.event.pull_request._links.html.href }}
+        run: gh pr view ${URL}
 
     # - uses: rickstaa/action-create-tag@v1
     #     id: "create_tag"
