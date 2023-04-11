@@ -32,8 +32,8 @@ const renderQuickCourseView: Feature<RenderQuickCourseViewOptions> = {
       }
 
       const wrapperSection = document.createElement('section');
-      wrapperSection.className = 'block_myoverview block  card mb-3';
-      wrapperSection.dataset['block'] = 'myoverview';
+      wrapperSection.className = 'block_quickcourseview block  card mb-3';
+      wrapperSection.dataset['block'] = 'quickcourseview';
       cardBlock.insertBefore(wrapperSection, cardBlock.childNodes?.[0] ?? null);
 
       getCourses().then((courses) => {
