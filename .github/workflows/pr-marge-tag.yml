@@ -21,7 +21,7 @@ jobs:
         run: echo "commit_url=${{ github.event.pull_request.base.repo.commits_url }}" | sed -e "s#{/sha}#/${{ github.sha }}#" >> $GITHUB_ENV
 
       - name: Get Commit Message
-        run: 'echo "message=$(curl -s -L -H ''Accept: application/vnd.github+json'' ${{ env.commit_url }} | jq ''.commit.message'' | sed -e ''s/\\n/%0A/g'')" >> $GITHUB_ENV'
+        run: 'echo "::set-env name=message::$(curl -s -L -H ''Accept: application/vnd.github+json'' ${{ env.commit_url }} | jq ''.commit.message'' | sed -e ''s/\\n/%0A/g'')"
 
       - name: Create Tag
         uses: rickstaa/action-create-tag@v1
