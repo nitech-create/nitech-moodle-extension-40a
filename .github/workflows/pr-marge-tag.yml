@@ -28,7 +28,7 @@ jobs:
           echo "$EOF" >> $GITHUB_ENV
 
       - name: Test print
-        run: echo ${{ toJson(env) }}
+        run: echo ${{ env.message }}
 
       # - name: Create Tag
       #   uses: rickstaa/action-create-tag@v1
