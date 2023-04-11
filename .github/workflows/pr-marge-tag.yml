@@ -19,7 +19,7 @@ jobs:
         run: echo "commit_url=${{ github.event.pull_request.base.repo.commits_url }}" | sed -e "s#{/sha}#/${{ github.sha }}#" >> $GITHUB_ENV
 
       - name: get-commit-message
-        run: 'echo ''message=$(curl -s -L -H "Accept: application/vnd.github+json" ${{ env.commit_url }} | jq ".commit.message")'' >> GITHUB_ENV'
+        run: 'echo "message=$(curl -s -L -H ''Accept: application/vnd.github+json'' ${{ env.commit_url }} | jq ''.commit.message'')" >> GITHUB_ENV'
 
       - name: debug-print
         run: 'echo "version=${{ env.version }}, message=${{ env.message }}"'
