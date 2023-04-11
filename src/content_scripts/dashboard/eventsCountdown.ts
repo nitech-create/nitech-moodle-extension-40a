@@ -1,7 +1,5 @@
 /** @jsxImportSource preact */
 
-// @deno-types=https://raw.githubusercontent.com/preactjs/preact/10.13.2/src/index.d.ts
-import * as preact from 'preact';
 import type { Feature } from '../common/types.ts';
 import {
   EventsCountdownProps,

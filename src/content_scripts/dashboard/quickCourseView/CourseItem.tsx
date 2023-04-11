@@ -1,6 +1,6 @@
 /** @jsxImportSource preact */
 
-// @deno-types=https://raw.githubusercontent.com/preactjs/preact/10.13.2/src/index.d.ts
+// @deno-types="preact/types"
 import * as preact from 'preact';
 import { Course } from '../../../common/course.ts';
 import { weekOfDayMap } from './defs.ts';
