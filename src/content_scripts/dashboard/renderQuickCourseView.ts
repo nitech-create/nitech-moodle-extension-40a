@@ -3,7 +3,6 @@
 import type { Feature } from '../common/types.ts';
 import { renderQuickCourseView as renderQuickCourseViewElement } from './quickCourseView/QuickCourseView.tsx';
 import { getCourses } from '../../common/storage/course.ts';
-import { wrap } from '../../../../../.cache/deno/npm/registry.npmjs.org/@types/lodash/4.14.192/index.d.ts';
 
 type RenderQuickCourseViewOptions = {
   enabled: boolean;
