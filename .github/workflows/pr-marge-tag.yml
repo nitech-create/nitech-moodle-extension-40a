@@ -28,7 +28,7 @@ jobs:
         run: echo "commit_url=${{ github.event.pull_request.base.repo.commits_url }}"
 
       - name: get-commit-message
-        run: curl ${{ env.commit_url }} | jq ".commit.message"
+        run: 'curl -s -L -H "Accept: application/vnd.github+json" ${{ env.commit_url }} | jq ".commit.message"'
 
     # - uses: rickstaa/action-create-tag@v1
     #     id: "create_tag"
