@@ -14,6 +14,7 @@
     "preact/hooks": "https://esm.sh/preact@10.13.2/hooks",
     "preact/jsx-runtime": "https://esm.sh/preact@10.13.2/jsx-runtime",
     "preact/jsx-dev-runtime": "https://esm.sh/preact@10.13.2/jsx-dev-runtime",
+    "preact/types": "https://raw.githubusercontent.com/preactjs/preact/10.13.2/src/index.d.ts",
     "std/": "https://deno.land/std@0.182.0/",
     "webextension-polyfill": "https://esm.sh/webextension-polyfill@0.10.0"
   }

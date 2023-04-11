@@ -1,9 +1,7 @@
 /** @jsxImportSource preact */
 
-// @deno-types=https://raw.githubusercontent.com/preactjs/preact/10.13.2/src/index.d.ts
-import * as preact from 'preact';
 import type { Feature } from '../common/types.ts';
-import { QuickCourseView } from './quickCourseView/QuickCourseView.tsx';
+import { renderQuickCourseView as renderQuickCourseViewElement } from './quickCourseView/QuickCourseView.tsx';
 import { getCourses } from '../../common/storage/course.ts';
 
 type RenderQuickCourseViewOptions = {
@@ -37,12 +35,7 @@ const renderQuickCourseView: Feature<RenderQuickCourseViewOptions> = {
       cardBlock.insertBefore(wrapperSection, cardBlock.childNodes?.[0] ?? null);
 
       getCourses().then((courses) => {
-        preact.render(
-          <QuickCourseView
-            courses={courses}
-          />,
-          wrapperSection,
-        );
+        renderQuickCourseViewElement(courses, wrapperSection);
         resolve();
       });
     });

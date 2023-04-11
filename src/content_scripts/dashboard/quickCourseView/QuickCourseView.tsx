@@ -1,6 +1,6 @@
 /** @jsxImportSource preact */
 
-// @deno-types=https://raw.githubusercontent.com/preactjs/preact/10.13.2/src/index.d.ts
+// @deno-types="preact/types"
 import * as preact from 'preact';
 import * as hooks from 'preact/hooks';
 import { Course, RegularLectureCourse } from '../../../common/course.ts';
@@ -165,4 +165,14 @@ const QuickCourseView = (props: { courses: Course[] }) => {
   );
 };
 
-export { QuickCourseView };
+const renderQuickCourseView = function (
+  courses: Course[],
+  targetElement: HTMLElement,
+) {
+  preact.render(
+    <QuickCourseView courses={courses} />,
+    targetElement,
+  );
+};
+
+export { renderQuickCourseView };

@@ -1,10 +1,9 @@
 /** @jsxImportSource preact */
 
-// @deno-types=https://raw.githubusercontent.com/preactjs/preact/10.13.2/src/index.d.ts
-import * as preact from 'preact';
 import type { Feature } from '../common/types.ts';
-import EventsCountdown, {
+import {
   EventsCountdownProps,
+  renderEventsCountdown,
 } from './eventsCountdown/EventsCountdown.tsx';
 
 type AddEventCountdownOptions = {
@@ -73,7 +72,7 @@ const addEventsCountdown: Feature<AddEventCountdownOptions> = {
       });
     }
 
-    preact.render(<EventsCountdown items={eventItems} />, appRoot);
+    renderEventsCountdown({ items: eventItems }, appRoot);
 
     // ツリーが変化した際 (イベントの削除など) にカウントダウンが削除されるため
     // ツリーの変更を監視する

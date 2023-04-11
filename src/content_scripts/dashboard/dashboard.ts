@@ -1,8 +1,8 @@
 import loadFeature from '../common/loadFeature.ts';
 import waitForPageLoad from './waitForPageLoad.ts';
-import renderQuickCourseView from './renderQuickCourseView.tsx';
+import renderQuickCourseView from './renderQuickCourseView.ts';
 import updateCourseRepository from './updateCourseRepository.ts';
-import addEventsCountdown from './eventsCountdown.tsx';
+import addEventsCountdown from './eventsCountdown.ts';
 import { FeatureOption } from '../../common/options.ts';
 import { Feature } from '../common/types.ts';
 

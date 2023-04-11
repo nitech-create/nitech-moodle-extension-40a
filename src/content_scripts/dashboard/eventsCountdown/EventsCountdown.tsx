@@ -1,6 +1,6 @@
 /** @jsxImportSource preact */
 
-// @deno-types=https://raw.githubusercontent.com/preactjs/preact/10.13.2/src/index.d.ts
+// @deno-types="preact/types"
 import * as preact from 'preact';
 import { createPortal, useState } from 'preact/compat';
 
@@ -97,6 +97,16 @@ const EventsCountdown = (props: EventsCountdownProps) => (
   </>
 );
 
-export default EventsCountdown;
+const renderEventsCountdown = function (
+  props: EventsCountdownProps,
+  targetElement: HTMLElement,
+) {
+  preact.render(
+    <EventsCountdown items={props.items} />,
+    targetElement,
+  );
+};
+
+export { renderEventsCountdown };
 
 export type { EventsCountdownProps };

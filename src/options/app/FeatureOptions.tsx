@@ -1,6 +1,6 @@
 /** @jsxImportSource preact */
 
-// @deno-types=https://raw.githubusercontent.com/preactjs/preact/10.13.2/src/index.d.ts
+// @deno-types="preact/types"
 import * as preact from 'preact';
 import { FeatureOption, Options } from '../../common/options.ts';
 import optionText from './optionText.json' assert { type: 'json' };
