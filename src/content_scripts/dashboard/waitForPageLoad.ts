@@ -23,14 +23,16 @@ const waitForPageLoad: Feature<WaitForPageLoadOptions> = {
     return new Promise((resolve, reject) => {
       const startTime = Date.now();
 
-      // WANTFIX: 登録コース数が0だと動かないかもしれない？
       const checkPageContent = () => {
         const loadingContent = document.querySelector(
           'section.block_myoverview div[data-region="paged-content-page"]',
         );
 
         if (loadingContent !== null) {
-          resolve();
+          // この時点ではまだコース一覧が読み込まれていないため待つ
+          // Mutation observer とかでうまくいくかもしれないけれど
+          // コース数が0だと更新が入らなくて動かないかも？
+          setTimeout(resolve, 1000);
         } else {
           const timePassed = Date.now() - startTime;
 

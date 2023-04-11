@@ -144,8 +144,8 @@ const QuickCourseView = (props: { courses: Course[] }) => {
       <h5 class='card-title d-inline'>コースリンク</h5>
       <div className='card-text content mt-3'>
         <div
-          className='block-myoverview block-cards'
-          data-region='myoverview'
+          className='block-quickcouseview block-cards'
+          data-region='quickcouseview'
           role='navigation'
         >
           <hr className='mt-0' />
