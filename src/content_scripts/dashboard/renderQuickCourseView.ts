@@ -15,6 +15,7 @@ const renderQuickCourseView: Feature<RenderQuickCourseViewOptions> = {
   defaultOption: {
     enabled: true,
   },
+  dependencies: ['dashboard-update-course-repository'],
   loader: (options) => {
     if (!options.enabled) {
       return;
