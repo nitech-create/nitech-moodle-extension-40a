@@ -36,9 +36,9 @@
 
 ### GitHub からインストール
 
-1. (Releases)[https://github.com/nitech-create/nitech-moodle-extension-40a/(releases)] から .zip ファイルをダウンロードして展開する
+1. (Releases)[https://github.com/nitech-create/nitech-moodle-extension-40a/(releases)] から .zip ファイルをダウンロードする
     - または [ビルド方法](./how_to_build.md) に従ってビルドする
 2. 拡張機能ページを開く
     - [Chrome](chrome://extensions)
-3. `manifest.json` が含まれるフォルダをドロップ
+3. `manifest.json` が含まれるフォルダまたはダウンロードした .zip ファイルをドロップ
     - または「パッケージ化されていない拡張機能を読み込む」
