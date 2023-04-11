@@ -13,22 +13,16 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: extract-version
-        run: echo "version_in_manifest=$(sh scripts/get-manifest-version.sh)" >> $GITHUB_ENV
-
-      - name: test-output
-        run: echo ${{ env.version_in_manifest }}
-
-      - name: print-context
-        run: echo "github context ${{ toJson(github) }}"
+        run: echo "version=v$(sh scripts/get-manifest-version.sh)" >> $GITHUB_ENV
 
       - name: get-commit-url
         run: echo "commit_url=${{ github.event.pull_request.base.repo.commits_url }}" | sed -e "s#{/sha}#/${{ github.sha }}#" >> $GITHUB_ENV
 
-      - name: test-output
-        run: echo "commit_url=${{ github.event.pull_request.base.repo.commits_url }}"
-
       - name: get-commit-message
-        run: 'curl -s -L -H "Accept: application/vnd.github+json" ${{ env.commit_url }} | jq ".commit.message"'
+        run: 'echo message=$(curl -s -L -H "Accept: application/vnd.github+json" ${{ env.commit_url }} | jq ".commit.message") >> GITHUB_ENV'
+
+      - name: debug-print
+        run: 'echo "version=${{ env.version }}, message=${{ env.message }}"'
 
     # - uses: rickstaa/action-create-tag@v1
     #     id: "create_tag"
