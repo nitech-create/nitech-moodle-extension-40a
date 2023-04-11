@@ -70,7 +70,7 @@ const updateCourseRepository: Feature<UpdateCourseRepositoryOptions> = {
   defaultOption: {
     enabled: true,
   },
-  loader: (options) => {
+  loader: async (options) => {
     if (!options.enabled) {
       return;
     }
@@ -126,7 +126,7 @@ const updateCourseRepository: Feature<UpdateCourseRepositoryOptions> = {
       }
     }
 
-    storeCourseByMerge(courses);
+    await storeCourseByMerge(courses);
   },
 };
 
