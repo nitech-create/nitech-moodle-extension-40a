@@ -21,7 +21,7 @@ jobs:
       - name: get-commit-message
         run: 'echo "message=$(curl -s -L -H ''Accept: application/vnd.github+json'' ${{ env.commit_url }} | jq ''.commit.message'')" >> $GITHUB_ENV'
 
-    - uses: rickstaa/action-create-tag@v1
+      - uses: rickstaa/action-create-tag@v1
         id: "create_tag"
         with:
           tag: ${{ env.version }}
