@@ -24,8 +24,10 @@ jobs:
       - name: get-commit-url
         run: echo "commit_url=${{ github.events.base.repo.commits_url }}" | sed -e "s#{/sha}#/${{ github.sha }}#" >> $GITHUB_ENV
 
+      - run: echo ${{ env.commit_url }}
+
       - name: get-commit-message
-        run: curl ${{ github.commit_url }} | jq ".commit.message"
+        run: curl ${{ env.commit_url }} | jq ".commit.message"
 
     # - uses: rickstaa/action-create-tag@v1
     #     id: "create_tag"
