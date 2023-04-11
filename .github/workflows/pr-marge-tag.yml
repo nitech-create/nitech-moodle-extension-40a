@@ -6,7 +6,7 @@ on:
       - closed
 
 jobs:
-  if_merged:
+  create_tag:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
@@ -21,11 +21,11 @@ jobs:
       - name: print-context
         run: echo "github context ${{ toJson(github) }}"
 
-      - name: print-comments
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          URL: ${{ github.event.pull_request._links.html.href }}
-        run: gh pr view ${URL}
+      - name: get-commit-url
+        run: echo "commit_url=${{ github.events.base.repo.commits_url }}" | sed -e "s#{/sha}#/${{ github.sha }}#" >> $GITHUB_ENV
+
+      - name: get-commit-message
+        run: curl ${{ github.commit_url }} | jq ".commit.message"
 
     # - uses: rickstaa/action-create-tag@v1
     #     id: "create_tag"
