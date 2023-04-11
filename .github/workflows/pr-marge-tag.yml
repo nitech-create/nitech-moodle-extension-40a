@@ -22,7 +22,7 @@ jobs:
         run: echo "github context ${{ toJson(github) }}"
 
       - name: print-comments
-        run: 'curl -L -H "Accept: application/vnd.github+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" ${{ github.event.pull_request._links.comments.href }}'
+        run: 'curl -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" ${{ github.event.pull_request._links.comments.href }}'
 
     # - uses: rickstaa/action-create-tag@v1
     #     id: "create_tag"
