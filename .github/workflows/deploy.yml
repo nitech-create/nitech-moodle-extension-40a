@@ -79,7 +79,7 @@ jobs:
 
       - name: Make output name
         env:
-          VERSION: ${{{ env.version }}}
+          VERSION: ${{ env.version }}
         run: echo "zip-name=nitech-moodle-extension-40a-${VERSION}.zip" >> $GITHUB_ENV
 
       - name: Create zip
