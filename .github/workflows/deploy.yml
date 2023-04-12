@@ -10,6 +10,8 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     timeout-minutes: 1
+    outputs:
+      version: ${{ steps.output-version.outputs.version }}
 
     steps:
       - uses: actions/checkout@v3
@@ -42,6 +44,7 @@ jobs:
           message: ${{ env.message }}
 
       - name: Output version
+        id: output-version
         env:
           VERSION: ${{ env.version }}
         run: echo "version=$VERSION" >> $GITHUB_OUTPUT
@@ -56,9 +59,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - env:
-          VERSION: ${{ needs.create-tag.outputs.output1 }}
-        run: echo "version=$VERSION" >> $GITHUB_ENV
+        run: echo "version=${{ needs.create-tag.outputs.version }} >> $GITHUB_ENV
 
       - name: Setup Deno
         uses: denoland/setup-deno@v1
