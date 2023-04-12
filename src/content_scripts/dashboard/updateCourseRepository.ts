@@ -19,8 +19,11 @@ interface DecodedLectureCourse {
   period: RegularLectureCourse['period'];
 }
 
-const convertFullWidthToHalfWidth = function(input: string): string {
-  return input.replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0));
+const convertFullWidthToHalfWidth = function (input: string): string {
+  return input.replace(
+    /[０-９]/g,
+    (s) => String.fromCharCode(s.charCodeAt(0) - 0xFEE0),
+  );
 };
 
 const decodeRegularLectureCourseText = function (
