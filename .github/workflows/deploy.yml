@@ -57,7 +57,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - env:
-          VERSION: ${{ needs.create-tag.outputs.output1.version }}
+          VERSION: ${{ needs.create-tag.outputs.output1 }}
         run: echo "version=$VERSION" >> $GITHUB_ENV
 
       - name: Setup Deno
