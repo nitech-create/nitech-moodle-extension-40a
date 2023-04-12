@@ -17,4 +17,6 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Check version
-        run: scripts/check-version-increase.sh
+        env:
+          REPO_NAME: ${{ github.repository }}
+        run: bash scripts/check-version-increase.sh $REPO_NAME

@@ -1,6 +1,11 @@
 manifest_version="$(sh $(dirname $0)/get-manifest-version.sh)"
 
-api_endpoint="https://api.github.com/repos/nitech-create/nitech-moodle-extension-40a/releases/latest"
+if [ $# -lt 1 ]; then
+    echo "Repository name (user/repo) is needed."
+    exit 1
+fi
+
+api_endpoint="https://api.github.com/repos/$1/releases/latest"
 release_version=$(curl -sSL -H "Accept: application/vnd.github+json" $api_endpoint \
     | jq ".tag_name" | sed -E 's/^"v?//' | sed -E 's/"$//')
 
