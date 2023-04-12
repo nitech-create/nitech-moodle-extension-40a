@@ -18,10 +18,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup Deno
-        uses: denoland/setup-deno@v1
-        with:
-          deno-version: v1.x
-
       - name: Check version
-        run: deno task check-version-increase
+        run: scripts/check-version-increase.sh

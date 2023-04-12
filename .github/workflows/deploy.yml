@@ -1,15 +1,58 @@
 name: deploy
 
 on:
-  push:
-    tags:
-      - 'v*'
+  pull_request:
+    types:
+      - closed
 
 permissions:
   contents: read
 
 jobs:
+  create-tag:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Extract version
+        run: echo "version=v$(sh scripts/get-manifest-version.sh)" >> $GITHUB_ENV
+
+      - name: Get commit URL
+        env:
+          COMMITS_URL: ${{ github.event.pull_request.base.repo.commits_url }}
+          SHA: ${{ github.sha }}
+        run: echo "commit-url=$COMMITS_URL" | sed -e "s#{/sha}#/$SHA#" >> $GITHUB_ENV
+
+      - name: Get commit message
+        env:
+          COMMIT_URL: ${{ env.commit-url }}
+        run: |
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          echo "message<<$EOF" >> $GITHUB_ENV
+          echo -e $(curl -s -L -H "Accept: application/vnd.github+json" $COMMIT_URL | jq ".commit.message" | sed -E 's/^"//' | sed -E 's/"$//') >> $GITHUB_ENV
+          echo "$EOF" >> $GITHUB_ENV
+
+      - name: Add tag ${{ env.version }}
+        uses: rickstaa/action-create-tag@v1
+        id: create-tag
+        with:
+          tag: ${{ env.version }}
+          force_push_tag: true
+          tag_exists_error: false
+          commit_sha: ${{ github.sha }}
+          message: ${{ env.message }}
+
+      - name: Output version
+        env:
+          VERSION: ${{ env.version }}
+        run: echo "$VERSION" >> $GITHUB_OUTPUT
+
   deploy:
+    if: github.event.pull_request.merged == true
+    needs: create-tag
     runs-on: ubuntu-latest
     timeout-minutes: 1
     permissions: write-all
@@ -17,19 +60,32 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - env:
+          VERSION: ${{ needs.create-tag.outputs.output1 }}
+        run: echo "version=$VERSION" >> $GITHUB_ENV
+
       - name: Setup Deno
         uses: denoland/setup-deno@v1
         with:
           deno-version: v1.x
 
       - name: Check manifest version
-        run: deno task check-version ${GITHUB_REF##*/} tag
+        env:
+          VERSION: ${{ env.version }}
+        run: deno task check-version $VERSION
 
       - name: Build
         run: deno task build
 
+      - name: Make output name
+        env:
+          VERSION: ${{{ env.version }}}
+        run: echo "zip-name=nitech-moodle-extension-40a-${VERSION}.zip" >> $GITHUB_ENV
+
       - name: Create zip
-        run: cd ./dist; zip asset.zip -r .
+        env:
+          ZIP_NAME: ${{ env.zip-name }}
+        run: cd ./dist; zip $ZIP_NAME -r .
 
       - name: Create release
         id: create_release
@@ -49,6 +105,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./dist/asset.zip
-          asset_name: nitech-moodle-extension-40a.zip
+          asset_path: ${{ env.zip-name }}
+          asset_name: ${{ env.zip-name }}
           asset_content_type: application/zip
