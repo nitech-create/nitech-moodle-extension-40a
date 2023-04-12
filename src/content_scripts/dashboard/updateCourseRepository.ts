@@ -5,7 +5,7 @@ import waitForPageLoad from './waitForPageLoad.ts';
 import { textToSemesterMap, textToWeekOfDayMap } from '../../common/course.ts';
 
 const regularCourseRegExp =
-  /^(.+)\s*(\d{4})(\d)(\d{4})\s*(前期|後期)\s*((?:日|月|火|水|木|金|土)曜)\s*(\d)-(\d\d?)限/;
+  /^(.+)\s*(\d{4})(\d)(\d{4})\s*(前期|後期|第(?:1|2|3|4)クォーター)\s*((?:日|月|火|水|木|金|土)曜)\s*(\d\d?)-(\d\d?)限.*$/;
 
 interface DecodedLectureCourse {
   type: RegularLectureCourse['type'];
@@ -19,16 +19,20 @@ interface DecodedLectureCourse {
   period: RegularLectureCourse['period'];
 }
 
+const convertFullWidthToHalfWidth = function(input: string): string {
+  return input.replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0));
+};
+
 const decodeRegularLectureCourseText = function (
   text: string,
 ): DecodedLectureCourse {
-  const match = regularCourseRegExp.exec(text);
+  const match = regularCourseRegExp.exec(convertFullWidthToHalfWidth(text));
   if (match === null) {
     throw Error(`"${text}" does not matches to the pattern`);
   }
 
   const curriculumPart = parseInt(match[3]);
-  if (curriculumPart !== 1 && curriculumPart !== 2) {
+  if (curriculumPart !== 1 && curriculumPart !== 2 && curriculumPart !== 4) {
     throw Error(`${curriculumPart} is not a valid curriculum part`);
   }
   if (!(match[5] in textToSemesterMap)) {
