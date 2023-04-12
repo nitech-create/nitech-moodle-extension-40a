@@ -2,7 +2,7 @@
   // Required
   manifest_version: 3,
   name: "NITech Moodle Extension (40a)",
-  version: "0.8.18",
+  version: "0.8.19",
 
   // Recommended
   // action: {},
