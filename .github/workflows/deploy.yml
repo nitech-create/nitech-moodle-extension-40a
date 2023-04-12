@@ -59,7 +59,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: echo "version=${{ needs.create-tag.outputs.version }} >> $GITHUB_ENV
+      - run: echo "version=${{ needs.create-tag.outputs.version }}" >> $GITHUB_ENV
 
       - name: Setup Deno
         uses: denoland/setup-deno@v1
