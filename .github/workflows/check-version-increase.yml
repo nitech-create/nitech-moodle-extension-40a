@@ -2,10 +2,8 @@ name: check latest version
 
 on:
   pull_request:
-    types:
-      - [opened, synchronize]
-    branches:
-      - main
+    types: [opened, synchronize]
+    branches: [main]
 
 permissions:
   contents: read
