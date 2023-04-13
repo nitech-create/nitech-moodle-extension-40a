@@ -19,7 +19,7 @@ jobs:
         env:
           REF: ${{ github.ref }}
         run: |
-          [[ $REF =~ ^refs/tags/ ]] || exit 1
+          [[ $REF =~ ^refs/tags/ ]] || (echo "This workflow must be run from"; exit 1)
           TAG_NAME=$(echo $REF | sed -E s#^refs/tags/##)
           echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
 
