@@ -40,26 +40,32 @@
 
 ### ビルドなど
 
+初回: [ビルド方法](how_to_build.md)
+
 - 本番用ビルド
   
   ```sh
   $deno task build
   ```
+
 - 開発用ビルド (import map が埋め込まれます; `web_accessible_resources` に指定すれば本番用とほぼ変わりません)
   
   ```sh
   $deno task dev
   ```
+
 - 開発用ビルド (watch; ファイル変更時に自動で再ビルドします; 一部プラグインによる出力は watch されません; Enter で手動再ビルド)
   
   ```sh
   $deno task watch
   ```
+
 - キャッシュ・出力ディレクトリのクリーンアップ
   
   ```sh
   $deno task clean
   ```
+
 - すべてのファイルのリモート `import` のキャッシュ (bash 環境のみ？)
   
   ```sh
