@@ -2,6 +2,9 @@ name: attach build artifact to release manually
 
 on: workflow_dispatch
 
+permissions:
+  contents: write
+
 env:
   TEMP_ASSET_NAME: asset.zip
 
@@ -9,8 +12,6 @@ jobs:
   attach-build-artifact:
     runs-on: ubuntu-latest
     timeout-minutes: 1
-    permissions:
-      contents: write
 
     steps:
       - uses: actions/checkout@v3
