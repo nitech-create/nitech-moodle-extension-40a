@@ -1,3 +1,6 @@
+# Check if the version set in manifest.json5 is increased from latest release
+# useage: bash check-version.sh nitech-create/nitech-moodle-extension-40a
+
 manifest_version="$(sh $(dirname $0)/get-manifest-version.sh)"
 
 if [ $# -lt 1 ]; then

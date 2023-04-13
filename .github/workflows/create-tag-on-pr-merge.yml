@@ -1,0 +1,46 @@
+name: deploy
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+    paths:
+      - 'src/**'
+
+jobs:
+  create-tag:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Extract version
+        run: echo "VERSION=v$(sh scripts/get-manifest-version.sh)" >> $GITHUB_ENV
+
+      - name: Get commit URL
+        env:
+          COMMITS_URL: ${{ github.event.pull_request.base.repo.commits_url }}
+          SHA: ${{ github.sha }}
+        run: echo "COMMIT_URL=$COMMITS_URL" | sed -e "s#{/sha}#/$SHA#" >> $GITHUB_ENV
+
+      - name: Get commit message
+        run: |
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          echo "MESSAGE<<$EOF" >> $GITHUB_ENV
+          JSON_TEXT=$(curl -s -L -H "Accept: application/vnd.github+json" $COMMIT_URL)
+          VERSION_STRING=$(echo "$VERSION_TEXT" | jq ".commit.message" | sed -E 's/^"//' | sed -E 's/"$//')
+          echo -e "$VERSION_STRING" >> $GITHUB_ENV
+          echo "$EOF" >> $GITHUB_ENV
+
+      - name: Add tag ${{ env.VERSION }}
+        uses: rickstaa/action-create-tag@v1
+        id: create-tag
+        with:
+          tag: ${{ env.VERSION }}
+          tag_exists_error: true
+          commit_sha: ${{ github.sha }}
+          message: ${{ env.MESSAGE }}
