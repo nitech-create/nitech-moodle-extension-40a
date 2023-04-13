@@ -1,4 +1,4 @@
-name: attach build artifact to release
+name: attach build artifact to release manually
 
 on: workflow_dispatch
 
