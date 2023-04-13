@@ -1,18 +1,11 @@
 import type { Feature } from '../common/types.ts';
 import { getCourses } from '../../common/storage/course.ts';
 
-type ReplaceNavigationText = {
-  enabled: boolean;
-};
-
 /** ナビゲーションのコース表示名をわかりやすい表示に変更する */
-const replaceNavigationText: Feature<ReplaceNavigationText> = {
+const replaceNavigationText: Feature = {
   uniqueName: 'all-pages-replace-navigation-texts',
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
   pathnameFilter: /^\/moodle40a\//,
-  defaultOption: {
-    enabled: true,
-  },
   loader: async (options) => {
     if (!options.enabled) {
       return;

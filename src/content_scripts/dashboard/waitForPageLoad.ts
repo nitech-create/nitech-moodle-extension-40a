@@ -1,24 +1,23 @@
+// @deno-types=npm:@types/lodash
+import * as lodash from 'lodash';
 import type { Feature } from '../common/types.ts';
 
-type WaitForPageLoadOptions = {
-  enabled: boolean;
-  timeout: number;
+const defaultOption = {
+  enabled: true,
+  timeout: 5000,
 };
 
 /** ダッシュボードの内容が読み込まれるまで待つ */
-const waitForPageLoad: Feature<WaitForPageLoadOptions> = {
+const waitForPageLoad: Feature = {
   uniqueName: 'dashboard-wait-for-page-load',
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
   pathnameFilter: /^\/moodle40a\/my\/(index\.php)?$/,
   propagateError: false,
-  defaultOption: {
-    enabled: true,
-    timeout: 5000,
-  },
-  loader: (options) => {
-    if (!options.enabled) {
+  loader: (options_) => {
+    if (!options_.enabled) {
       return;
     }
+    const options = lodash.merge(options_, defaultOption);
 
     return new Promise((resolve, reject) => {
       const startTime = Date.now();
