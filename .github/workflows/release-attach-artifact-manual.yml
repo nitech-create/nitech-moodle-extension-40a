@@ -15,13 +15,13 @@ jobs:
 
       - run: echo "${{ toJson(github) }}"
 
-      - name: Extract tag from ref
+      - name: Get tag from ref
         env:
           REF: ${{ github.ref }}
         run: |
           [[ $REF =~ ^refs/tags/ ]] || exit 1
           TAG_NAME=$(echo $REF | sed -E s#^refs/tags/##)
-          echo "TAG_NAME=$TAG_NAME" >> GITHUB_ENV
+          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
 
       - name: Get upload url
         env:
@@ -30,7 +30,7 @@ jobs:
           URL=$(echo "$RELEASES_URL" | sed -e s:{/id}:/tags/$TAG_NAME:)
           JSON_TEXT=$(curl -sSL $URL)
           UPLOAD_URL=$(echo "$JSON_TEXT" | jq ".upload_url")
-          echo "UPLOAD_URL=$UPLOAD_URL" >> GITHUB_ENV
+          echo "UPLOAD_URL=$UPLOAD_URL" >> $GITHUB_ENV
 
       - name: Setup Deno
         uses: denoland/setup-deno@v1
