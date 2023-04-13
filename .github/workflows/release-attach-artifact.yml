@@ -3,10 +3,10 @@ name: attach build artifact to release
 on:
   release:
     types:
-      - created
+      - published
 
 jobs:
-  deploy:
+  attach-build-artifact:
     runs-on: ubuntu-latest
     timeout-minutes: 1
     permissions: write-all
