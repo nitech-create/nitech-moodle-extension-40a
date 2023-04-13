@@ -56,5 +56,5 @@ jobs:
             -H "Authorization: Bearer $GITHUB_TOKEN"
             -H "X-GitHub-Api-Version: 2022-11-28"
             -H "Content-Type: application/octet-stream"
-            "$UPLOAD_URL"
+            $UPLOAD_URL
             --data-binary "@dist/$TEMP_ASSET_NAME"
