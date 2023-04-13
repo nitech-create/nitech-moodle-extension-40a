@@ -1,0 +1,54 @@
+name: attach build artifact to release
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    permissions: write-all
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: show context
+        run: echo ${{ toJson(github) }}
+
+#       - name: Setup Deno
+#         uses: denoland/setup-deno@v1
+#         with:
+#           deno-version: v1.x
+#
+#       - name: Check manifest version
+#         run: deno task check-version ${GITHUB_REF##*/} tag
+#
+#       - name: Build
+#         run: deno task build
+#
+#       - name: Create zip
+#         run: cd ./dist; zip asset.zip -r .
+#
+#       - name: Create release
+#         id: create_release
+#         uses: actions/create-release@v1
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         with:
+#           tag_name: ${{ github.ref }}
+#           release_name: Release ${{ github.ref }}
+#           draft: false
+#           prerelease: false
+#
+#       - name: Upload release asset
+#         id: upload-release-asset
+#         uses: actions/upload-release-asset@v1
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         with:
+#           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+#           asset_path: ./dist/asset.zip
+#           asset_name: nitech-moodle-extension-40a.zip
+#           asset_content_type: application/zip
