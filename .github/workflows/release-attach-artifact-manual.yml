@@ -3,7 +3,7 @@ name: attach build artifact to release manually
 on: workflow_dispatch
 
 permissions:
-  contents: write
+  contents: write-all
 
 env:
   TEMP_ASSET_NAME: asset.zip
