@@ -31,7 +31,8 @@ jobs:
         run: |
           URL=$(echo "$RELEASES_URL" | sed -e s:{/id}:/tags/$TAG_NAME:)
           JSON_TEXT=$(curl -sSL $URL)
-          UPLOAD_URL=$(echo "$JSON_TEXT" | jq ".upload_url" | sed -e s/{?name,label}/?name=nitech-moodle-extension-40a-${TAG_NAME}.zip/)
+          UPLOAD_URL=$(echo "$JSON_TEXT" | jq ".upload_url" | sed -e 's/\"//g')
+          UPLOAD_URL=$(echo "$UPLOAD_URL" | sed -e "s/{?name,label}/?name=nitech-moodle-extension-40a-${TAG_NAME}.zip/")
           echo "UPLOAD_URL=$UPLOAD_URL" >> $GITHUB_ENV
 
       - name: Setup Deno
