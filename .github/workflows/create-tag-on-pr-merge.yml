@@ -32,7 +32,7 @@ jobs:
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
           echo "MESSAGE<<$EOF" >> $GITHUB_ENV
           JSON_TEXT=$(curl -s -L -H "Accept: application/vnd.github+json" $COMMIT_URL)
-          VERSION_STRING=$(echo "$VERSION_TEXT" | jq ".commit.message" | sed -E 's/^"//' | sed -E 's/"$//')
+          VERSION_STRING=$(echo "$JSON_TEXT" | jq ".commit.message" | sed -E 's/^"//' | sed -E 's/"$//')
           echo -e "$VERSION_STRING" >> $GITHUB_ENV
           echo "$EOF" >> $GITHUB_ENV
 
