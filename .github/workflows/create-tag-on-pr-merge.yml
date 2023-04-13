@@ -2,8 +2,12 @@ name: deploy
 
 on:
   pull_request:
+    branches:
+      - main
     types:
       - closed
+    paths:
+      - 'src/**'
 
 jobs:
   create-tag:
