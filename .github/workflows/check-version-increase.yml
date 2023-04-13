@@ -7,9 +7,6 @@ on:
     branches:
       - main
 
-permissions:
-  contents: read
-
 jobs:
   lint-and-fmt:
     runs-on: ubuntu-latest
@@ -18,10 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup Deno
-        uses: denoland/setup-deno@v1
-        with:
-          deno-version: v1.x
-
       - name: Check version
-        run: deno task check-version-increase
+        env:
+          REPO_NAME: ${{ github.repository }}
+        run: bash scripts/check-version-increase.sh $REPO_NAME
