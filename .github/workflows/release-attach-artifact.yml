@@ -41,5 +41,5 @@ jobs:
         with:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./dist/${{ env.TEMP_ASSET_NAME }}
-          asset_name: nitech-moodle-extension-40a-${{ env.VERSION }}.zip
+          asset_name: nitech-moodle-extension-40a-${{ env.TAG_NAME }}.zip
           asset_content_type: application/zip
