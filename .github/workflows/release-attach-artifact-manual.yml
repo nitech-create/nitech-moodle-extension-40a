@@ -15,13 +15,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: echo "${{ toJson(github) }}"
-
       - name: Get tag from ref
         env:
           REF: ${{ github.ref }}
         run: |
-          [[ $REF =~ ^refs/tags/ ]] || exit 1
+          [[ $REF =~ ^refs/tags/ ]] || (echo "This workflow must be run from tag."; exit 1)
           TAG_NAME=$(echo $REF | sed -E s#^refs/tags/##)
           echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
 
@@ -56,5 +54,5 @@ jobs:
             -H "Authorization: Bearer $GITHUB_TOKEN" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             -H "Content-Type: application/octet-stream" \
-            ${{ env.UPLOAD_URL }} \
+            $UPLOAD_URL \
             --data-binary "@dist/$TEMP_ASSET_NAME"
