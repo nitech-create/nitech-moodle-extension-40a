@@ -15,8 +15,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: echo "${{ toJson(github) }}"
-
       - name: Get tag from ref
         env:
           REF: ${{ github.ref }}
