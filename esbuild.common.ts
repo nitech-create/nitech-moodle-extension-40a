@@ -3,7 +3,7 @@ import { posix } from 'posix';
 import JSON5 from 'json5';
 import type ManifestType from './src/manifestType.ts';
 import denoConfig from './deno.json' assert { type: 'json' };
-import importMap from './import_map.json' assert { type: 'json' };
+import importmap from './import_map.json' assert { type: 'json' };
 
 import sassPlugin from 'esbuild-plugin-sass';
 import { esbuildCachePlugin } from 'esbuild-cache-plugin';
@@ -11,7 +11,6 @@ import copyPlugin from 'esbuild-plugin-copy';
 import resultPlugin from 'esbuild-plugin-result';
 import json5Plugin from './plugins/json5.ts';
 import json5ExportPlugin from './plugins/json5Export.ts';
-import importMapPlugin from './plugins/importMap.ts';
 
 const srcPath = 'src';
 const destPath = 'dist';
@@ -56,9 +55,9 @@ const config: Partial<esbuild.BuildOptions> = {
   jsxFragment: denoConfig.compilerOptions.jsxFragmentFactory,
   plugins: [
     esbuildCachePlugin({
-      directory: cachePath
+      directory: cachePath,
+      importmap,
     }),
-    importMapPlugin({ importMap }),
     sassPlugin(),
     copyPlugin({
       baseDir: srcPath,
