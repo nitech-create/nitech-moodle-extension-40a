@@ -44,6 +44,7 @@
     "clean": "rm -rf dist/ && rm -rf cache/",
     "cache-all": "sh ./scripts/cache-all.sh",
     "check-version": "bash ./scripts/checkVersion.sh",
-    "check-version-increase": "bash ./scripts/checkVersionIncrease.sh"
+    "check-version-increase": "bash ./scripts/checkVersionIncrease.sh",
+    "setup-vscode": "deno run --allow-run --allow-read --allow-write scripts/setup-vscode.ts"
   }
 }
