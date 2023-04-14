@@ -46,6 +46,7 @@
   ```sh
   $deno task setup-vscode
   ```
+4. VSCodeを再起動する
 
 ### ビルドなど
 
