@@ -17,3 +17,14 @@
    ```
    
     `dist` ディレクトリにビルド結果が出力されます
+
+5. VSCodeの補完設定
+
+   `.vscode/settings.json` で
+   ```json
+   {
+     "deno.importMap": "./import_map.json"
+   }
+   ```
+
+   を設定する
