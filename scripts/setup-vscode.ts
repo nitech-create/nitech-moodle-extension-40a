@@ -13,6 +13,8 @@ const configJSON = await (async () => {
   }
 })();
 
+console.info("\x1b[1mInstall Deno for VSCode on https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno\x1b[0m");
+
 const config = JSON.parse(configJSON);
 const langSettings = {
   'editor.defaultFormatter': 'denoland.vscode-deno',
