@@ -1,12 +1,12 @@
 // @deno-types=npm:@types/lodash
 import * as lodash from 'lodash';
 import type { Feature, FeatureUniqueName } from '../common/types.ts';
+import { defaultFeatureOption } from '../../common/options.ts';
 import { getOptions } from '../../common/storage/options.ts';
-import { FeatureOption } from '../../common/options.ts';
 
 /** feature を依存関係に従ってトポロジカルソートする */
 // DFS を用いて探索
-const sortFeatures = function (features: Feature<FeatureOption>[]) {
+const sortFeatures = function (features: Feature[]) {
   // 重複チェック
   const featureNames = features.map((feature) => feature.uniqueName);
   if (new Set(featureNames).size !== features.length) {
@@ -15,15 +15,15 @@ const sortFeatures = function (features: Feature<FeatureOption>[]) {
     );
   }
 
-  const featureNameMap = new Map<FeatureUniqueName, Feature<FeatureOption>>();
+  const featureNameMap = new Map<FeatureUniqueName, Feature>();
   for (const feature of features) {
     featureNameMap.set(feature.uniqueName, feature);
   }
 
   const visited = new Set<FeatureUniqueName>();
-  const result: Feature<FeatureOption>[] = [];
+  const result: Feature[] = [];
   const visit = function (
-    feature: Feature<FeatureOption>,
+    feature: Feature,
     localVisited: Set<FeatureUniqueName>,
   ) {
     if (visited.has(feature.uniqueName)) {
@@ -73,7 +73,7 @@ const testByStringOrRegExp = function (test: string | RegExp, target: string) {
 
 /** `Feature` を依存関係を解決しながら読み込む */
 const loadFeature = async function (
-  features: Feature<FeatureOption>[],
+  features: Feature[],
   contextUrl: URL,
   showLog = false,
 ) {
@@ -130,9 +130,9 @@ const loadFeature = async function (
           console.log(`[FeatureLoader] Loading ${feature.uniqueName}`);
         }
 
-        const option = lodash.defaults(
+        const option = lodash.defaultsDeep(
           options.features[feature.uniqueName],
-          feature.defaultOption,
+          defaultFeatureOption,
         );
 
         if (feature.propagateError === false) {

@@ -62,21 +62,14 @@ const decodeRegularLectureCourseText = function (
   };
 };
 
-type UpdateCourseRepositoryOptions = {
-  enabled: boolean;
-};
-
 const pageLinkIdRegExp = /id=(\d+)/;
 /** コースのリストを「コース概要」のセクションから
  * 読み取り、ストレージに保存する */
-const updateCourseRepository: Feature<UpdateCourseRepositoryOptions> = {
+const updateCourseRepository: Feature = {
   uniqueName: 'dashboard-update-course-repository',
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
   pathnameFilter: /^\/moodle40a\/my\/(index\.php)?$/,
   dependencies: [waitForPageLoad.uniqueName],
-  defaultOption: {
-    enabled: true,
-  },
   loader: async (options) => {
     if (!options.enabled) {
       return;
