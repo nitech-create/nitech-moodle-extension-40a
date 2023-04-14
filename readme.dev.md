@@ -38,36 +38,49 @@
 - webextension-polyfill: WebExtension 標準に準拠した環境にする
   - グローバル名として `chrome` ではなく `browser` を使えます
 
+### VSCode での開発環境のセットアップ
+
+1. [ビルド方法](how_to_build.md) に従って環境を構築する
+2. [Deno 用拡張機能](https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno) をインストールする
+3. 次のコマンドを実行する:
+  ```sh
+  $deno task setup-vscode
+  ```
+
 ### ビルドなど
 
-初回: [ビルド方法](how_to_build.md)
+#### 前提条件
+
+- [ビルド方法](how_to_build.md) に従って環境を構築してある必要があります
+
+#### タスク
 
 - 本番用ビルド
-  
+
   ```sh
   $deno task build
   ```
 
 - 開発用ビルド (import map が埋め込まれます; `web_accessible_resources` に指定すれば本番用とほぼ変わりません)
-  
+
   ```sh
   $deno task dev
   ```
 
 - 開発用ビルド (watch; ファイル変更時に自動で再ビルドします; 一部プラグインによる出力は watch されません; Enter で手動再ビルド)
-  
+
   ```sh
   $deno task watch
   ```
 
 - キャッシュ・出力ディレクトリのクリーンアップ
-  
+
   ```sh
   $deno task clean
   ```
 
 - すべてのファイルのリモート `import` のキャッシュ (bash 環境のみ？)
-  
+
   ```sh
   $deno task cache-all
   ```
