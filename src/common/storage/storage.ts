@@ -28,7 +28,7 @@ const get = async function <Key extends keyof StoredValue>(
     StoredValue
   >;
 
-  return lodash.defaults(value, defaultValue)[key];
+  return lodash.defaultsDeep(value, defaultValue)[key];
 };
 
 /** 最後に作成された (Promise-chain の最後尾の) `Promise` */
@@ -46,7 +46,7 @@ const update = async function <Key extends keyof StoredValue>(
     new Promise<void>((resolve) => {
       get(key).then((prevValue) => {
         browser.storage[storageArea].set({
-          [key]: reducer(lodash.defaults(prevValue, defaultValue[key])),
+          [key]: reducer(lodash.defaultsDeep(prevValue, defaultValue[key])),
         });
         resolve();
       });

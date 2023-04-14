@@ -1,13 +1,14 @@
-# Web Extension for NITech moodle 4.0
+# Web Extension for NITech Moodle 4.0
 
-[![deploy](https://github.com/nitech-create/nitech-moodle-extension-40a/actions/workflows/deploy.yml/badge.svg)](https://github.com/nitech-create/nitech-moodle-extension-40a/actions/workflows/deploy.yml)
 [![release](https://img.shields.io/github/v/release/nitech-create/nitech-moodle-extension-40a?include_prereleases)](https://github.com/nitech-create/nitech-moodle-extension-40a/releases/latest)
 
 開発をお手伝いしてくださる方: [開発者向けドキュメント](./readme.dev.md)
 
 ## 概要
 
-名古屋工業大学の Moodle 4.0 の機能を改善・拡張する拡張機能です。
+名古屋工業大学のオンライン授業サポートシステムとして採用されている Moodle (4.0) の機能を改善・拡張して使いやすくするブラウザ用拡張機能です。非公式であり、問題が起きても責任は取れません。
+
+Web Extension for Moodle 4.0 of NITech.
 
 ### 主な機能
 
@@ -23,11 +24,11 @@
 
 ## ブラウザ対応状況
 
-|              ブラウザ               | 対応状況 |
-| ----------------------------------- | -------- |
-| Chrome (Windows 11, 111.0.5563.147) | 開発中   |
-| Microsoft Edge                      | 開発中   |
-| Firefox                             | 未確認   |
+|               ブラウザ                |         対応状況         |
+| ------------------------------------- | ------------------------ |
+| Chrome (Windows 11, 111.0.5563.147)   | 開発中                   |
+| Microsoft Edge (情報基盤センター推奨) | 開発中                   |
+| Firefox                               | 現在非対応(今後対応予定) |
 
 ## 利用方法
 

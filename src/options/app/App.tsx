@@ -27,7 +27,7 @@ const App = (props: AppProps) => {
     key: keyof Options['features'],
     value: Partial<FeatureOption>,
   ) => {
-    const newPartialOption = lodash.defaults(
+    const newPartialOption = lodash.defaultsDeep(
       value,
       options.features[key],
     ) as FeatureOption;

@@ -1,3 +1,4 @@
+import debugMode from '../common/debugMode.ts';
 import loadFeature from '../common/loadFeature.ts';
 import removeForceDownload from './removeForceDownload.ts';
 import replaceNavigationText from './replaceNavigationText.ts';
@@ -13,6 +14,6 @@ globalThis.addEventListener('load', () => {
       replaceHeaderCourseName,
     ],
     new URL(location.href),
-    false,
+    debugMode,
   );
 });

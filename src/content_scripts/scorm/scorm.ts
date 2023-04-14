@@ -1,3 +1,4 @@
+import debugMode from '../common/debugMode.ts';
 import loadFeature from '../common/loadFeature.ts';
 import collapseToc from './collapseToc.ts';
 
@@ -7,6 +8,6 @@ globalThis.addEventListener('load', () => {
       collapseToc,
     ],
     new URL(location.href),
-    false,
+    debugMode,
   );
 });

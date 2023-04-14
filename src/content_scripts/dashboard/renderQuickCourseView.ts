@@ -1,21 +1,13 @@
-/** @jsxImportSource preact */
-
+import updateCourseRepository from './updateCourseRepository.ts';
 import type { Feature } from '../common/types.ts';
 import { renderQuickCourseView as renderQuickCourseViewElement } from './quickCourseView/QuickCourseView.tsx';
 import { getCourses } from '../../common/storage/course.ts';
 
-type RenderQuickCourseViewOptions = {
-  enabled: boolean;
-};
-
-const renderQuickCourseView: Feature<RenderQuickCourseViewOptions> = {
+const renderQuickCourseView: Feature = {
   uniqueName: 'dashboard-quick-course-view',
   hostnameFilter: 'cms7.ict.nitech.ac.jp',
   pathnameFilter: /^\/moodle40a\/my\/(index\.php)?$/,
-  defaultOption: {
-    enabled: true,
-  },
-  dependencies: ['dashboard-update-course-repository'],
+  dependencies: [updateCourseRepository.uniqueName],
   loader: (options) => {
     if (!options.enabled) {
       return;
