@@ -3,7 +3,7 @@
   manifest_version: 3,
   name: "NITech Moodle Extension (40a)",
   homepage_url: "https://github.com/nitech-create/nitech-moodle-extension-40a",
-  version: "0.9.3",
+  version: "0.9.4",
 
   // Recommended
   // action: {},
@@ -17,10 +17,8 @@
   content_scripts: [
     {
       // all pages
-      matches: [
-        "https://cms7.ict.nitech.ac.jp/moodle40a/*/*",
-      ],
-      js: ['content_scripts/allPages/allPages.js'],
+      matches: ["https://cms7.ict.nitech.ac.jp/moodle40a/*/*"],
+      js: ["content_scripts/allPages/allPages.js"],
     },
     {
       // dashboard
@@ -28,8 +26,8 @@
         "https://cms7.ict.nitech.ac.jp/moodle40a/my/",
         "https://cms7.ict.nitech.ac.jp/moodle40a/my/index.php",
       ],
-      js: ['content_scripts/dashboard/dashboard.js'],
-      css: ['content_scripts/dashboard/dashboard.css'],
+      js: ["content_scripts/dashboard/dashboard.js"],
+      css: ["content_scripts/dashboard/dashboard.css"],
     },
     {
       // video page
@@ -37,37 +35,35 @@
         "https://cms7.ict.nitech.ac.jp/moodle40a/mod/scorm/*",
         "https://cms7.ict.nitech.ac.jp/moodle40a/mod/scorm/*/*",
       ],
-      js: ['content_scripts/scorm/scorm.js'],
+      js: ["content_scripts/scorm/scorm.js"],
     },
     {
       // scorm content page
       matches: [
         "https://cms7.ict.nitech.ac.jp/moodle40a/pluginfile.php/*/mod_scorm/content/*/*",
       ],
-      "all_frames": true,
-      css: ['content_scripts/scorm/scorm.css'],
-    }
+      all_frames: true,
+      css: ["content_scripts/scorm/scorm.css"],
+    },
   ],
   options_ui: {
-    page: 'options/options.html',
+    page: "options/options.html",
     open_in_tab: true,
     browser_style: true,
     // 本当は存在しないフィールド, ビルドのために追加
-    js: ['options/options.js'],
-    css: ['options/options.css']
+    js: ["options/options.js"],
+    css: ["options/options.css"],
   },
   content_security_policy: {
     extension_pages: "script-src 'self'; object-src 'self';",
   },
-  permissions: ["background", "storage"],
+  permissions: ["storage"],
   host_permissions: ["https://cms7.ict.nitech.ac.jp/moodle40a/*/*"],
   web_accessible_resources: [
     // import maps
     {
-      resources: [
-        "content_scripts/*/*.map",
-      ],
-      matches: [ "<all_urls>" ],
+      resources: ["content_scripts/*/*.map"],
+      matches: ["<all_urls>"],
     },
   ],
 }
