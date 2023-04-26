@@ -9,8 +9,7 @@ import sassPlugin from 'esbuild-plugin-sass';
 import { esbuildCachePlugin } from 'esbuild-cache-plugin';
 import copyPlugin from 'esbuild-plugin-copy';
 import resultPlugin from 'esbuild-plugin-result';
-import json5Plugin from './plugins/json5.ts';
-import json5ExportPlugin from './plugins/json5Export.ts';
+import objectExportJSONPlugin from './plugins/objectExportJSON.ts';
 
 const srcPath = 'src';
 const destPath = 'dist';
@@ -38,9 +37,12 @@ const optionsResources = [
   ...(manifest['options_ui']['css'] ?? []).map((path) => path.replace(/\.css$/, '.scss')),
 ].map((path) => posix.resolve(srcPath, path));
 
+// Reflect.deleteProperty と違って Typescript の型チェックが効く
+delete manifest.options_ui.js;
+delete manifest.options_ui.css;
+
 const config: Partial<esbuild.BuildOptions> = {
   entryPoints: [
-    posix.resolve(srcPath, 'manifest.json5'),
     ...contentScripts,
     ...contentStyleSheets,
     ...optionsResources,
@@ -58,6 +60,11 @@ const config: Partial<esbuild.BuildOptions> = {
       directory: cachePath,
       importmap,
     }),
+    objectExportJSONPlugin({
+      targets: [
+        { value: manifest, filename: posix.resolve(destPath, 'manifest.json') },
+      ],
+    }),
     sassPlugin(),
     copyPlugin({
       baseDir: srcPath,
@@ -66,10 +73,6 @@ const config: Partial<esbuild.BuildOptions> = {
         { from: 'imgs/*', to: 'imgs/[name][ext]' },
       ]
     }),
-    json5ExportPlugin({
-      filePatterns: [/manifest\.json5$/],
-    }),
-    json5Plugin(),
     resultPlugin(),
   ],
   logOverride: {
