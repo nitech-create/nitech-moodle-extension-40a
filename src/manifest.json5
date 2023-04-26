@@ -3,7 +3,7 @@
   manifest_version: 3,
   name: "NITech Moodle Extension (40a)",
   homepage_url: "https://github.com/nitech-create/nitech-moodle-extension-40a",
-  version: "0.9.4",
+  version: "0.9.5",
 
   // Recommended
   // action: {},
@@ -60,7 +60,7 @@
   permissions: ["storage"],
   host_permissions: ["https://cms7.ict.nitech.ac.jp/moodle40a/*/*"],
   web_accessible_resources: [
-    // import maps
+    // source maps
     {
       resources: ["content_scripts/*/*.map"],
       matches: ["<all_urls>"],
