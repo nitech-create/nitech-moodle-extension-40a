@@ -17,12 +17,16 @@
 
 `main` ブランチから派生したブランチで作業し、 `main` ブランチに Pull request を作成するという前提で作成しています。
 
-- `check-version-increase.yml`
+- attach build artifact to release (`release-attach-artifact.yml`)
+  - Release 時にビルドを実行し、ビルド成果物を Assets に追加する
+- attach build artifact to release manually (`release-attach-artifact-manual.yml`)
+  - 上記と同様のワークフローを手動で実行できるようにしたもの
+- check latest version (`check-version-increase.yml`)
   - `main` ブランチへの PR を作成した際にバージョンが増えていることを確認する
   - バージョンは [Semantic Versioning 2.0](https://semver.org/lang/ja/) に準拠しています
-- `deploy.yml`
-  - タグが作成された際に自動でビルドし、 Release を作成して成果物を追加する
-- `lint-fmt-test.yml`
+- create- tag when PR is merged (`create-tag-on-pr-merge.yml`)
+  - `main` ブランチへの PR がマージされたときに `manifest.json5` に書かれたバージョンのタグを作成する
+- lint, check format and run build as test (`lint-fmt-test.yml`)
   - push の際に linter, formatter によるチェックとビルドが成功するかを確認する
 
 ## 開発環境
