@@ -24,8 +24,10 @@ export default interface ManifestType {
   };
   options_ui: {
     page: string;
-    js: string[];
-    css: string[];
+    open_in_tab: boolean;
+    browser_style: boolean;
+    js?: string[];
+    css?: string[];
   };
 
   permissions: string[];
