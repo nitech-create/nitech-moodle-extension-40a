@@ -3,7 +3,8 @@ import { posix } from 'posix';
 import JSON5 from 'json5';
 import type ManifestType from './src/manifestType.ts';
 import denoConfig from './deno.json' assert { type: 'json' };
-import importmap from './import_map.json' assert { type: 'json' };
+import importMap from './import_map.json' assert { type: 'json' };
+import lockMap from './lock.json' assert { type: 'json' };
 
 import sassPlugin from 'esbuild-plugin-sass';
 import { esbuildCachePlugin } from 'esbuild-cache-plugin';
@@ -11,13 +12,9 @@ import copyPlugin from 'esbuild-plugin-copy';
 import resultPlugin from 'esbuild-plugin-result';
 import objectExportJSONPlugin from './plugins/objectExportJSON.ts';
 
-// 拡張子が ".json" 出ないためインポートできない
-// ファイル名を変えるべき？
-const lockMap = JSON.parse(Deno.readTextFileSync('./deno.lock'));
-const denoCacheDirectory = await esbuildCachePlugin.util.getDenoDir();
-
 const srcPath = 'src';
 const destPath = 'dist';
+const cachePath = await esbuildCachePlugin.util.getDenoDir();
 
 const manifest = JSON5.parse(
   Deno.readTextFileSync(posix.resolve(srcPath, 'manifest.json5'))
@@ -61,8 +58,8 @@ const options = (dev: boolean): esbuild.BuildOptions => ({
   jsxFragment: denoConfig.compilerOptions.jsxFragmentFactory,
   plugins: [
     esbuildCachePlugin({
-      denoCacheDirectory,
-      importmap,
+      denoCacheDirectory: cachePath,
+      importmap: importMap,
       lockMap,
     }),
     objectExportJSONPlugin({
