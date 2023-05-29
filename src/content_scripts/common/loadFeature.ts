@@ -1,4 +1,3 @@
-// @deno-types=npm:@types/lodash
 import * as lodash from 'lodash';
 import type { Feature, FeatureUniqueName } from '../common/types.ts';
 import { defaultFeatureOption } from '../../common/options.ts';

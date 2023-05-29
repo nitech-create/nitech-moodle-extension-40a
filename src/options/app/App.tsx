@@ -1,9 +1,5 @@
-/** @jsxImportSource preact */
-
-// @deno-types="preact/types"
 import * as preact from 'preact';
 import * as hooks from 'preact/hooks';
-// @deno-types=npm:@types/lodash
 import * as lodash from 'lodash';
 import FeatureOptions from './FeatureOptions.tsx';
 

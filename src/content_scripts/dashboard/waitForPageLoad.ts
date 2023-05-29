@@ -1,4 +1,3 @@
-// @deno-types=npm:@types/lodash
 import * as lodash from 'lodash';
 import type { Feature } from '../common/types.ts';
 

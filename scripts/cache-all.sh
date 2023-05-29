@@ -5,6 +5,4 @@ for arg in "$@"; do
     fi
 done
 
-for file in $(find . -name "*.ts"); do
-    deno cache $options $file --import-map ./import_map.json
-done
+deno cache $options --importmap ./import_map.json $(find ./src/ -name "*.ts")

@@ -1,5 +1,4 @@
 import browser from 'webextension-polyfill';
-// @deno-types=npm:@types/lodash
 import * as lodash from 'lodash';
 import type { Course } from '../course.ts';
 import { Options } from '../options.ts';

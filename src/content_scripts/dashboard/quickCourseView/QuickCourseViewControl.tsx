@@ -1,6 +1,3 @@
-/** @jsxImportSource preact */
-
-// @deno-types="preact/types"
 import * as preact from 'preact';
 import * as hooks from 'preact/hooks';
 import { Filter } from './defs.ts';

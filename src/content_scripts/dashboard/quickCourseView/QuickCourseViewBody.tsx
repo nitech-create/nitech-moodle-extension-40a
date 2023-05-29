@@ -1,6 +1,3 @@
-/** @jsxImportSource preact */
-
-// @deno-types="preact/types"
 import * as preact from 'preact';
 import { Course } from '../../../common/course.ts';
 import ListGroup from './ListGroup.tsx';

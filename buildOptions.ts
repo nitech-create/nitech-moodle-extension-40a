@@ -11,9 +11,13 @@ import copyPlugin from 'esbuild-plugin-copy';
 import resultPlugin from 'esbuild-plugin-result';
 import objectExportJSONPlugin from './plugins/objectExportJSON.ts';
 
+// 拡張子が ".json" 出ないためインポートできない
+// ファイル名を変えるべき？
+const lockMap = JSON.parse(Deno.readTextFileSync('./deno.lock'));
+const denoCacheDirectory = await esbuildCachePlugin.util.getDenoDir();
+
 const srcPath = 'src';
 const destPath = 'dist';
-const cachePath = 'cache';
 
 const manifest = JSON5.parse(
   Deno.readTextFileSync(posix.resolve(srcPath, 'manifest.json5'))
@@ -41,7 +45,7 @@ const optionsResources = [
 delete manifest.options_ui.js;
 delete manifest.options_ui.css;
 
-const config: Partial<esbuild.BuildOptions> = {
+const options = (dev: boolean): esbuild.BuildOptions => ({
   entryPoints: [
     ...contentScripts,
     ...contentStyleSheets,
@@ -57,8 +61,9 @@ const config: Partial<esbuild.BuildOptions> = {
   jsxFragment: denoConfig.compilerOptions.jsxFragmentFactory,
   plugins: [
     esbuildCachePlugin({
-      directory: cachePath,
+      denoCacheDirectory,
       importmap,
+      lockMap,
     }),
     objectExportJSONPlugin({
       targets: [
@@ -78,6 +83,8 @@ const config: Partial<esbuild.BuildOptions> = {
   logOverride: {
     'unsupported-jsx-comment': 'silent',
   },
-}
+  sourcemap: dev ? 'inline' : 'linked',
+  minify: !dev,
+});
 
-export default config;
+export default options;

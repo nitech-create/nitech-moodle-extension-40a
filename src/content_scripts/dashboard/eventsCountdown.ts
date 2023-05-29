@@ -1,5 +1,3 @@
-/** @jsxImportSource preact */
-
 import type { Feature } from '../common/types.ts';
 import {
   EventsCountdownProps,
