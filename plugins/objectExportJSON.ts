@@ -1,9 +1,10 @@
+import * as fs from '@std/fs';
+import * as path from '@std/path';
+
 import * as esbuild from 'esbuild';
-import * as posix from 'posix';
-import * as fs from 'std/fs/mod.ts';
 
 interface Option {
-  targets: { value: any, filename: string }[]
+  targets: { value: any; filename: string }[];
 }
 
 const objectExportJSONPlugin = (option: Option): esbuild.Plugin => ({
@@ -12,16 +13,18 @@ const objectExportJSONPlugin = (option: Option): esbuild.Plugin => ({
     build.onStart(async () => {
       const writePromises: Promise<void>[] = [];
 
-      for(const target of option.targets) {
+      for (const target of option.targets) {
         const content = JSON.stringify(target.value);
 
-        writePromises.push(fs.ensureDir(posix.dirname(target.filename))
-          .then(() => Deno.writeTextFile(target.filename, content)));
+        writePromises.push(
+          fs.ensureDir(path.dirname(target.filename))
+            .then(() => Deno.writeTextFile(target.filename, content)),
+        );
       }
 
       await Promise.all(writePromises);
     });
-  }
+  },
 });
 
 export default objectExportJSONPlugin;

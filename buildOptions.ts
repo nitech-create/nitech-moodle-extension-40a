@@ -1,5 +1,6 @@
+import * as path from '@std/path';
+
 import * as esbuild from 'esbuild';
-import { posix } from 'posix';
 import JSON5 from 'json5';
 import type ManifestType from './src/manifestType.ts';
 import denoConfig from './deno.json' with { type: 'json' };
@@ -16,14 +17,14 @@ const destPath = 'dist';
 const cachePath = 'cache';
 
 const manifest = JSON5.parse(
-  Deno.readTextFileSync(posix.resolve(srcPath, 'manifest.json5')),
+  Deno.readTextFileSync(path.resolve(srcPath, 'manifest.json5')),
 ) as ManifestType;
 
 const contentScripts = Array.from(
   new Set(
     manifest['content_scripts']
       .flatMap((entry) => entry['js'] ?? [])
-      .map((path) => posix.resolve(srcPath, path.replace(/\.js$/, '.ts'))),
+      .map((file) => path.resolve(srcPath, file.replace(/\.js$/, '.ts'))),
   ),
 );
 
@@ -31,7 +32,7 @@ const contentStyleSheets = Array.from(
   new Set(
     manifest['content_scripts']
       .flatMap((entry) => entry['css'] ?? [])
-      .map((path) => posix.resolve(srcPath, path.replace(/\.css$/, '.scss'))),
+      .map((file) => path.resolve(srcPath, file.replace(/\.css$/, '.scss'))),
   ),
 );
 
@@ -43,7 +44,7 @@ const optionsResources = [
   ...(manifest['options_ui']['css'] ?? []).map((path) =>
     path.replace(/\.css$/, '.scss')
   ),
-].map((path) => posix.resolve(srcPath, path));
+].map((file) => path.resolve(srcPath, file));
 
 // Reflect.deleteProperty と違って Typescript の型チェックが効く
 delete manifest.options_ui.js;
@@ -70,7 +71,7 @@ const config: Partial<esbuild.BuildOptions> = (dev = false) => ({
     }),
     objectExportJSONPlugin({
       targets: [
-        { value: manifest, filename: posix.resolve(destPath, 'manifest.json') },
+        { value: manifest, filename: path.resolve(destPath, 'manifest.json') },
       ],
     }),
     sassPlugin(),
