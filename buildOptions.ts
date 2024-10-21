@@ -49,7 +49,7 @@ const optionsResources = [
 delete manifest.options_ui.js;
 delete manifest.options_ui.css;
 
-const config: Partial<esbuild.BuildOptions> = {
+const config: Partial<esbuild.BuildOptions> = (dev = false) => ({
   entryPoints: [
     ...contentScripts,
     ...contentStyleSheets,
@@ -86,7 +86,7 @@ const config: Partial<esbuild.BuildOptions> = {
   logOverride: {
     'unsupported-jsx-comment': 'silent',
   },
-};
+  sourcemap: dev ? 'inline' : 'linked',
+});
 
 export default config;
-
