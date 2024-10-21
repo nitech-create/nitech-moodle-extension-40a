@@ -38,7 +38,7 @@ Web Extension for Moodle 4.0 of NITech.
 
 ### GitHub からインストール
 
-1. [Releases](https://github.com/nitech-create/nitech-moodle-extension-40a/(releases)) から .zip ファイルをダウンロードする
+1. [Releases](https://github.com/nitech-create/nitech-moodle-extension-40a/releases) から .zip ファイルをダウンロードする
     - または [ビルド方法](./how_to_build.md) に従ってビルドする
 2. 拡張機能ページを開く
     -  `chrome://extensions` をURL欄に入力する
