@@ -2,8 +2,8 @@ import * as esbuild from 'esbuild';
 import { posix } from 'posix';
 import JSON5 from 'json5';
 import type ManifestType from './src/manifestType.ts';
-import denoConfig from './deno.json' assert { type: 'json' };
-import importmap from './import_map.json' assert { type: 'json' };
+import denoConfig from './deno.json' with { type: 'json' };
+import importmap from './import_map.json' with { type: 'json' };
 
 import sassPlugin from 'esbuild-plugin-sass';
 import { esbuildCachePlugin } from 'esbuild-cache-plugin';
@@ -16,25 +16,33 @@ const destPath = 'dist';
 const cachePath = 'cache';
 
 const manifest = JSON5.parse(
-  Deno.readTextFileSync(posix.resolve(srcPath, 'manifest.json5'))
+  Deno.readTextFileSync(posix.resolve(srcPath, 'manifest.json5')),
 ) as ManifestType;
 
-const contentScripts = Array.from(new Set(
-  manifest['content_scripts']
-    .flatMap((entry) => entry['js'] ?? [])
-    .map((path) => posix.resolve(srcPath, path.replace(/\.js$/, '.ts')))
-));
+const contentScripts = Array.from(
+  new Set(
+    manifest['content_scripts']
+      .flatMap((entry) => entry['js'] ?? [])
+      .map((path) => posix.resolve(srcPath, path.replace(/\.js$/, '.ts'))),
+  ),
+);
 
-const contentStyleSheets = Array.from(new Set(
-  manifest['content_scripts']
-    .flatMap((entry) => entry['css'] ?? [])
-    .map((path) => posix.resolve(srcPath, path.replace(/\.css$/, '.scss')))
-));
+const contentStyleSheets = Array.from(
+  new Set(
+    manifest['content_scripts']
+      .flatMap((entry) => entry['css'] ?? [])
+      .map((path) => posix.resolve(srcPath, path.replace(/\.css$/, '.scss'))),
+  ),
+);
 
 const optionsResources = [
   manifest['options_ui']['page'],
-  ...(manifest['options_ui']['js'] ?? []).map((path) => path.replace(/\.js$/, '.ts')),
-  ...(manifest['options_ui']['css'] ?? []).map((path) => path.replace(/\.css$/, '.scss')),
+  ...(manifest['options_ui']['js'] ?? []).map((path) =>
+    path.replace(/\.js$/, '.ts')
+  ),
+  ...(manifest['options_ui']['css'] ?? []).map((path) =>
+    path.replace(/\.css$/, '.scss')
+  ),
 ].map((path) => posix.resolve(srcPath, path));
 
 // Reflect.deleteProperty と違って Typescript の型チェックが効く
@@ -71,13 +79,14 @@ const config: Partial<esbuild.BuildOptions> = {
       baseOutDir: destPath,
       files: [
         { from: 'imgs/*', to: 'imgs/[name][ext]' },
-      ]
+      ],
     }),
     resultPlugin(),
   ],
   logOverride: {
     'unsupported-jsx-comment': 'silent',
   },
-}
+};
 
 export default config;
+
