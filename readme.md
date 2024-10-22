@@ -1,4 +1,7 @@
-# Web Extension for NITech Moodle 4.0
+# NITech Moodle Extension (40a)
+Web Extension for NITech Moodle 4.0
+
+[Chrome Web Storeで公開中](https://chromewebstore.google.com/detail/nitech-moodle-extension-4/gghacnecolaclhlihmlhffgkmeojehff)
 
 [![release](https://img.shields.io/github/v/release/nitech-create/nitech-moodle-extension-40a?include_prereleases)](https://github.com/nitech-create/nitech-moodle-extension-40a/releases/latest)
 
@@ -7,8 +10,6 @@
 ## 概要
 
 名古屋工業大学のオンライン授業サポートシステムとして採用されている Moodle (4.0) の機能を改善・拡張して使いやすくするブラウザ用拡張機能です。非公式であり、問題が起きても責任は取れません。
-
-Web Extension for Moodle 4.0 of NITech.
 
 ### 主な機能
 
@@ -34,7 +35,7 @@ Web Extension for Moodle 4.0 of NITech.
 
 ### Chrome Web Store からインストール
 
-準備中です
+[Chrome Web Storeで公開中](https://chromewebstore.google.com/detail/nitech-moodle-extension-4/gghacnecolaclhlihmlhffgkmeojehff)
 
 ### GitHub からインストール
 
