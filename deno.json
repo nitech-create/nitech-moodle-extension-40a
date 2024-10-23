@@ -38,10 +38,9 @@
   },
   "tasks": {
     "build": "deno run --allow-run --allow-read --allow-write --allow-env --allow-net ./build/build.ts",
-    "dev": "deno run --allow-run --allow-read --allow-write --allow-env --allow-net ./build.ts --dev",
-    "watch": "deno run --allow-run --allow-read --allow-write --allow-env --allow-net ./build.ts --dev --watch",
-    "clean": "rm -rf dist/ && rm -rf cache/",
-    "cache-all": "bash ./scripts/cache-all.sh",
+    "dev": "DEV=1 deno task build",
+    "watch": "WATCH=1 deno task build",
+    "clean": "rm -rf ./dist",
     "check-version": "bash ./scripts/checkVersion.sh",
     "check-version-increase": "bash ./scripts/checkVersionIncrease.sh",
     "setup-vscode": "deno run --allow-run --allow-read --allow-write scripts/setup-vscode.ts"
@@ -50,6 +49,7 @@
     "@std/fs": "jsr:@std/fs@^1.0.4",
     "@std/jsonc": "jsr:@std/jsonc@^1.0.1",
     "@std/path": "jsr:@std/path@^1.0.6",
+    "@std/streams": "jsr:@std/streams@^1.0.7",
     "@tsukina-7mochi/esbuild-plugin-sass": "jsr:@tsukina-7mochi/esbuild-plugin-sass@^0.1.1",
     "cliffy": "https://deno.land/x/cliffy@v0.25.7/mod.ts",
     "esbuild": "npm:esbuild@0.24.0",

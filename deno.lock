@@ -7,6 +7,7 @@
     "jsr:@std/fs@^1.0.4": "1.0.4",
     "jsr:@std/jsonc@^1.0.1": "1.0.1",
     "jsr:@std/path@^1.0.6": "1.0.6",
+    "jsr:@std/streams@^1.0.7": "1.0.7",
     "jsr:@tsukina-7mochi/esbuild-plugin-sass@~0.1.1": "0.1.1",
     "npm:esbuild@0.24.0": "0.24.0",
     "npm:sass@^1.80.3": "1.80.3"
@@ -37,6 +38,12 @@
     },
     "@std/path@1.0.6": {
       "integrity": "ab2c55f902b380cf28e0eec501b4906e4c1960d13f00e11cfbcd21de15f18fed"
+    },
+    "@std/streams@1.0.7": {
+      "integrity": "1a93917ca0c58c01b2bfb93647189229b1702677f169b6fb61ad6241cd2e499b",
+      "dependencies": [
+        "jsr:@std/bytes"
+      ]
     },
     "@tsukina-7mochi/esbuild-plugin-sass@0.1.1": {
       "integrity": "5bbc148b4bbc9ca5425be4d2c6e37257d0bf1dc9ce946f9e3be3bae7b445056e",
@@ -485,6 +492,7 @@
       "jsr:@std/fs@^1.0.4",
       "jsr:@std/jsonc@^1.0.1",
       "jsr:@std/path@^1.0.6",
+      "jsr:@std/streams@^1.0.7",
       "jsr:@tsukina-7mochi/esbuild-plugin-sass@~0.1.1",
       "npm:esbuild@0.24.0"
     ]
