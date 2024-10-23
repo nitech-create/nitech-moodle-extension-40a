@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "allowJs": true,
     "strict": true,
     "strictNullChecks": true,
     "noImplicitThis": true,
@@ -37,15 +36,36 @@
       "useTabs": false
     }
   },
-  "import_map": "import_map.json",
   "tasks": {
-    "build": "deno run --allow-run --allow-read --allow-write --allow-env --allow-net --importmap import_map.json ./build.ts",
-    "dev": "deno run --allow-run --allow-read --allow-write --allow-env --allow-net --importmap import_map.json ./build.ts --dev",
-    "watch": "deno run --allow-run --allow-read --allow-write --allow-env --allow-net --importmap import_map.json ./build.ts --dev --watch",
+    "build": "deno run --allow-run --allow-read --allow-write --allow-env --allow-net ./build/build.ts",
+    "dev": "deno run --allow-run --allow-read --allow-write --allow-env --allow-net ./build.ts --dev",
+    "watch": "deno run --allow-run --allow-read --allow-write --allow-env --allow-net ./build.ts --dev --watch",
     "clean": "rm -rf dist/ && rm -rf cache/",
     "cache-all": "bash ./scripts/cache-all.sh",
     "check-version": "bash ./scripts/checkVersion.sh",
     "check-version-increase": "bash ./scripts/checkVersionIncrease.sh",
     "setup-vscode": "deno run --allow-run --allow-read --allow-write scripts/setup-vscode.ts"
+  },
+  "imports": {
+    "@std/fs": "jsr:@std/fs@^1.0.4",
+    "@std/jsonc": "jsr:@std/jsonc@^1.0.1",
+    "@std/path": "jsr:@std/path@^1.0.6",
+    "@tsukina-7mochi/esbuild-plugin-sass": "jsr:@tsukina-7mochi/esbuild-plugin-sass@^0.1.1",
+    "cliffy": "https://deno.land/x/cliffy@v0.25.7/mod.ts",
+    "esbuild": "npm:esbuild@0.24.0",
+    "esbuild-cache-plugin": "https://deno.land/x/esbuild_cache_plugin@v0.3.1/mod.ts",
+    "esbuild-deno-loader": "jsr:@luca/esbuild-deno-loader@^0.11.0",
+    "esbuild-plugin-copy": "https://raw.githubusercontent.com/Tsukina-7mochi/esbuild-plugin-copy-deno/v1.0.8/mod.ts",
+    "esbuild-plugin-result": "https://raw.githubusercontent.com/Tsukina-7mochi/esbuild-plugin-result-deno/v1.0.9/mod.ts",
+    "esbuild-plugin-sass": "https://raw.githubusercontent.com/Tsukina-7mochi/esbuild-plugin-sass-deno/v0.2.6/mod.ts",
+    "lodash": "https://deno.land/x/lodash@4.17.19/lodash.js",
+    "posix": "https://deno.land/std@0.184.0/path/mod.ts",
+    "preact": "https://esm.sh/preact@10.13.2",
+    "preact/compat": "https://esm.sh/preact@10.13.2/compat",
+    "preact/hooks": "https://esm.sh/preact@10.13.2/hooks",
+    "preact/jsx-dev-runtime": "https://esm.sh/preact@10.13.2/jsx-dev-runtime",
+    "preact/jsx-runtime": "https://esm.sh/preact@10.13.2/jsx-runtime",
+    "preact/types": "https://raw.githubusercontent.com/preactjs/preact/10.13.2/src/index.d.ts",
+    "webextension-polyfill": "https://esm.sh/webextension-polyfill@0.10.0"
   }
 }
