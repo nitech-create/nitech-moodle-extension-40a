@@ -1,5 +1,5 @@
 import * as esbuild from 'esbuild';
-import { sassPlugin } from '@tsukina-7mochi/esbuild-plugin-sass';
+import { sassPlugin } from 'esbuild-plugin-sass';
 
 type BuildOptionsOptions = {
   entryPoints: esbuild.BuildOptions['entryPoints'];
