@@ -18,33 +18,33 @@
     {
       // all pages
       "matches": ["https://cms7.ict.nitech.ac.jp/moodle40a/*/*"],
-      "js": ["./content_scripts/allPages/allPages.ts"],
+      "js": ["./content_scripts/allPages/allPages.ts"]
     },
     {
       // dashboard
       "matches": [
         "https://cms7.ict.nitech.ac.jp/moodle40a/my/",
-        "https://cms7.ict.nitech.ac.jp/moodle40a/my/index.php",
+        "https://cms7.ict.nitech.ac.jp/moodle40a/my/index.php"
       ],
       "js": ["./content_scripts/dashboard/dashboard.ts"],
-      "css": ["./content_scripts/dashboard/dashboard.scss"],
+      "css": ["./content_scripts/dashboard/dashboard.scss"]
     },
     {
       // video page
       "matches": [
         "https://cms7.ict.nitech.ac.jp/moodle40a/mod/scorm/*",
-        "https://cms7.ict.nitech.ac.jp/moodle40a/mod/scorm/*/*",
+        "https://cms7.ict.nitech.ac.jp/moodle40a/mod/scorm/*/*"
       ],
-      "js": ["./content_scripts/scorm/scorm.ts"],
+      "js": ["./content_scripts/scorm/scorm.ts"]
     },
     {
       // scorm content page
       "matches": [
-        "https://cms7.ict.nitech.ac.jp/moodle40a/pluginfile.php/*/mod_scorm/content/*/*",
+        "https://cms7.ict.nitech.ac.jp/moodle40a/pluginfile.php/*/mod_scorm/content/*/*"
       ],
       "all_frames": true,
-      "css": ["./content_scripts/scorm/scorm.scss"],
-    },
+      "css": ["./content_scripts/scorm/scorm.scss"]
+    }
   ],
 
   "options_ui": {
@@ -54,11 +54,11 @@
     // this field is not exist in the manifest file definition
     // /added for the build process
     "js": ["./options/options.ts"],
-    "css": ["./options/options.scss"],
+    "css": ["./options/options.scss"]
   },
 
   "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self';",
+    "extension_pages": "script-src 'self'; object-src 'self';"
   },
 
   "permissions": ["storage"],
@@ -68,7 +68,7 @@
     // source maps
     {
       "resources": ["content_scripts/*/*.map"],
-      "matches": ["<all_urls>"],
-    },
-  ],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }
