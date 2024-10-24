@@ -18,7 +18,7 @@
     {
       // all pages
       "matches": ["https://cms7.ict.nitech.ac.jp/moodle40a/*/*"],
-      "js": ["./content_scripts/allPages/allPages.ts"]
+      "js": ["./contentScripts/allPages/allPages.ts"]
     },
     {
       // dashboard
@@ -26,8 +26,8 @@
         "https://cms7.ict.nitech.ac.jp/moodle40a/my/",
         "https://cms7.ict.nitech.ac.jp/moodle40a/my/index.php"
       ],
-      "js": ["./content_scripts/dashboard/dashboard.ts"],
-      "css": ["./content_scripts/dashboard/dashboard.scss"]
+      "js": ["./contentScripts/dashboard/dashboard.ts"],
+      "css": ["./contentScripts/dashboard/dashboard.scss"]
     },
     {
       // video page
@@ -35,7 +35,7 @@
         "https://cms7.ict.nitech.ac.jp/moodle40a/mod/scorm/*",
         "https://cms7.ict.nitech.ac.jp/moodle40a/mod/scorm/*/*"
       ],
-      "js": ["./content_scripts/scorm/scorm.ts"]
+      "js": ["./contentScripts/scorm/scorm.ts"]
     },
     {
       // scorm content page
@@ -43,7 +43,7 @@
         "https://cms7.ict.nitech.ac.jp/moodle40a/pluginfile.php/*/mod_scorm/content/*/*"
       ],
       "all_frames": true,
-      "css": ["./content_scripts/scorm/scorm.scss"]
+      "css": ["./contentScripts/scorm/scorm.scss"]
     }
   ],
 
@@ -67,7 +67,7 @@
   "web_accessible_resources": [
     // source maps
     {
-      "resources": ["content_scripts/*/*.map"],
+      "resources": ["contentScripts/*/*.map"],
       "matches": ["<all_urls>"]
     }
   ]
