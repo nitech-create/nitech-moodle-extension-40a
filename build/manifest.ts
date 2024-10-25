@@ -44,6 +44,18 @@ export type ExtendedWebExtensionManifest = WebExtensionManifest & {
 export class Manifest {
   private manifest: ExtendedWebExtensionManifest;
 
+  get manifest_version(): (typeof this.manifest)['manifest_version'] {
+    return this.manifest.manifest_version;
+  }
+
+  get name(): (typeof this.manifest)['name'] {
+    return this.manifest.name;
+  }
+
+  get version(): (typeof this.manifest)['version'] {
+    return this.manifest.version;
+  }
+
   private constructor(manifest: Manifest['manifest']) {
     this.manifest = manifest;
   }
