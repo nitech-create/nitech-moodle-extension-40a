@@ -37,7 +37,6 @@
     "setup-vscode": "deno run --allow-run --allow-read --allow-write scripts/setup-vscode.ts"
   },
   "imports": {
-    "~/": "./src/",
     "@std/fs": "jsr:@std/fs@^1.0.4",
     "@std/jsonc": "jsr:@std/jsonc@^1.0.1",
     "@std/path": "jsr:@std/path@^1.0.6",
@@ -45,6 +44,7 @@
     "@types/webextension-polyfill": "npm:@types/webextension-polyfill@^0.12.1",
     "esbuild": "npm:esbuild@0.24.0",
     "esbuild-deno-loader": "jsr:@luca/esbuild-deno-loader@^0.11.0",
+    "esbuild-plugin-debug-switch": "jsr:@tsukina-7mochi/esbuild-plugin-debug-switch@^0.2.0",
     "esbuild-plugin-sass": "jsr:@tsukina-7mochi/esbuild-plugin-sass@^0.1.1",
     "lodash": "https://deno.land/x/lodash@4.17.19/lodash.js",
     "preact": "https://esm.sh/preact@10.13.2",
@@ -53,7 +53,8 @@
     "preact/jsx-dev-runtime": "https://esm.sh/preact@10.13.2/jsx-dev-runtime",
     "preact/jsx-runtime": "https://esm.sh/preact@10.13.2/jsx-runtime",
     "preact/types": "https://raw.githubusercontent.com/preactjs/preact/10.13.2/src/index.d.ts",
-    "webextension-polyfill": "npm:webextension-polyfill@^0.12.0"
+    "webextension-polyfill": "npm:webextension-polyfill@^0.12.0",
+    "~/": "./src/"
   },
   "exclude": [
     "dist/"

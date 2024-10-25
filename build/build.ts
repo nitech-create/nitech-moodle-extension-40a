@@ -63,6 +63,8 @@ const buildOptions = [
     dev: devMode,
     jsxFactory: denoConfig.jsxFactory,
     jsxFragmentFactory: denoConfig.jsxFragmentFactory,
+    extensionName: manifest.name,
+    extensionVersion: manifest.version,
   }),
   cssBuildOptions({
     entryPoints: cssEntryPoints,

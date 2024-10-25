@@ -1,5 +1,6 @@
 import * as esbuild from 'esbuild';
 import { denoPlugins } from 'esbuild-deno-loader';
+import { debugSwitchPlugin } from 'esbuild-plugin-debug-switch/plugin';
 
 type BuildOptionsOptions = {
   entryPoints: esbuild.BuildOptions['entryPoints'];
@@ -8,6 +9,8 @@ type BuildOptionsOptions = {
   dev: boolean;
   jsxFactory?: string;
   jsxFragmentFactory?: string;
+  extensionName: string;
+  extensionVersion: string;
 };
 
 export const buildOptions = (
@@ -24,6 +27,13 @@ export const buildOptions = (
   jsxFactory: options.jsxFactory,
   jsxFragment: options.jsxFragmentFactory,
   plugins: [
+    debugSwitchPlugin({
+      isDebug: options.dev,
+      env: {
+        extensionName: options.extensionName,
+        extensionVersion: options.extensionVersion,
+      },
+    }),
     ...denoPlugins(),
   ],
 });

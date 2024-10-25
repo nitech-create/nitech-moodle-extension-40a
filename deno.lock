@@ -4,11 +4,14 @@
     "jsr:@luca/esbuild-deno-loader@0.11": "0.11.0",
     "jsr:@std/bytes@^1.0.2": "1.0.2",
     "jsr:@std/encoding@^1.0.5": "1.0.5",
-    "jsr:@std/fs@^1.0.4": "1.0.4",
+    "jsr:@std/fs@^1.0.4": "1.0.5",
     "jsr:@std/jsonc@^1.0.1": "1.0.1",
-    "jsr:@std/path@^1.0.6": "1.0.6",
+    "jsr:@std/path@^1.0.6": "1.0.7",
+    "jsr:@std/path@^1.0.7": "1.0.7",
     "jsr:@std/streams@^1.0.7": "1.0.7",
+    "jsr:@tsukina-7mochi/esbuild-plugin-debug-switch@0.2": "0.2.0",
     "jsr:@tsukina-7mochi/esbuild-plugin-sass@~0.1.1": "0.1.1",
+    "npm:esbuild@0.24": "0.24.0",
     "npm:esbuild@0.24.0": "0.24.0",
     "npm:sass@^1.80.3": "1.80.3"
   },
@@ -18,7 +21,7 @@
       "dependencies": [
         "jsr:@std/bytes",
         "jsr:@std/encoding",
-        "jsr:@std/path"
+        "jsr:@std/path@^1.0.6"
       ]
     },
     "@std/bytes@1.0.2": {
@@ -27,17 +30,17 @@
     "@std/encoding@1.0.5": {
       "integrity": "ecf363d4fc25bd85bd915ff6733a7e79b67e0e7806334af15f4645c569fefc04"
     },
-    "@std/fs@1.0.4": {
-      "integrity": "2907d32d8d1d9e540588fd5fe0ec21ee638134bd51df327ad4e443aaef07123c",
+    "@std/fs@1.0.5": {
+      "integrity": "41806ad6823d0b5f275f9849a2640d87e4ef67c51ee1b8fb02426f55e02fd44e",
       "dependencies": [
-        "jsr:@std/path"
+        "jsr:@std/path@^1.0.7"
       ]
     },
     "@std/jsonc@1.0.1": {
       "integrity": "6b36956e2a7cbb08ca5ad7fbec72e661e6217c202f348496ea88747636710dda"
     },
-    "@std/path@1.0.6": {
-      "integrity": "ab2c55f902b380cf28e0eec501b4906e4c1960d13f00e11cfbcd21de15f18fed"
+    "@std/path@1.0.7": {
+      "integrity": "76a689e07f0e15dcc6002ec39d0866797e7156629212b28f27179b8a5c3b33a1"
     },
     "@std/streams@1.0.7": {
       "integrity": "1a93917ca0c58c01b2bfb93647189229b1702677f169b6fb61ad6241cd2e499b",
@@ -45,10 +48,16 @@
         "jsr:@std/bytes"
       ]
     },
+    "@tsukina-7mochi/esbuild-plugin-debug-switch@0.2.0": {
+      "integrity": "2d4dd6d548a48cda926d8fcb5e44420476ca994f057f493b3e53aff945a924ae",
+      "dependencies": [
+        "npm:esbuild@0.24"
+      ]
+    },
     "@tsukina-7mochi/esbuild-plugin-sass@0.1.1": {
       "integrity": "5bbc148b4bbc9ca5425be4d2c6e37257d0bf1dc9ce946f9e3be3bae7b445056e",
       "dependencies": [
-        "jsr:@std/path",
+        "jsr:@std/path@^1.0.6",
         "npm:sass"
       ]
     }
@@ -290,6 +299,7 @@
       "jsr:@std/jsonc@^1.0.1",
       "jsr:@std/path@^1.0.6",
       "jsr:@std/streams@^1.0.7",
+      "jsr:@tsukina-7mochi/esbuild-plugin-debug-switch@0.2",
       "jsr:@tsukina-7mochi/esbuild-plugin-sass@~0.1.1",
       "npm:@types/webextension-polyfill@~0.12.1",
       "npm:esbuild@0.24.0",
