@@ -15,18 +15,15 @@
   "author": "nitech Create",
 
   "content_scripts": [
-    ///// all pages /////
-    // start message
+    // all pages
     {
       "matches": ["https://cms7.ict.nitech.ac.jp/moodle40a/*/*"],
-      "js": ["./contentScripts/allPages/startMessage/index.ts"]
+      "js": [
+        "./contentScripts/allPages/startMessage/index.ts",
+        "./contentScripts/allPages/removeForceDownload/index.ts"
+      ]
     },
-    {
-      // all pages
-      "matches": ["https://cms7.ict.nitech.ac.jp/moodle40a/*/*"],
-      "js": ["./contentScripts/allPages/allPages.ts"]
-    },
-    ///// dashboard /////
+    // dashboard
     {
       "matches": [
         "https://cms7.ict.nitech.ac.jp/moodle40a/my/",
@@ -35,7 +32,7 @@
       "js": ["./contentScripts/dashboard/dashboard.ts"],
       "css": ["./contentScripts/dashboard/dashboard.scss"]
     },
-    ///// scorm page /////
+    // scorm page
     {
       "matches": [
         "https://cms7.ict.nitech.ac.jp/moodle40a/mod/scorm/*",
