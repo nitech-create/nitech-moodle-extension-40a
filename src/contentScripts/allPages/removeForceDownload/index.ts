@@ -1,5 +1,6 @@
 import { isDebug } from 'esbuild-plugin-debug-switch';
 
+import { debounceCallback } from '~/common/debounceCallback.ts';
 import { getPreferences } from '~/common/newStorage/preferences/index.ts';
 
 const parseUrl = function (url: string): URL | null {
@@ -15,14 +16,6 @@ const forceDownloadRemoved = function (url: URL): URL {
   removed.searchParams.delete('forcedownload', '1');
 
   return removed;
-};
-
-const debounce = function (callback: () => void, timeout: number): () => void {
-  let timer: number | undefined = undefined;
-  return () => {
-    clearTimeout(timer);
-    timer = setTimeout(callback, timeout);
-  };
 };
 
 (async () => {
@@ -50,7 +43,7 @@ const debounce = function (callback: () => void, timeout: number): () => void {
   removeForceDownload();
 
   const observer = new MutationObserver(
-    debounce(removeForceDownload, 500),
+    debounceCallback(removeForceDownload, 500),
   );
   observer.observe(document.body, { childList: true });
 })();

@@ -1,15 +1,8 @@
 import { isDebug } from 'esbuild-plugin-debug-switch';
 
 import { Course } from '~/common/model/course.ts';
+import { debounceCallback } from '~/common/debounceCallback.ts';
 import { reduceAndSaveCourses } from '~/common/newStorage/courses/index.ts';
-
-const debounce = function (callback: () => void, timeout: number): () => void {
-  let timer: number | undefined = undefined;
-  return () => {
-    clearTimeout(timer);
-    timer = setTimeout(callback, timeout);
-  };
-};
 
 const main = function () {
   if (isDebug) {
@@ -50,7 +43,9 @@ const main = function () {
   };
   readAndStoreCoureses();
 
-  const observer = new MutationObserver(debounce(readAndStoreCoureses, 500));
+  const observer = new MutationObserver(
+    debounceCallback(readAndStoreCoureses, 500),
+  );
   observer.observe(document.body, { subtree: true, childList: true });
 };
 
