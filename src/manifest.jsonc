@@ -29,7 +29,7 @@
         "https://cms7.ict.nitech.ac.jp/moodle40a/my/",
         "https://cms7.ict.nitech.ac.jp/moodle40a/my/index.php"
       ],
-      "js": ["./contentScripts/dashboard/dashboard.ts"],
+      "js": ["./contentScripts/dashboard/readAndStoreCourses/index.ts"],
       "css": ["./contentScripts/dashboard/dashboard.scss"]
     },
     // scorm page
