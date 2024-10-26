@@ -10,10 +10,16 @@ export const coursesReducer = function (
   if (action.type === 'saveCourses') {
     return payload.courses;
   } else if (action.type === 'mergeAndSaveCourses') {
-    return [
-      ...courses,
-      ...payload.courses,
-    ];
+    const idCourseMap = new Map<CourseJson['id'], CourseJson>();
+
+    for (const course of courses) {
+      idCourseMap.set(course.id, course);
+    }
+    for (const course of payload.courses) {
+      idCourseMap.set(course.id, course);
+    }
+
+    return [...idCourseMap.values()];
   }
 
   const _: never = action;
