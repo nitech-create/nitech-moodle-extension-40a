@@ -21,7 +21,8 @@
       "js": [
         "./contentScripts/allPages/startMessage/index.ts",
         "./contentScripts/allPages/removeForceDownload/index.ts",
-        "./contentScripts/allPages/replaceBreadcrumbCourseName/index.ts"
+        "./contentScripts/allPages/replaceBreadcrumbCourseName/index.ts",
+        "./contentScripts/allPages/replaceNavigationCourseName/index.ts"
       ]
     },
     // dashboard
