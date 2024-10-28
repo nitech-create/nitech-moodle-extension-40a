@@ -99,6 +99,8 @@ if (!watchMode) {
   Deno.exit(0);
 }
 
+await Promise.all(buildContexts.map((ctx) => ctx.rebuild()));
+
 console.log('Watching...');
 console.log('press "r" to rebuild');
 console.log('press "q" to exit');
