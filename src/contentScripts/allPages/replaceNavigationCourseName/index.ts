@@ -1,8 +1,26 @@
 import { isDebug } from 'esbuild-plugin-debug-switch';
 
-import { debounceCallback } from '~/common/debounceCallback.ts';
 import { getPreferences } from '~/common/newStorage/preferences/index.ts';
 import { getCourses } from '~/common/newStorage/courses/index.ts';
+import { registerMutationObserverCallback } from '~/contentScripts/common/mutationObserverCallback.ts';
+
+const replaceNavigationCourseName = function (
+  replacementMap: Map<string, string>,
+) {
+  const navigation = document.querySelector('*[role="navigation"]');
+  if (!navigation) return;
+
+  const links = Array.from(
+    navigation.querySelectorAll('*[role="treeitem"] a'),
+  ) as HTMLAnchorElement[];
+
+  for (const link of links) {
+    const content = link.textContent?.trim();
+    if (!content) continue;
+
+    link.textContent = replacementMap.get(content) ?? content;
+  }
+};
 
 const main = async function () {
   const preferences = await getPreferences();
@@ -19,27 +37,16 @@ const main = async function () {
     replacementMap.set(course.systemCourseName, course.name);
   }
 
-  const replaceNavigationCourseName = function () {
-    const navigation = document.querySelector('*[role="navigation"]');
-    if (!navigation) return;
-
-    const links = Array.from(
-      navigation.querySelectorAll('*[role="treeitem"] a'),
-    ) as HTMLAnchorElement[];
-
-    for (const link of links) {
-      const content = link.textContent?.trim();
-      if (!content) continue;
-
-      link.textContent = replacementMap.get(content) ?? content;
-    }
-  };
-  replaceNavigationCourseName();
-
-  const observer = new MutationObserver(
-    debounceCallback(replaceNavigationCourseName, 500),
+  replaceNavigationCourseName(replacementMap);
+  registerMutationObserverCallback(
+    () => {
+      replaceNavigationCourseName(replacementMap);
+    },
+    {
+      rootElement: document.body,
+      observerOptions: { childList: true, subtree: true },
+    },
   );
-  observer.observe(document.body, { childList: true });
 };
 
 main();

@@ -1,4 +1,4 @@
-type Callback<Args extends unknown[]> = (...args: Args) => void;
+export type Callback<Args extends unknown[]> = (...args: Args) => void;
 
 export const debounceCallback = function <
   Args extends unknown[],
