@@ -21,7 +21,7 @@ export const initialPreferences: Preferences = {
   dashboardQuickCourseLinks: {
     enabled: true,
   },
-  scormCollapseToc: {
+  scormAutoCollapseToc: {
     enabled: true,
   },
   scormAutoPlay: {
