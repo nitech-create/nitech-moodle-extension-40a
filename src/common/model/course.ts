@@ -119,7 +119,7 @@ export class Course {
       if (nameIndex > 0 && nameIndex + 1 < segments.length) {
         return segments.slice(nameIndex + 1).join(' ');
       }
-      return text;
+      return cleanText;
     })();
     const fullName = cleanText;
 
@@ -138,7 +138,7 @@ export class Course {
         fullYear = parseInt(year);
       }
       if (seg1 && seg2 && seg3) {
-        systemCourseName = `${seg1}-${seg2}-${seg3}`;
+        systemCourseName = `${seg1.slice(-2)}-${seg2}-${seg3}`;
       }
     }
 
@@ -181,6 +181,7 @@ export class Course {
       id: this.id,
       name: this.name,
       fullName: this.fullName,
+      systemCourseName: this.systemCourseName,
       fullYear: this.fullYear,
       semesterStart: this.semesterStart,
       semesterEnd: this.semesterEnd,
