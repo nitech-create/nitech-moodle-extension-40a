@@ -1,54 +1,54 @@
 export type PatchRemoveForceDownloadAction = {
-  type: 'patchRemoveForceDownload';
+  type: "patchRemoveForceDownload";
   payload: {
     enabled?: boolean;
   };
 };
 
 export type PatchReplaceBreadcrumbCourseNameAction = {
-  type: 'patchReplaceBreadcrumbCourseName';
+  type: "patchReplaceBreadcrumbCourseName";
   payload: {
     enabled?: boolean;
   };
 };
 
 export type PatchReplaceNavigationCourseNameAction = {
-  type: 'patchReplaceNavigationCourseName';
+  type: "patchReplaceNavigationCourseName";
   payload: {
     enabled?: boolean;
   };
 };
 
 export type PatchDashboardEventsCountdownAction = {
-  type: 'patchDashboardEventsCountdown';
+  type: "patchDashboardEventsCountdown";
   payload: {
     enabled?: boolean;
   };
 };
 
 export type PatchDashboardQuickCourseLinksAction = {
-  type: 'patchDashboardQuickCourseLinks';
+  type: "patchDashboardQuickCourseLinks";
   payload: {
     enabled?: boolean;
   };
 };
 
 export type PatchScormCollapseTocAction = {
-  type: 'patchScormCollapseToc';
+  type: "patchScormCollapseToc";
   payload: {
     enabled?: boolean;
   };
 };
 
 export type PatchScormAutoPlayAction = {
-  type: 'patchScormAutoPlay';
+  type: "patchScormAutoPlay";
   payload: {
     enabled?: boolean;
   };
 };
 
 export type PatchLoginAutoSubmitAction = {
-  type: 'patchLoginAutoSubmit';
+  type: "patchLoginAutoSubmit";
   payload: {
     enabled?: boolean;
   };

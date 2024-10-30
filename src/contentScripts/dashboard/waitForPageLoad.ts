@@ -1,6 +1,6 @@
 // @deno-types=npm:@types/lodash
-import * as lodash from 'lodash';
-import type { Feature } from '../common/types.ts';
+import * as lodash from "lodash";
+import type { Feature } from "../common/types.ts";
 
 const defaultOption = {
   enabled: true,
@@ -9,8 +9,8 @@ const defaultOption = {
 
 /** ダッシュボードの内容が読み込まれるまで待つ */
 const waitForPageLoad: Feature = {
-  uniqueName: 'dashboard-wait-for-page-load',
-  hostnameFilter: 'cms7.ict.nitech.ac.jp',
+  uniqueName: "dashboard-wait-for-page-load",
+  hostnameFilter: "cms7.ict.nitech.ac.jp",
   pathnameFilter: /^\/moodle40a\/my\/(index\.php)?$/,
   propagateError: false,
   loader: (options_) => {

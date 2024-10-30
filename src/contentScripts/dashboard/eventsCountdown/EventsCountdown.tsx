@@ -1,8 +1,8 @@
 /** @jsxImportSource preact */
 
 // @deno-types="preact/types"
-import * as preact from 'preact';
-import { createPortal, useState } from 'preact/compat';
+import * as preact from "preact";
+import { createPortal, useState } from "preact/compat";
 
 /** @param duration 期間の長さ (秒) */
 const createDurationText = function (duration: number) {
@@ -60,11 +60,11 @@ const Countdown = (props: CountdownProps) => {
     msUntilNextUpdate(Math.abs(duration), currentTime),
   );
 
-  let className = '';
+  let className = "";
   if (duration < 0) {
-    className = 'exceeded text-muted';
+    className = "exceeded text-muted";
   } else if (duration < 86400) {
-    className = 'imminent red';
+    className = "imminent red";
   }
 
   return createPortal(

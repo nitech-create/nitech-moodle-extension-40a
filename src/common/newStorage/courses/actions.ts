@@ -1,14 +1,14 @@
-import type { CourseJson } from '~/common/model/course.ts';
+import type { CourseJson } from "~/common/model/course.ts";
 
 export type SaveCoursesAction = {
-  type: 'saveCourses';
+  type: "saveCourses";
   payload: {
     courses: CourseJson[];
   };
 };
 
 export type MergeAndSaveCoursesAction = {
-  type: 'mergeAndSaveCourses';
+  type: "mergeAndSaveCourses";
   payload: {
     courses: CourseJson[];
   };

@@ -1,22 +1,22 @@
-import { Course, RegularLectureCourse } from '../../common/course.ts';
-import { storeCourseByMerge } from '../../common/storage/course.ts';
-import type { Feature } from '../common/types.ts';
-import waitForPageLoad from './waitForPageLoad.ts';
-import { textToSemesterMap, textToWeekOfDayMap } from '../../common/course.ts';
+import { Course, RegularLectureCourse } from "../../common/course.ts";
+import { storeCourseByMerge } from "../../common/storage/course.ts";
+import type { Feature } from "../common/types.ts";
+import waitForPageLoad from "./waitForPageLoad.ts";
+import { textToSemesterMap, textToWeekOfDayMap } from "../../common/course.ts";
 
 const regularCourseRegExp =
   /^(.+)\s*(\d{4})(\d)(\d{4})\s*(前期|後期|第(?:1|2|3|4)クォーター)\s*((?:日|月|火|水|木|金|土)曜)\s*(\d\d?)-(\d\d?)限.*$/;
 
 interface DecodedLectureCourse {
-  type: RegularLectureCourse['type'];
-  name: RegularLectureCourse['name'];
-  fullName: RegularLectureCourse['fullName'];
-  fullYear: RegularLectureCourse['fullYear'];
-  curriculumPart: RegularLectureCourse['curriculumPart'];
-  code: RegularLectureCourse['code'];
-  semester: RegularLectureCourse['semester'];
-  weekOfDay: RegularLectureCourse['weekOfDay'];
-  period: RegularLectureCourse['period'];
+  type: RegularLectureCourse["type"];
+  name: RegularLectureCourse["name"];
+  fullName: RegularLectureCourse["fullName"];
+  fullYear: RegularLectureCourse["fullYear"];
+  curriculumPart: RegularLectureCourse["curriculumPart"];
+  code: RegularLectureCourse["code"];
+  semester: RegularLectureCourse["semester"];
+  weekOfDay: RegularLectureCourse["weekOfDay"];
+  period: RegularLectureCourse["period"];
 }
 
 const convertFullWidthToHalfWidth = function (input: string): string {
@@ -50,7 +50,7 @@ const decodeRegularLectureCourseText = function (
     textToWeekOfDayMap[match[6] as keyof typeof textToWeekOfDayMap];
 
   return {
-    type: 'regular-lecture',
+    type: "regular-lecture",
     name: match[1].trim(),
     fullName: text,
     fullYear: parseInt(match[2]),
@@ -66,8 +66,8 @@ const pageLinkIdRegExp = /id=(\d+)/;
 /** コースのリストを「コース概要」のセクションから
  * 読み取り、ストレージに保存する */
 const updateCourseRepository: Feature = {
-  uniqueName: 'dashboard-update-course-repository',
-  hostnameFilter: 'cms7.ict.nitech.ac.jp',
+  uniqueName: "dashboard-update-course-repository",
+  hostnameFilter: "cms7.ict.nitech.ac.jp",
   pathnameFilter: /^\/moodle40a\/my\/(index\.php)?$/,
   dependencies: [waitForPageLoad.uniqueName],
   loader: async (options) => {
@@ -77,7 +77,7 @@ const updateCourseRepository: Feature = {
 
     const thisYear = new Date().getFullYear();
     const thisYearStr = `${thisYear}`;
-    const elMyOverview = document.querySelector('section.block_myoverview');
+    const elMyOverview = document.querySelector("section.block_myoverview");
     if (!elMyOverview) {
       throw Error(
         `[${updateCourseRepository.uniqueName}] Failed to get "my overview" section`,
@@ -88,25 +88,25 @@ const updateCourseRepository: Feature = {
     // 実際になっている様子を確認していないのでちゃんと動くかは要検証
     const courses: Course[] = [];
     const elItemLinks = Array.from(
-      elMyOverview.querySelectorAll('ul.list-group li a.aalink.coursename'),
+      elMyOverview.querySelectorAll("ul.list-group li a.aalink.coursename"),
     ) as HTMLAnchorElement[];
     for (const elItemLink of elItemLinks) {
       const search = new URL(elItemLink.href).search;
       const pageIdMatch = pageLinkIdRegExp.exec(search);
-      const pageId = parseInt(pageIdMatch?.[1] ?? '0');
+      const pageId = parseInt(pageIdMatch?.[1] ?? "0");
       const elShortName = elItemLink.previousElementSibling?.querySelector(
-        'div > div',
+        "div > div",
       );
 
       if (!elShortName) {
         continue;
       }
-      const shortName = elShortName.textContent ?? '';
+      const shortName = elShortName.textContent ?? "";
 
       const text = Array.from(elItemLink.childNodes)
         .filter((v) => v.nodeType === 3)
         .map((v) => v.textContent)
-        .join('')
+        .join("")
         .trim();
       try {
         courses.push({
@@ -116,7 +116,7 @@ const updateCourseRepository: Feature = {
         });
       } catch {
         courses.push({
-          type: 'special',
+          type: "special",
           name: text,
           fullName: text,
           fullYear: text.includes(thisYearStr) ? thisYear : undefined,

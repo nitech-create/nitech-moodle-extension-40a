@@ -1,7 +1,7 @@
 /** @jsxImportSource preact */
 
 // @deno-types="preact/types"
-import * as preact from 'preact';
+import * as preact from "preact";
 
 interface ToggleBoxProps {
   uniqueId: string;
@@ -12,14 +12,14 @@ interface ToggleBoxProps {
 
 const ToggleBox = (props: ToggleBoxProps) => (
   <li key={props.uniqueId}>
-    <div className='label'>
+    <div className="label">
       <label htmlFor={props.uniqueId}>
         {props.labelText}
       </label>
     </div>
-    <div className='control'>
+    <div className="control">
       <input
-        type='checkbox'
+        type="checkbox"
         id={props.uniqueId}
         checked={props.checked}
         onClick={props.onClick}

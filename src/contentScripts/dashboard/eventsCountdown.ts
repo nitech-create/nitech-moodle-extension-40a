@@ -1,10 +1,10 @@
 /** @jsxImportSource preact */
 
-import type { Feature } from '../common/types.ts';
+import type { Feature } from "../common/types.ts";
 import {
   EventsCountdownProps,
   renderEventsCountdown,
-} from './eventsCountdown/EventsCountdown.tsx';
+} from "./eventsCountdown/EventsCountdown.tsx";
 
 type AddEventCountdownOptions = {
   enabled: boolean;
@@ -14,8 +14,8 @@ const CalendarLinkDateNumRegExp = /\?.*time=(\d+).*$/;
 
 /** 直近イベントにカウントダウンを追加 */
 const addEventsCountdown: Feature = {
-  uniqueName: 'dashboard-events-countdown',
-  hostnameFilter: 'cms7.ict.nitech.ac.jp',
+  uniqueName: "dashboard-events-countdown",
+  hostnameFilter: "cms7.ict.nitech.ac.jp",
   pathnameFilter: /^\/moodle40a\/my\/(index\.php)?$/,
   loader: (options) => {
     if (!options.enabled) {
@@ -23,14 +23,14 @@ const addEventsCountdown: Feature = {
     }
 
     const elUpcomingEvents = document.querySelector(
-      'section.block_calendar_upcoming',
+      "section.block_calendar_upcoming",
     );
     if (!elUpcomingEvents) {
       return;
     }
 
-    const appRoot = document.createElement('div');
-    appRoot.id = 'nitech_moodle_ext_events_countdown_root';
+    const appRoot = document.createElement("div");
+    appRoot.id = "nitech_moodle_ext_events_countdown_root";
     elUpcomingEvents.append(appRoot);
 
     const elEventItems = Array.from(
@@ -40,13 +40,13 @@ const addEventsCountdown: Feature = {
     );
 
     // 締め切り時間とそれを描画する DOM 要素のリストを作成
-    const eventItems: EventsCountdownProps['items'] = [];
+    const eventItems: EventsCountdownProps["items"] = [];
     for (const elEventItem of elEventItems) {
-      const elLabel = elEventItem.querySelector('div.date');
+      const elLabel = elEventItem.querySelector("div.date");
       if (!elLabel) {
         continue;
       }
-      const elLink = elLabel.querySelector('a');
+      const elLink = elLabel.querySelector("a");
       if (!elLink) {
         continue;
       }
@@ -59,8 +59,8 @@ const addEventsCountdown: Feature = {
 
       const expireDate = new Date(parseInt(dateNumMatch[1]) * 1000);
 
-      const elCountdown = document.createElement('div');
-      elCountdown.className = 'nitech-moodle-ext-event-countdown';
+      const elCountdown = document.createElement("div");
+      elCountdown.className = "nitech-moodle-ext-event-countdown";
       elLabel.appendChild(elCountdown);
 
       eventItems.push({

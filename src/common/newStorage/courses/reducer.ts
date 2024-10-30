@@ -1,5 +1,5 @@
-import type { CourseJson } from '~/common/model/course.ts';
-import type { CoursesAction } from './actions.ts';
+import type { CourseJson } from "~/common/model/course.ts";
+import type { CoursesAction } from "./actions.ts";
 
 export const coursesReducer = function (
   courses: CourseJson[],
@@ -7,10 +7,10 @@ export const coursesReducer = function (
 ): CourseJson[] {
   const { payload } = action;
 
-  if (action.type === 'saveCourses') {
+  if (action.type === "saveCourses") {
     return payload.courses;
-  } else if (action.type === 'mergeAndSaveCourses') {
-    const idCourseMap = new Map<CourseJson['id'], CourseJson>();
+  } else if (action.type === "mergeAndSaveCourses") {
+    const idCourseMap = new Map<CourseJson["id"], CourseJson>();
 
     for (const course of courses) {
       idCourseMap.set(course.id, course);

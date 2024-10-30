@@ -1,4 +1,4 @@
-const configFilePath = './.vscode/settings.json';
+const configFilePath = "./.vscode/settings.json";
 const configJSON = await (async () => {
   try {
     const stat = await Deno.lstat(configFilePath);
@@ -9,34 +9,36 @@ const configJSON = await (async () => {
 
     return Promise.reject(`${configFilePath} exists but is NOT a file`);
   } catch {
-    return '{}';
+    return "{}";
   }
 })();
 
-console.info("\x1b[1mInstall Deno for VSCode on https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno\x1b[0m");
+console.info(
+  "\x1b[1mInstall Deno for VSCode on https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno\x1b[0m",
+);
 
 const config = JSON.parse(configJSON);
 const langSettings = {
-  'editor.defaultFormatter': 'denoland.vscode-deno',
-  'editor.tabSize': 2,
-  'editor.insertSpaces': true,
+  "editor.defaultFormatter": "denoland.vscode-deno",
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
 };
 
-config['deno.enable'] = true;
-config['deno.unstable'] = true;
-config['deno.lint'] = true;
-config['deno.config'] = './deno.json';
-config['deno.importMap'] = './import_map.json';
-config['[javascript]'] = langSettings;
-config['[javascriptreact]'] = langSettings;
-config['[typescript]'] = langSettings;
-config['[typescriptreact]'] = langSettings;
-config['[json]'] = langSettings;
+config["deno.enable"] = true;
+config["deno.unstable"] = true;
+config["deno.lint"] = true;
+config["deno.config"] = "./deno.json";
+config["deno.importMap"] = "./import_map.json";
+config["[javascript]"] = langSettings;
+config["[javascriptreact]"] = langSettings;
+config["[typescript]"] = langSettings;
+config["[typescriptreact]"] = langSettings;
+config["[json]"] = langSettings;
 
 await Deno.writeTextFile(configFilePath, JSON.stringify(config));
 
 const p = Deno.run({
-  cmd: ['deno', 'fmt', configFilePath],
+  cmd: ["deno", "fmt", configFilePath],
 });
 const status = await p.status();
 

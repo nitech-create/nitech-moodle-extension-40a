@@ -1,4 +1,4 @@
-import { debounceCallback } from '~/common/debounceCallback.ts';
+import { debounceCallback } from "~/common/debounceCallback.ts";
 
 export type RegisterMutationObserverCallbackOptions = {
   rootElement: HTMLElement;

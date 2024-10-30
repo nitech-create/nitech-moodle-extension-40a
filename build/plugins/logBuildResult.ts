@@ -1,4 +1,4 @@
-import type * as esbuild from 'esbuild';
+import type * as esbuild from "esbuild";
 
 const printLog = function (
   numErrors: number,
@@ -8,7 +8,7 @@ const printLog = function (
 ) {
   const buildTime = endTime.getTime() - startTime.getTime();
 
-  let message = `${endTime.toLocaleTimeString('en-GB')}: `;
+  let message = `${endTime.toLocaleTimeString("en-GB")}: `;
   if (numErrors > 0 && numWarnings > 0) {
     message +=
       `Build failed with ${numErrors} errors and ${numWarnings} warnings`;
@@ -24,7 +24,7 @@ const printLog = function (
 };
 
 export const logBuildResultPlugin = (): esbuild.Plugin => ({
-  name: 'log-and-output-filename',
+  name: "log-and-output-filename",
   setup(build) {
     // assign to avoid type error
     let startTime = new Date();

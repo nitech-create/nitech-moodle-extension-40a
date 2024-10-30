@@ -1,4 +1,4 @@
-import { FeatureOption } from '../../common/options.ts';
+import { FeatureOption } from "../../common/options.ts";
 
 export type FeatureUniqueName = string;
 

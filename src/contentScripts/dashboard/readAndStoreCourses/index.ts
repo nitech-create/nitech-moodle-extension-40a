@@ -1,12 +1,12 @@
-import { isDebug } from 'esbuild-plugin-debug-switch';
+import { isDebug } from "esbuild-plugin-debug-switch";
 
-import { Course } from '~/common/model/course.ts';
-import { reduceAndSaveCourses } from '~/common/newStorage/courses/index.ts';
-import { registerMutationObserverCallback } from '~/contentScripts/common/mutationObserverCallback.ts';
+import { Course } from "~/common/model/course.ts";
+import { reduceAndSaveCourses } from "~/common/newStorage/courses/index.ts";
+import { registerMutationObserverCallback } from "~/contentScripts/common/mutationObserverCallback.ts";
 
 const readAndStoreCoureses = function () {
   if (isDebug) {
-    console.log('Reading courses');
+    console.log("Reading courses");
   }
 
   const myOverview = document.querySelector('*[data-block="myoverview"]');
@@ -17,12 +17,12 @@ const readAndStoreCoureses = function () {
   )) as HTMLAnchorElement[];
   const coursesJson = links.map((link) => {
     try {
-      const id = new URL(link.href).searchParams.get('id');
+      const id = new URL(link.href).searchParams.get("id");
       if (!id) return null;
 
       return Course.fromJson({
         id,
-        ...Course.parse(link.textContent || ''),
+        ...Course.parse(link.textContent || ""),
       }).toJson();
     } catch {
       return null;
@@ -30,7 +30,7 @@ const readAndStoreCoureses = function () {
   }).filter((course) => course !== null);
 
   reduceAndSaveCourses({
-    type: 'mergeAndSaveCourses',
+    type: "mergeAndSaveCourses",
     payload: {
       courses: coursesJson,
     },
@@ -39,7 +39,7 @@ const readAndStoreCoureses = function () {
 
 const main = function () {
   if (isDebug) {
-    console.log('Running ReadAndStoreCoureses');
+    console.log("Running ReadAndStoreCoureses");
   }
 
   readAndStoreCoureses();

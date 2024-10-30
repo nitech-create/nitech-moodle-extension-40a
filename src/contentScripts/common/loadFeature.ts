@@ -1,8 +1,8 @@
 // @deno-types=npm:@types/lodash
-import * as lodash from 'lodash';
-import type { Feature, FeatureUniqueName } from '../common/types.ts';
-import { defaultFeatureOption } from '../../common/options.ts';
-import { getOptions } from '../../common/storage/options.ts';
+import * as lodash from "lodash";
+import type { Feature, FeatureUniqueName } from "../common/types.ts";
+import { defaultFeatureOption } from "../../common/options.ts";
+import { getOptions } from "../../common/storage/options.ts";
 
 /** feature を依存関係に従ってトポロジカルソートする */
 // DFS を用いて探索
@@ -63,7 +63,7 @@ const sortFeatures = function (features: Feature[]) {
  * `test` が文字列の場合は完全一致, 正規表現の場合は `RegExp.test` の結果
  */
 const testByStringOrRegExp = function (test: string | RegExp, target: string) {
-  if (typeof test === 'string') {
+  if (typeof test === "string") {
     return test === target;
   } else if (test instanceof RegExp) {
     return test.test(target);
@@ -88,7 +88,7 @@ const loadFeature = async function (
 
   const rootPromiseEventTarget = new EventTarget();
   const rootPromise = new Promise<void>((resolve) => {
-    rootPromiseEventTarget.addEventListener('start', () => resolve());
+    rootPromiseEventTarget.addEventListener("start", () => resolve());
   });
 
   for (const feature of sortedFeatures) {
@@ -157,7 +157,7 @@ const loadFeature = async function (
     );
   }
 
-  rootPromiseEventTarget.dispatchEvent(new CustomEvent('start'));
+  rootPromiseEventTarget.dispatchEvent(new CustomEvent("start"));
   await Promise.all(loaderPromiseMap.values());
 };
 

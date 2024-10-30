@@ -1,16 +1,16 @@
 /** @jsxImportSource preact */
 
 // @deno-types="preact/types"
-import * as preact from 'preact';
-import { FeatureOption, Options } from '../../common/options.ts';
-import optionText from './optionText.json' assert { type: 'json' };
+import * as preact from "preact";
+import { FeatureOption, Options } from "../../common/options.ts";
+import optionText from "./optionText.json" assert { type: "json" };
 
-import ToggleBox from './ToggleBox.tsx';
+import ToggleBox from "./ToggleBox.tsx";
 
 interface FeatureOptionsProps {
-  options: Options['features'];
+  options: Options["features"];
   setOptions: (
-    key: keyof Options['features'],
+    key: keyof Options["features"],
     value: Partial<FeatureOption>,
   ) => void;
 }
@@ -20,7 +20,7 @@ const FeatureOptions = (props: FeatureOptionsProps) => {
     .filter((
       uniqName,
     ) => (uniqName in optionText.features)) as (keyof typeof optionText[
-      'features'
+      "features"
     ])[];
 
   return (
@@ -31,7 +31,7 @@ const FeatureOptions = (props: FeatureOptionsProps) => {
         {featureUniqueNames.map((uniqueName) => (
           <ToggleBox
             uniqueId={`features-${uniqueName}`}
-            labelText={optionText['features'][uniqueName]['_category']}
+            labelText={optionText["features"][uniqueName]["_category"]}
             checked={props.options[uniqueName].enabled}
             onClick={() => {
               props.setOptions(uniqueName, {

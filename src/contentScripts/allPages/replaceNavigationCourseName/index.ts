@@ -1,8 +1,8 @@
-import { isDebug } from 'esbuild-plugin-debug-switch';
+import { isDebug } from "esbuild-plugin-debug-switch";
 
-import { getPreferences } from '~/common/newStorage/preferences/index.ts';
-import { getCourses } from '~/common/newStorage/courses/index.ts';
-import { registerMutationObserverCallback } from '~/contentScripts/common/mutationObserverCallback.ts';
+import { getPreferences } from "~/common/newStorage/preferences/index.ts";
+import { getCourses } from "~/common/newStorage/courses/index.ts";
+import { registerMutationObserverCallback } from "~/contentScripts/common/mutationObserverCallback.ts";
 
 const replaceNavigationCourseName = function (
   replacementMap: Map<string, string>,
@@ -27,7 +27,7 @@ const main = async function () {
   if (!preferences.replaceNavigationCourseName.enabled) return;
 
   if (isDebug) {
-    console.log('ReplaceNavigationCourseName is enabled.');
+    console.log("ReplaceNavigationCourseName is enabled.");
   }
 
   const courses = await getCourses();

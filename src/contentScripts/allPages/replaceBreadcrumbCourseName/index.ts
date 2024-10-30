@@ -1,17 +1,17 @@
-import { isDebug } from 'esbuild-plugin-debug-switch';
+import { isDebug } from "esbuild-plugin-debug-switch";
 
-import { getPreferences } from '~/common/newStorage/preferences/index.ts';
-import { getCourses } from '~/common/newStorage/courses/index.ts';
-import { registerMutationObserverCallback } from '~/contentScripts/common/mutationObserverCallback.ts';
+import { getPreferences } from "~/common/newStorage/preferences/index.ts";
+import { getCourses } from "~/common/newStorage/courses/index.ts";
+import { registerMutationObserverCallback } from "~/contentScripts/common/mutationObserverCallback.ts";
 
 const replaceBreadcrumbCourseName = function (
   replacementMap: Map<string, string>,
 ) {
-  const breadcrumb = document.querySelector('#page-header nav ol.breadcrumb');
+  const breadcrumb = document.querySelector("#page-header nav ol.breadcrumb");
   if (!breadcrumb) return;
 
   const links = Array.from(
-    breadcrumb.querySelectorAll('li a'),
+    breadcrumb.querySelectorAll("li a"),
   ) as HTMLAnchorElement[];
   for (const link of links) {
     const content = link.textContent?.trim();
@@ -26,7 +26,7 @@ const main = async function () {
   if (!preferences.replaceBreadcrumbCourseName.enabled) return;
 
   if (isDebug) {
-    console.log('ReplaveBreadcrumbCourseName is enabled.');
+    console.log("ReplaveBreadcrumbCourseName is enabled.");
   }
 
   const courses = await getCourses();

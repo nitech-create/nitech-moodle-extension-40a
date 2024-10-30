@@ -1,5 +1,5 @@
-import type { Preferences } from '~/common/model/preferences.ts';
-import type { PreferencesAction } from './action.ts';
+import type { Preferences } from "~/common/model/preferences.ts";
+import type { PreferencesAction } from "./action.ts";
 
 export const preferencesReducer = function (
   preferences: Preferences,
@@ -7,7 +7,7 @@ export const preferencesReducer = function (
 ): Preferences {
   const { payload } = action;
 
-  if (action.type === 'patchRemoveForceDownload') {
+  if (action.type === "patchRemoveForceDownload") {
     return {
       ...preferences,
       removeForceDownload: {
@@ -15,7 +15,7 @@ export const preferencesReducer = function (
         ...payload,
       },
     };
-  } else if (action.type === 'patchReplaceBreadcrumbCourseName') {
+  } else if (action.type === "patchReplaceBreadcrumbCourseName") {
     return {
       ...preferences,
       replaceBreadcrumbCourseName: {
@@ -23,7 +23,7 @@ export const preferencesReducer = function (
         ...payload,
       },
     };
-  } else if (action.type === 'patchReplaceNavigationCourseName') {
+  } else if (action.type === "patchReplaceNavigationCourseName") {
     return {
       ...preferences,
       replaceNavigationCourseName: {
@@ -31,7 +31,7 @@ export const preferencesReducer = function (
         ...payload,
       },
     };
-  } else if (action.type === 'patchDashboardEventsCountdown') {
+  } else if (action.type === "patchDashboardEventsCountdown") {
     return {
       ...preferences,
       dashboardEventsCountdown: {
@@ -39,7 +39,7 @@ export const preferencesReducer = function (
         ...payload,
       },
     };
-  } else if (action.type === 'patchDashboardQuickCourseLinks') {
+  } else if (action.type === "patchDashboardQuickCourseLinks") {
     return {
       ...preferences,
       dashboardQuickCourseLinks: {
@@ -47,7 +47,7 @@ export const preferencesReducer = function (
         ...payload,
       },
     };
-  } else if (action.type === 'patchScormCollapseToc') {
+  } else if (action.type === "patchScormCollapseToc") {
     return {
       ...preferences,
       scormAutoCollapseToc: {
@@ -55,7 +55,7 @@ export const preferencesReducer = function (
         ...payload,
       },
     };
-  } else if (action.type === 'patchScormAutoPlay') {
+  } else if (action.type === "patchScormAutoPlay") {
     return {
       ...preferences,
       scormAutoPlay: {
@@ -63,7 +63,7 @@ export const preferencesReducer = function (
         ...payload,
       },
     };
-  } else if (action.type === 'patchLoginAutoSubmit') {
+  } else if (action.type === "patchLoginAutoSubmit") {
     return {
       ...preferences,
       loginAutoSubmit: {

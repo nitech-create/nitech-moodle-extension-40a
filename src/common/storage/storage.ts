@@ -1,8 +1,8 @@
-import browser from 'webextension-polyfill';
+import browser from "webextension-polyfill";
 // @deno-types=npm:@types/lodash
-import * as lodash from 'lodash';
-import type { Course } from '../course.ts';
-import { Options } from '../options.ts';
+import * as lodash from "lodash";
+import type { Course } from "../course.ts";
+import { Options } from "../options.ts";
 
 /** `storage["local" | "managed" | "sync"]` に保存されている値の型 */
 interface StoredValue {
@@ -10,7 +10,7 @@ interface StoredValue {
   options: Options;
 }
 
-type StorageArea = 'local' | 'managed' | 'sync';
+type StorageArea = "local" | "managed" | "sync";
 
 const defaultValue: StoredValue = {
   courses: [],
@@ -22,7 +22,7 @@ const defaultValue: StoredValue = {
 /** ストレージから値を取得 */
 const get = async function <Key extends keyof StoredValue>(
   key: Key,
-  storageArea: StorageArea = 'local',
+  storageArea: StorageArea = "local",
 ): Promise<StoredValue[Key]> {
   const value = await browser.storage[storageArea].get(key) as Partial<
     StoredValue
@@ -40,7 +40,7 @@ let lastPromise: Promise<unknown> = Promise.resolve();
 const update = async function <Key extends keyof StoredValue>(
   key: Key,
   reducer: (prev: StoredValue[Key]) => StoredValue[Key],
-  storageArea: StorageArea = 'local',
+  storageArea: StorageArea = "local",
 ) {
   const storeValue = () =>
     new Promise<void>((resolve) => {

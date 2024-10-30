@@ -1,8 +1,8 @@
 // @deno-types="@types/webextension-polyfill"
-import browser from 'webextension-polyfill';
+import browser from "webextension-polyfill";
 
-import type { CourseJson } from '~/common/model/course.ts';
-import type { Preferences } from '~/common/model/preferences.ts';
+import type { CourseJson } from "~/common/model/course.ts";
+import type { Preferences } from "~/common/model/preferences.ts";
 
 type Subtract<T, U> = T extends U ? never : T;
 
@@ -11,9 +11,9 @@ type StorageSchema = {
   preferences: Preferences;
   version: number;
 };
-type StorageKey = Subtract<keyof StorageSchema, 'version'>;
+type StorageKey = Subtract<keyof StorageSchema, "version">;
 
-type StorageAreaName = 'local' | 'sync' | 'managed' | 'session';
+type StorageAreaName = "local" | "sync" | "managed" | "session";
 
 const storageGet = async function <K extends StorageKey>(
   key: K,

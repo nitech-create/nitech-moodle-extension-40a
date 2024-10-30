@@ -1,10 +1,10 @@
-import * as JSONC from '@std/jsonc';
+import * as JSONC from "@std/jsonc";
 
 export type ContentScript = {
   matches: string[];
   js?: string[];
   css?: string[];
-  run_at: 'document_start' | 'document_end' | 'document_idle';
+  run_at: "document_start" | "document_end" | "document_idle";
   match_about_blank: boolean;
   match_origin_as_fallback: boolean;
 };
@@ -44,24 +44,24 @@ export type ExtendedWebExtensionManifest = WebExtensionManifest & {
 export class Manifest {
   private manifest: ExtendedWebExtensionManifest;
 
-  get manifest_version(): (typeof this.manifest)['manifest_version'] {
+  get manifest_version(): (typeof this.manifest)["manifest_version"] {
     return this.manifest.manifest_version;
   }
 
-  get name(): (typeof this.manifest)['name'] {
+  get name(): (typeof this.manifest)["name"] {
     return this.manifest.name;
   }
 
-  get version(): (typeof this.manifest)['version'] {
+  get version(): (typeof this.manifest)["version"] {
     return this.manifest.version;
   }
 
-  private constructor(manifest: Manifest['manifest']) {
+  private constructor(manifest: Manifest["manifest"]) {
     this.manifest = manifest;
   }
 
   static parse(text: string): Manifest {
-    return new Manifest(JSONC.parse(text) as Manifest['manifest']);
+    return new Manifest(JSONC.parse(text) as Manifest["manifest"]);
   }
 
   stringify(): string {

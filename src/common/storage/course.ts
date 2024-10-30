@@ -1,7 +1,7 @@
-import * as storage from './storage.ts';
-import { Course } from '../course.ts';
+import * as storage from "./storage.ts";
+import { Course } from "../course.ts";
 
-const storageCourseKey = 'courses';
+const storageCourseKey = "courses";
 
 const mergeCourseList = function (value: Course[], source: Course[]) {
   const map = new Map<string, Course>();

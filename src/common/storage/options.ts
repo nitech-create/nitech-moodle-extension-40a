@@ -1,9 +1,9 @@
 // @deno-types=npm:@types/lodash
-import * as lodash from 'lodash';
-import * as storage from './storage.ts';
-import { Options } from '../options.ts';
+import * as lodash from "lodash";
+import * as storage from "./storage.ts";
+import { Options } from "../options.ts";
 
-const storageOptionsKey = 'options';
+const storageOptionsKey = "options";
 
 const getOptions = async function () {
   return await storage.get(storageOptionsKey);

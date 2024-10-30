@@ -1,7 +1,7 @@
-import { isDebug } from 'esbuild-plugin-debug-switch';
+import { isDebug } from "esbuild-plugin-debug-switch";
 
-import { getPreferences } from '~/common/newStorage/preferences/index.ts';
-import { registerMutationObserverCallback } from '~/contentScripts/common/mutationObserverCallback.ts';
+import { getPreferences } from "~/common/newStorage/preferences/index.ts";
+import { registerMutationObserverCallback } from "~/contentScripts/common/mutationObserverCallback.ts";
 
 const parseUrl = function (url: string): URL | null {
   try {
@@ -13,10 +13,10 @@ const parseUrl = function (url: string): URL | null {
 
 const removeForceDownload = () => {
   if (isDebug) {
-    console.log('Removing forcedownload');
+    console.log("Removing forcedownload");
   }
 
-  document.querySelectorAll('a').forEach((link) => {
+  document.querySelectorAll("a").forEach((link) => {
     const url = parseUrl(link.href);
     if (url === null) return;
 
@@ -26,7 +26,7 @@ const removeForceDownload = () => {
 
 const forceDownloadRemoved = function (url: URL): URL {
   const removed = new URL(url);
-  removed.searchParams.delete('forcedownload', '1');
+  removed.searchParams.delete("forcedownload", "1");
 
   return removed;
 };
@@ -36,7 +36,7 @@ const forceDownloadRemoved = function (url: URL): URL {
   if (!preferences.removeForceDownload.enabled) return;
 
   if (isDebug) {
-    console.log('RemoveForceDownload is enabled.');
+    console.log("RemoveForceDownload is enabled.");
   }
 
   removeForceDownload();

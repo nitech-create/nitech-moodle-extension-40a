@@ -3,7 +3,7 @@ type Period =
   |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 | 10
   | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20;
 type Semester = 1 | 2 | 3 | 4;
-type WeekOfDay = 'sun' | 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat';
+type WeekOfDay = "sun" | "mon" | "tue" | "wed" | "thu" | "fri" | "sat";
 
 const identifierLikePattern =
   /^(?<seg1>(?<year>\d{4})|\w{2})(?<seg2>\w)(?<seg3>\w\d{3})$/;
@@ -12,21 +12,21 @@ const periodPattern = /(?<start>([1-9]|1\d|20))-(?<end>([1-9]|1\d|20))限/;
 const weekOfDayIndex = (
   weekOfDay: NonNullable<WeekOfDay>,
 ): number => {
-  return ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'].indexOf(weekOfDay);
+  return ["sun", "mon", "tue", "wed", "thu", "fri", "sat"].indexOf(weekOfDay);
 };
 
 const findSemester = function (text: string): [Semester, Semester] | null {
-  if (text.includes('前期')) {
+  if (text.includes("前期")) {
     return [1, 2];
-  } else if (text.includes('後期')) {
+  } else if (text.includes("後期")) {
     return [3, 4];
-  } else if (text.includes('第1クォーター')) {
+  } else if (text.includes("第1クォーター")) {
     return [1, 1];
-  } else if (text.includes('第2クォーター')) {
+  } else if (text.includes("第2クォーター")) {
     return [2, 2];
-  } else if (text.includes('第3クォーター')) {
+  } else if (text.includes("第3クォーター")) {
     return [3, 3];
-  } else if (text.includes('第4クォーター')) {
+  } else if (text.includes("第4クォーター")) {
     return [4, 4];
   }
 
@@ -34,20 +34,20 @@ const findSemester = function (text: string): [Semester, Semester] | null {
 };
 
 const findWeekOfDay = function (text: string): WeekOfDay | null {
-  if (text.includes('日曜')) {
-    return 'sun';
-  } else if (text.includes('月曜')) {
-    return 'mon';
-  } else if (text.includes('火曜')) {
-    return 'tue';
-  } else if (text.includes('水曜')) {
-    return 'wed';
-  } else if (text.includes('木曜')) {
-    return 'thu';
-  } else if (text.includes('金曜')) {
-    return 'fri';
-  } else if (text.includes('土曜')) {
-    return 'sat';
+  if (text.includes("日曜")) {
+    return "sun";
+  } else if (text.includes("月曜")) {
+    return "mon";
+  } else if (text.includes("火曜")) {
+    return "tue";
+  } else if (text.includes("水曜")) {
+    return "wed";
+  } else if (text.includes("木曜")) {
+    return "thu";
+  } else if (text.includes("金曜")) {
+    return "fri";
+  } else if (text.includes("土曜")) {
+    return "sat";
   }
 
   return null;
@@ -108,16 +108,16 @@ export class Course {
     this.period = init.period;
   }
 
-  static parse(text: string): Omit<CourseJson, 'id'> {
-    const cleanText = text.trim().replace(/\s+/g, ' ');
-    const segments = cleanText.split(' ');
-    const normalizedText = cleanText.normalize('NFKC').toLowerCase();
+  static parse(text: string): Omit<CourseJson, "id"> {
+    const cleanText = text.trim().replace(/\s+/g, " ");
+    const segments = cleanText.split(" ");
+    const normalizedText = cleanText.normalize("NFKC").toLowerCase();
 
     const name = (() => {
       // string "コース名" may be embedded for screen reader
-      const nameIndex = segments.indexOf('コース名');
+      const nameIndex = segments.indexOf("コース名");
       if (nameIndex > 0 && nameIndex + 1 < segments.length) {
-        return segments.slice(nameIndex + 1).join(' ');
+        return segments.slice(nameIndex + 1).join(" ");
       }
       return cleanText;
     })();

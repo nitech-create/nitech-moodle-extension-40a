@@ -1,7 +1,7 @@
-import { renderApp } from './app/App.tsx';
+import { renderApp } from "./app/App.tsx";
 
-globalThis.addEventListener('load', () => {
-  const elAppRoot = document.getElementById('app_root');
+globalThis.addEventListener("load", () => {
+  const elAppRoot = document.getElementById("app_root");
   if (!elAppRoot) {
     throw Error(`element #app_root is not found`);
   }

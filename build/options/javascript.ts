@@ -1,9 +1,9 @@
-import * as esbuild from 'esbuild';
-import { denoPlugins } from 'esbuild-deno-loader';
-import { debugSwitchPlugin } from 'esbuild-plugin-debug-switch/plugin';
+import * as esbuild from "esbuild";
+import { denoPlugins } from "esbuild-deno-loader";
+import { debugSwitchPlugin } from "esbuild-plugin-debug-switch/plugin";
 
 type BuildOptionsOptions = {
-  entryPoints: esbuild.BuildOptions['entryPoints'];
+  entryPoints: esbuild.BuildOptions["entryPoints"];
   srcPath: string;
   destPath: string;
   dev: boolean;
@@ -18,9 +18,9 @@ export const buildOptions = (
 ): esbuild.BuildOptions => ({
   entryPoints: options.entryPoints,
   outdir: options.destPath,
-  platform: 'browser',
+  platform: "browser",
   bundle: true,
-  sourcemap: options.dev ? 'linked' : false,
+  sourcemap: options.dev ? "linked" : false,
   minify: !options.dev,
   jsxFactory: options.jsxFactory,
   jsxFragment: options.jsxFragmentFactory,

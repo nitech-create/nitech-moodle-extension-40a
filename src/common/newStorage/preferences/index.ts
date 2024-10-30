@@ -1,9 +1,9 @@
-import * as storage from '../storage.ts';
-import type { Preferences } from '~/common/model/preferences.ts';
-import { preferencesReducer } from './reducer.ts';
-import type { PreferencesAction } from './action.ts';
+import * as storage from "../storage.ts";
+import type { Preferences } from "~/common/model/preferences.ts";
+import { preferencesReducer } from "./reducer.ts";
+import type { PreferencesAction } from "./action.ts";
 
-const storageArea = 'local';
+const storageArea = "local";
 
 export const initialPreferences: Preferences = {
   removeForceDownload: {
@@ -38,7 +38,7 @@ export const getPreferences = async function (): Promise<Preferences> {
     return cachedPreferences;
   }
 
-  const preferences = await storage.get('preferences', storageArea);
+  const preferences = await storage.get("preferences", storageArea);
   cachedPreferences = preferences ?? initialPreferences;
 
   return cachedPreferences;
@@ -49,7 +49,7 @@ export const reduceAndSavePreferences = async function (
 ): Promise<void> {
   cachedPreferences = preferencesReducer(await getPreferences(), action);
   return storage.set(
-    'preferences',
+    "preferences",
     cachedPreferences,
     storageArea,
   );
