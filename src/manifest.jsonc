@@ -33,7 +33,8 @@
       ],
       "js": [
         "./contentScripts/dashboard/readAndStoreCourses/index.ts",
-        "./contentScripts/dashboard/quickCourseLinks/index.ts"
+        "./contentScripts/dashboard/quickCourseLinks/index.ts",
+        "./contentScripts/dashboard/eventCountdown/index.ts"
       ],
       "css": ["./contentScripts/dashboard/main.scss"]
     },
