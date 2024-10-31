@@ -20,8 +20,10 @@ export const buildOptions = (
   outdir: options.destPath,
   platform: "browser",
   bundle: true,
-  sourcemap: options.dev ? "linked" : false,
+  sourcemap: options.dev ? "inline" : false,
   minify: !options.dev,
+  jsxDev: options.dev,
+  jsx: "automatic",
   jsxFactory: options.jsxFactory,
   jsxFragment: options.jsxFragmentFactory,
   plugins: [

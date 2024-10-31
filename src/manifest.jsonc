@@ -73,13 +73,5 @@
   },
 
   "permissions": ["storage"],
-  "host_permissions": ["https://cms7.ict.nitech.ac.jp/moodle40a/*/*"],
-
-  "web_accessible_resources": [
-    // source maps
-    {
-      "resources": ["contentScripts/*/*.map"],
-      "matches": ["<all_urls>"]
-    }
-  ]
+  "host_permissions": ["https://cms7.ict.nitech.ac.jp/moodle40a/*/*"]
 }
