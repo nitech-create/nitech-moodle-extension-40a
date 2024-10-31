@@ -19,10 +19,10 @@
     {
       "matches": ["https://cms7.ict.nitech.ac.jp/moodle40a/*/*"],
       "js": [
-        "./contentScripts/allPages/startMessage/index.ts",
-        "./contentScripts/allPages/removeForceDownload/index.ts",
-        "./contentScripts/allPages/replaceBreadcrumbCourseName/index.ts",
-        "./contentScripts/allPages/replaceNavigationCourseName/index.ts"
+        "./contentScripts/all/startMessage/index.ts",
+        "./contentScripts/all/removeForceDownload/index.ts",
+        "./contentScripts/all/replaceBreadcrumbCourseName/index.ts",
+        "./contentScripts/all/replaceNavigationCourseName/index.ts"
       ]
     },
     // dashboard
