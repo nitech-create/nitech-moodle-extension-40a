@@ -64,10 +64,8 @@ export type CourseJson = {
   /** the year the course is offered */
   fullYear?: number;
   /** the semester the course is offered */
-  semesterStart?: Semester;
+  semester?: [Semester, Semester];
   /** the semester the course is offered */
-  semesterEnd?: Semester;
-  /** the day of the week the course is offered */
   weekOfDay?: WeekOfDay;
   /** the period in timetable the course is offered */
   period?: [Period, Period];
@@ -88,9 +86,7 @@ export class Course {
   /** the year the course is offered */
   fullYear?: number;
   /** the semester the course is offered */
-  semesterStart?: Semester;
-  /** the semester the course is offered */
-  semesterEnd?: Semester;
+  semester?: [Semester, Semester];
   /** the day of the week the course is offered */
   weekOfDay?: WeekOfDay;
   /** the period in timetable the course is offered */
@@ -102,8 +98,7 @@ export class Course {
     this.fullName = init.fullName;
     this.systemCourseName = init.systemCourseName;
     this.fullYear = init.fullYear;
-    this.semesterStart = init.semesterStart;
-    this.semesterEnd = init.semesterEnd;
+    this.semester = init.semester;
     this.weekOfDay = init.weekOfDay;
     this.period = init.period;
   }
@@ -142,12 +137,7 @@ export class Course {
       }
     }
 
-    let semesterStart: Semester | undefined = undefined;
-    let semesterEnd: Semester | undefined = undefined;
-    const semester = findSemester(normalizedText);
-    if (semester) {
-      [semesterStart, semesterEnd] = semester;
-    }
+    const semester = findSemester(normalizedText) ?? undefined;
 
     const weekOfDay = findWeekOfDay(normalizedText) ?? undefined;
     const periodMatch = normalizedText.match(periodPattern);
@@ -165,8 +155,7 @@ export class Course {
       fullName,
       systemCourseName,
       fullYear,
-      semesterStart,
-      semesterEnd,
+      semester,
       weekOfDay,
       period,
     };
@@ -183,8 +172,7 @@ export class Course {
       fullName: this.fullName,
       systemCourseName: this.systemCourseName,
       fullYear: this.fullYear,
-      semesterStart: this.semesterStart,
-      semesterEnd: this.semesterEnd,
+      semester: this.semester,
       weekOfDay: this.weekOfDay,
       period: this.period,
     };
@@ -202,13 +190,13 @@ export class Course {
       return 1;
     }
 
-    if (this.semesterStart && that.semesterStart) {
-      if (this.semesterStart !== that.semesterStart) {
-        return this.semesterStart - that.semesterStart;
+    if (this.semester && that.semester) {
+      if (this.semester[0] !== that.semester[0]) {
+        return this.semester[0] - that.semester[0];
       }
-    } else if (this.semesterStart) {
+    } else if (this.semester?.[0]) {
       return -1;
-    } else if (that.semesterStart) {
+    } else if (that.semester?.[0]) {
       return 1;
     }
 

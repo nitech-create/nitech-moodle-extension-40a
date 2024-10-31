@@ -13,7 +13,7 @@
     "jsr:@tsukina-7mochi/esbuild-plugin-sass@~0.1.1": "0.1.1",
     "npm:esbuild@0.24": "0.24.0",
     "npm:esbuild@0.24.0": "0.24.0",
-    "npm:sass@^1.80.3": "1.80.3"
+    "npm:sass@^1.80.3": "1.80.5"
   },
   "jsr": {
     "@luca/esbuild-deno-loader@0.11.0": {
@@ -273,8 +273,8 @@
     "readdirp@4.0.2": {
       "integrity": "sha512-yDMz9g+VaZkqBYS/ozoBJwaBhTbZo3UNYQHNRw1D3UFQB8oHB4uS/tAODO+ZLjGWmUbKnIlOWO+aaIiAxrUWHA=="
     },
-    "sass@1.80.3": {
-      "integrity": "sha512-ptDWyVmDMVielpz/oWy3YP3nfs7LpJTHIJZboMVs8GEC9eUmtZTZhMHlTW98wY4aEorDfjN38+Wr/XjskFWcfA==",
+    "sass@1.80.5": {
+      "integrity": "sha512-TQd2aoQl/+zsxRMEDSxVdpPIqeq9UFc6pr7PzkugiTx3VYCFPUaa3P4RrBQsqok4PO200Vkz0vXQBNlg7W907g==",
       "dependencies": [
         "@parcel/watcher",
         "chokidar",
@@ -303,6 +303,7 @@
       "jsr:@tsukina-7mochi/esbuild-plugin-sass@~0.1.1",
       "npm:@types/webextension-polyfill@~0.12.1",
       "npm:esbuild@0.24.0",
+      "npm:preact@^10.24.3",
       "npm:webextension-polyfill@0.12"
     ]
   }
