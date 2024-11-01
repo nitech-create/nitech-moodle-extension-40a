@@ -1,7 +1,7 @@
 import * as preact from "preact";
 import { isDebug } from "esbuild-plugin-debug-switch";
 
-import { getPreferences } from "~/common/newStorage/preferences/index.ts";
+import { getPreferences } from "~/common/storage/preferences/index.ts";
 import { registerMutationObserverCallback } from "~/contentScripts/common/mutationObserverCallback.ts";
 import { QuickCourseLinks } from "./components/quickCourseLinks.tsx";
 

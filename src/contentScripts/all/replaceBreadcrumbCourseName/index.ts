@@ -1,7 +1,7 @@
 import { isDebug } from "esbuild-plugin-debug-switch";
 
-import { getPreferences } from "~/common/newStorage/preferences/index.ts";
-import { getCourses } from "~/common/newStorage/courses/index.ts";
+import { getPreferences } from "~/common/storage/preferences/index.ts";
+import { getCourses } from "~/common/storage/courses/index.ts";
 import { registerMutationObserverCallback } from "~/contentScripts/common/mutationObserverCallback.ts";
 
 const replaceBreadcrumbCourseName = function (

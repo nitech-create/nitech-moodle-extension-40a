@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
 
 import type { Preferences } from "~/common/model/preferences.ts";
-import type { PreferencesAction } from "~/common/newStorage/preferences/action.ts";
+import type { PreferencesAction } from "~/common/storage/preferences/action.ts";
 import {
   getPreferences,
   reduceAndSavePreferences,
-} from "~/common/newStorage/preferences/index.ts";
+} from "~/common/storage/preferences/index.ts";
 
 type Payload<T extends PreferencesAction["type"]> =
   (PreferencesAction & { type: T })["payload"];

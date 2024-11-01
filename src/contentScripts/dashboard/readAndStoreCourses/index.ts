@@ -1,7 +1,7 @@
 import { isDebug } from "esbuild-plugin-debug-switch";
 
 import { Course } from "~/common/model/course.ts";
-import { reduceAndSaveCourses } from "~/common/newStorage/courses/index.ts";
+import { reduceAndSaveCourses } from "~/common/storage/courses/index.ts";
 import { registerMutationObserverCallback } from "~/contentScripts/common/mutationObserverCallback.ts";
 
 const readAndStoreCoureses = function () {
