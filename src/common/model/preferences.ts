@@ -19,7 +19,7 @@ export type Preferences = {
   };
 
   // video page
-  scormCollapseToc: {
+  scormAutoCollapseToc: {
     enabled: boolean;
   };
   scormAutoPlay: {
