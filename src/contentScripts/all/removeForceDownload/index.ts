@@ -31,7 +31,7 @@ const forceDownloadRemoved = function (url: URL): URL {
   return removed;
 };
 
-(async () => {
+const main = async () => {
   const preferences = await getPreferences();
   if (!preferences.removeForceDownload.enabled) return;
 
@@ -47,4 +47,6 @@ const forceDownloadRemoved = function (url: URL): URL {
       observerOptions: { childList: true, subtree: true },
     },
   );
-})();
+};
+
+main();
