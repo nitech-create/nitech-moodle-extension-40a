@@ -13,6 +13,8 @@ const collapseToc = function () {
   // do not toggle toggle class .disabled directly becausemoodle handles other
   // elements at the same time when the button is pressed
   toggleCollapseButton.click();
+
+  return true;
 };
 
 const main = async function () {

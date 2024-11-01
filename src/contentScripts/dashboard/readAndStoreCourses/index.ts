@@ -49,6 +49,8 @@ const readAndStoreCoureses = function () {
       courses: coursesJson,
     },
   });
+
+  return true;
 };
 
 const main = function () {
