@@ -12,6 +12,17 @@ const readAndStoreCoureses = function () {
   const myOverview = document.querySelector('*[data-block="myoverview"]');
   if (!myOverview) return;
 
+  const pagenationDropdownItem = myOverview.querySelector<HTMLElement>([
+    '*[data-region="courses-view"]',
+    '*[data-region="paging-control-limit-container"]',
+    'a[data-limit="0"]',
+  ].join(" "));
+  if (!pagenationDropdownItem) return;
+  if (pagenationDropdownItem.getAttribute("aria-current") !== "true") {
+    pagenationDropdownItem.click();
+    return;
+  }
+
   const links = Array.from(myOverview.querySelectorAll(
     '*[data-region="courses-view"] ul a.coursename',
   )) as HTMLAnchorElement[];
@@ -29,8 +40,11 @@ const readAndStoreCoureses = function () {
     }
   }).filter((course) => course !== null);
 
+  const actionType = location.pathname === "/moodle40a/my/courses.php"
+    ? "saveCourses"
+    : "mergeAndSaveCourses";
   reduceAndSaveCourses({
-    type: "mergeAndSaveCourses",
+    type: actionType,
     payload: {
       courses: coursesJson,
     },

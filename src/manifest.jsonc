@@ -38,6 +38,16 @@
       ],
       "css": ["./contentScripts/dashboard/main.scss"]
     },
+    // my course config page
+    {
+      "matches": [
+        "https://cms7.ict.nitech.ac.jp/moodle40a/my/courses.php"
+      ],
+      "js": [
+        // this is **a special case** to use script in other directory
+        "./contentScripts/dashboard/readAndStoreCourses/index.ts"
+      ]
+    },
     // scorm page
     {
       "matches": [
