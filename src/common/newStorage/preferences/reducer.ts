@@ -47,7 +47,7 @@ export const preferencesReducer = function (
         ...payload,
       },
     };
-  } else if (action.type === "patchScormCollapseToc") {
+  } else if (action.type === "patchScormAutoCollapseToc") {
     return {
       ...preferences,
       scormAutoCollapseToc: {

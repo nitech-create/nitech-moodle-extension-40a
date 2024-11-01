@@ -70,13 +70,13 @@
   ],
 
   "options_ui": {
-    "page": "./options/options.html",
+    "page": "./options/index.html",
     "open_in_tab": true,
     "browser_style": true,
     // this field is not exist in the manifest file definition
     // /added for the build process
-    "js": ["./options/options.ts"],
-    "css": ["./options/options.scss"]
+    "js": ["./options/index.ts"],
+    "css": ["./options/index.scss"]
   },
 
   "content_security_policy": {

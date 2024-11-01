@@ -33,8 +33,8 @@ export type PatchDashboardQuickCourseLinksAction = {
   };
 };
 
-export type PatchScormCollapseTocAction = {
-  type: "patchScormCollapseToc";
+export type PatchScormAutoCollapseTocAction = {
+  type: "patchScormAutoCollapseToc";
   payload: {
     enabled?: boolean;
   };
@@ -60,6 +60,6 @@ export type PreferencesAction =
   | PatchReplaceNavigationCourseNameAction
   | PatchDashboardEventsCountdownAction
   | PatchDashboardQuickCourseLinksAction
-  | PatchScormCollapseTocAction
+  | PatchScormAutoCollapseTocAction
   | PatchScormAutoPlayAction
   | PatchLoginAutoSubmitAction;

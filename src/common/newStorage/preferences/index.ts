@@ -46,11 +46,12 @@ export const getPreferences = async function (): Promise<Preferences> {
 
 export const reduceAndSavePreferences = async function (
   action: PreferencesAction,
-): Promise<void> {
+): Promise<Preferences> {
   cachedPreferences = preferencesReducer(await getPreferences(), action);
-  return storage.set(
+  await storage.set(
     "preferences",
     cachedPreferences,
     storageArea,
   );
+  return cachedPreferences;
 };
