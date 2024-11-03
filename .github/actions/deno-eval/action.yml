@@ -1,0 +1,20 @@
+name: Eval with Deno
+description: Evaluates given script with Deno
+
+inputs:
+  script:
+    required: true
+    type: string
+
+runs:
+  using: 'composite'
+  steps:
+    - uses: denoland/setup-deno@v2
+      with:
+        deno-version: v2.x
+
+    - name: Eval script
+      shell: bash
+      run: |
+        NO_COLOR="true"
+        deno eval '${{ inputs.script }}' | tee -a $GITHUB_OUTPUT
