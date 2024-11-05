@@ -46,23 +46,24 @@ export const EditPreferences = function () {
               リンクの強制ダウンロードを無効化する
             </p>
             <p className="description">
-              {/* deno-fmt-ignore */}
-              moodle では PDF などのリンクに強制的にダウンロードさせるように設定することができます。
-              この設定により PDF などがブラウザの規定の動作で開かずダウンロードされてしまうのを防ぎます。
+              {/* 改行が気持ち悪いが formatter のバグで無視できないので一旦放置 */}
+              moodle では PDF
+              などのリンクに強制的にダウンロードさせるように設定することができます。
+              この設定により PDF
+              などがブラウザの規定の動作で開かずダウンロードされてしまうのを防ぎます。
             </p>
           </PreferencesItem>
           <PreferencesItem
             checked={preferences.replaceBreadcrumbCourseName.enabled}
             onClick={(e) =>
               preferences.setReplaceBreadcrumbCourseName({
-                enabled: e.currentTarget.checked
+                enabled: e.currentTarget.checked,
               })}
           >
             <p className="title">
               ヘッダーナビゲーションのコース名をわかりやすい名前にする
             </p>
             <p className="description">
-              {/* deno-fmt-ignore */}
               各ページのヘッダーにある現在のページの位置を表すリンクのテキストをわかりやすい名前に置き換えます。
             </p>
           </PreferencesItem>
@@ -70,14 +71,13 @@ export const EditPreferences = function () {
             checked={preferences.replaceNavigationCourseName.enabled}
             onClick={(e) =>
               preferences.setReplaceNavigationCourseName({
-                enabled: e.currentTarget.checked
+                enabled: e.currentTarget.checked,
               })}
           >
             <p className="title">
               ナビゲーションのコース名をわかりやすい名前にする
             </p>
             <p className="description">
-              {/* deno-fmt-ignore */}
               各ページにあるナビゲーションメニューにおいて、コースリンクのテキストをわかりやすい名前に置き換えます。
             </p>
           </PreferencesItem>
@@ -91,30 +91,29 @@ export const EditPreferences = function () {
             checked={preferences.dashboardEventsCountdown.enabled}
             onClick={(e) =>
               preferences.setDashboardEventsCountdown({
-                enabled: e.currentTarget.checked
+                enabled: e.currentTarget.checked,
               })}
           >
             <p className="title">
               直近イベントに残り時間を表示する
             </p>
             <p className="description">
-              {/* deno-fmt-ignore */}
               ダッシュボードにある課題などが表示される「直近イベント」において、表示されているイベントの残り時間を表示します。
-              この残り時間はリアルタイムでカウントダウンされます (表示中に終了時刻が変わった場合はページの再読み込みが必要です)。
+              この残り時間はリアルタイムでカウントダウンされます
+              (表示中に終了時刻が変わった場合はページの再読み込みが必要です)。
             </p>
           </PreferencesItem>
           <PreferencesItem
             checked={preferences.dashboardQuickCourseLinks.enabled}
             onClick={(e) =>
               preferences.setDashboardQuickCourseLinks({
-                enabled: e.currentTarget.checked
+                enabled: e.currentTarget.checked,
               })}
           >
             <p className="title">
               開講中のコースにアクセスしやすくするメニューを表示する
             </p>
             <p className="description">
-              {/* deno-fmt-ignore */}
               ダッシュボードに現在開講しているコースを曜日・時間順に表示するクイックメニューを表示します。
             </p>
           </PreferencesItem>
@@ -128,14 +127,13 @@ export const EditPreferences = function () {
             checked={preferences.scormAutoCollapseToc.enabled}
             onClick={(e) =>
               preferences.setScormAutoCollapseToc({
-                enabled: e.currentTarget.checked
+                enabled: e.currentTarget.checked,
               })}
           >
             <p className="title">
               ページを開いたときに目次を折りたたむ
             </p>
             <p className="description">
-              {/* deno-fmt-ignore */}
               動画ページに表示される目次をデフォルトで折りたたみます。
               画面上により大きく動画を表示することができます。
             </p>
