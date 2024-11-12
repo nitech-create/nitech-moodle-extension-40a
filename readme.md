@@ -1,4 +1,8 @@
-# Web Extension for NITech Moodle 4.0
+# NITech Moodle Extension (40a)
+
+Web Extension for NITech Moodle 4.0
+
+[Chrome Web Store で公開中](https://chromewebstore.google.com/detail/nitech-moodle-extension-4/gghacnecolaclhlihmlhffgkmeojehff)
 
 [![release](https://img.shields.io/github/v/release/nitech-create/nitech-moodle-extension-40a?include_prereleases)](https://github.com/nitech-create/nitech-moodle-extension-40a/releases/latest)
 
@@ -8,8 +12,6 @@
 
 名古屋工業大学のオンライン授業サポートシステムとして採用されている Moodle (4.0)
 の機能を改善・拡張して使いやすくするブラウザ用拡張機能です。非公式であり、問題が起きても責任は取れません。
-
-Web Extension for Moodle 4.0 of NITech.
 
 ### 主な機能
 
@@ -35,7 +37,7 @@ Web Extension for Moodle 4.0 of NITech.
 
 ### Chrome Web Store からインストール
 
-準備中です
+[Chrome Web Store で公開中](https://chromewebstore.google.com/detail/nitech-moodle-extension-4/gghacnecolaclhlihmlhffgkmeojehff)
 
 ### GitHub からインストール
 
@@ -43,8 +45,9 @@ Web Extension for Moodle 4.0 of NITech.
    から .zip ファイルをダウンロードする
    - または [ビルド方法](./how_to_build.md) に従ってビルドする
 2. 拡張機能ページを開く
-   - `chrome://extensions` をURL欄に入力する
-   - またはEdgeブラウザ右上のクッキーみたいなアイコンを押して、「拡張機能の管理」をクリック
+   - `chrome://extensions` を URL 欄に入力する
+   - または Edge
+     ブラウザ右上のクッキーみたいなアイコンを押して、「拡張機能の管理」をクリック
 3. 開発者モードを有効にします
 4. `manifest.json` が含まれるフォルダまたはダウンロードした .zip
    ファイルをドロップ
