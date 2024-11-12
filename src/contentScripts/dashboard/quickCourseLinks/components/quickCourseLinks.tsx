@@ -9,9 +9,11 @@ import { FilterDropdown } from "./filterDropdown.tsx";
 export const QuickCourseLinks = function () {
   const [filterInitialized, setFilterInitialized] = useState(false);
   const courses = useCourses();
-  const { filter, setFilter, options: filterOptions } = useFilter(
-    courses ?? [],
-  );
+  const {
+    filter,
+    setFilter,
+    options: filterOptions,
+  } = useFilter(courses ?? []);
 
   useEffect(() => {
     if (!courses) return;
@@ -19,12 +21,7 @@ export const QuickCourseLinks = function () {
 
     setFilter(pickFilterByDate(filterOptions) ?? filter);
     setFilterInitialized(true);
-  }, [
-    courses,
-    filter,
-    filterOptions,
-    filterInitialized,
-  ]);
+  }, [courses, filter, filterOptions, filterInitialized]);
 
   const filteredCourses = useMemo(() => {
     const sorted = (courses ?? []).toSorted((a, b) => a.compare(b));
