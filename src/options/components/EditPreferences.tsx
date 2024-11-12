@@ -104,11 +104,12 @@ export const EditPreferences = function () {
           </PreferencesItem>
           <PreferencesItem
             checked={preferences.dashboardQuickCourseLinksForBachelor.enabled}
-            onClick={(e) =>
+            onClick={(e) => {
+              console.log("Hello!Bachelor!");
               preferences.setDashboardQuickCourseLinks({
                 enabled: e.currentTarget.checked,
-              })
-            }
+              });
+            }}
           >
             <p className="title">
               クイックメニューを学部生用にする (QuickCourseLinks for Bachelor)
