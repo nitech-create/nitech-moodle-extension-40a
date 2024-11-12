@@ -11,10 +11,13 @@ export type Preferences = {
   };
 
   // features for dashboard page
-  dashboardEventsCountdown: {
+  dashboardQuickCourseLinks: {
     enabled: boolean;
   };
-  dashboardQuickCourseLinks: {
+  dashboardQuickCourseLinksForBachelor: {
+    enabled: boolean;
+  };
+  dashboardEventsCountdown: {
     enabled: boolean;
   };
 

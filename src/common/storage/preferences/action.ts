@@ -19,15 +19,22 @@ export type PatchReplaceNavigationCourseNameAction = {
   };
 };
 
-export type PatchDashboardEventsCountdownAction = {
-  type: "patchDashboardEventsCountdown";
+export type PatchDashboardQuickCourseLinksAction = {
+  type: "patchDashboardQuickCourseLinks";
   payload: {
     enabled?: boolean;
   };
 };
 
-export type PatchDashboardQuickCourseLinksAction = {
-  type: "patchDashboardQuickCourseLinks";
+export type PatchDashboardQuickCourseLinksForBachelorAction = {
+  type: "patchDashboardQuickCourseLinksForBachelor";
+  payload: {
+    enabled?: boolean;
+  };
+};
+
+export type PatchDashboardEventsCountdownAction = {
+  type: "patchDashboardEventsCountdown";
   payload: {
     enabled?: boolean;
   };
@@ -58,8 +65,9 @@ export type PreferencesAction =
   | PatchRemoveForceDownloadAction
   | PatchReplaceBreadcrumbCourseNameAction
   | PatchReplaceNavigationCourseNameAction
-  | PatchDashboardEventsCountdownAction
   | PatchDashboardQuickCourseLinksAction
+  | PatchDashboardQuickCourseLinksForBachelorAction
+  | PatchDashboardEventsCountdownAction
   | PatchScormAutoCollapseTocAction
   | PatchScormAutoPlayAction
   | PatchLoginAutoSubmitAction;

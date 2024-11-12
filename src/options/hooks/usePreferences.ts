@@ -7,8 +7,9 @@ import {
   reduceAndSavePreferences,
 } from "~/common/storage/preferences/index.ts";
 
-type Payload<T extends PreferencesAction["type"]> =
-  (PreferencesAction & { type: T })["payload"];
+type Payload<T extends PreferencesAction["type"]> = (PreferencesAction & {
+  type: T;
+})["payload"];
 
 export const usePreferences = function () {
   const [preferences, setPreferences] = useState<Preferences | null>(null);
@@ -20,7 +21,7 @@ export const usePreferences = function () {
   if (!preferences) return null;
 
   const createReduceCallback = function <T extends PreferencesAction["type"]>(
-    type: T,
+    type: T
   ) {
     return async (payload: Payload<T>) => {
       const newPreferences = await reduceAndSavePreferences({ type, payload });
@@ -30,70 +31,80 @@ export const usePreferences = function () {
 
   const removeForceDownload = useMemo(
     () => preferences.removeForceDownload,
-    [preferences],
+    [preferences]
   );
   const setRemoveForceDownload = useCallback(
     createReduceCallback("patchRemoveForceDownload"),
-    [preferences],
+    [preferences]
   );
 
   const replaceBreadcrumbCourseName = useMemo(
     () => preferences.replaceBreadcrumbCourseName,
-    [preferences],
+    [preferences]
   );
   const setReplaceBreadcrumbCourseName = useCallback(
     createReduceCallback("patchReplaceBreadcrumbCourseName"),
-    [preferences],
+    [preferences]
   );
 
   const replaceNavigationCourseName = useMemo(
     () => preferences.replaceNavigationCourseName,
-    [preferences],
+    [preferences]
   );
   const setReplaceNavigationCourseName = useCallback(
     createReduceCallback("patchReplaceNavigationCourseName"),
-    [preferences],
-  );
-
-  const dashboardEventsCountdown = useMemo(
-    () => preferences.dashboardEventsCountdown,
-    [preferences],
-  );
-  const setDashboardEventsCountdown = useCallback(
-    createReduceCallback("patchDashboardEventsCountdown"),
-    [preferences],
+    [preferences]
   );
 
   const dashboardQuickCourseLinks = useMemo(
     () => preferences.dashboardQuickCourseLinks,
-    [preferences],
+    [preferences]
   );
   const setDashboardQuickCourseLinks = useCallback(
     createReduceCallback("patchDashboardQuickCourseLinks"),
-    [preferences],
+    [preferences]
+  );
+
+  const dashboardQuickCourseLinksForBachelor = useMemo(
+    () => preferences.dashboardQuickCourseLinksForBachelor,
+    [preferences]
+  );
+  const setDashboardQuickCourseLinksForBachelor = useCallback(
+    createReduceCallback("patchDashboardQuickCourseLinksForBachelor"),
+    [preferences]
+  );
+
+  const dashboardEventsCountdown = useMemo(
+    () => preferences.dashboardEventsCountdown,
+    [preferences]
+  );
+  const setDashboardEventsCountdown = useCallback(
+    createReduceCallback("patchDashboardEventsCountdown"),
+    [preferences]
   );
 
   const scormAutoCollapseToc = useMemo(
     () => preferences.scormAutoCollapseToc,
-    [preferences],
+    [preferences]
   );
   const setScormAutoCollapseToc = useCallback(
     createReduceCallback("patchScormAutoCollapseToc"),
-    [preferences],
+    [preferences]
   );
 
   const scormAutoPlay = useMemo(() => preferences.scormAutoPlay, [preferences]);
   const setScormAutoPlay = useCallback(
     createReduceCallback("patchScormAutoPlay"),
-    [preferences],
+    [preferences]
   );
 
-  const loginAutoSubmit = useMemo(() => preferences.loginAutoSubmit, [
-    preferences,
-  ]);
+  const loginAutoSubmit = useMemo(
+    () => preferences.loginAutoSubmit,
+    [preferences]
+  );
   const setLoginAutoSubmit = useCallback(
     createReduceCallback("patchLoginAutoSubmit"),
-    [preferences],
+    [preferences]
   );
 
   return {
@@ -103,10 +114,12 @@ export const usePreferences = function () {
     setReplaceBreadcrumbCourseName,
     replaceNavigationCourseName,
     setReplaceNavigationCourseName,
-    dashboardEventsCountdown,
-    setDashboardEventsCountdown,
     dashboardQuickCourseLinks,
     setDashboardQuickCourseLinks,
+    dashboardQuickCourseLinksForBachelor,
+    setDashboardQuickCourseLinksForBachelor,
+    dashboardEventsCountdown,
+    setDashboardEventsCountdown,
     scormAutoCollapseToc,
     setScormAutoCollapseToc,
     scormAutoPlay,

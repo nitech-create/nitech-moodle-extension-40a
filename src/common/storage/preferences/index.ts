@@ -15,10 +15,13 @@ export const initialPreferences: Preferences = {
   replaceNavigationCourseName: {
     enabled: true,
   },
-  dashboardEventsCountdown: {
+  dashboardQuickCourseLinks: {
     enabled: true,
   },
-  dashboardQuickCourseLinks: {
+  dashboardQuickCourseLinksForBachelor: {
+    enabled: true,
+  },
+  dashboardEventsCountdown: {
     enabled: true,
   },
   scormAutoCollapseToc: {
@@ -45,13 +48,9 @@ export const getPreferences = async function (): Promise<Preferences> {
 };
 
 export const reduceAndSavePreferences = async function (
-  action: PreferencesAction,
+  action: PreferencesAction
 ): Promise<Preferences> {
   cachedPreferences = preferencesReducer(await getPreferences(), action);
-  await storage.set(
-    "preferences",
-    cachedPreferences,
-    storageArea,
-  );
+  await storage.set("preferences", cachedPreferences, storageArea);
   return cachedPreferences;
 };
