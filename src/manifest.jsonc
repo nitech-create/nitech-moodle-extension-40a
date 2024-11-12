@@ -3,7 +3,7 @@
   "manifest_version": 3,
   "name": "NITech Moodle Extension (40a)",
   "homepage_url": "https://github.com/nitech-create/nitech-moodle-extension-40a",
-  "version": "0.10.0",
+  "version": "0.20.0",
 
   // Recommended
   // "action": {},
@@ -40,9 +40,7 @@
     },
     // my course config page
     {
-      "matches": [
-        "https://cms7.ict.nitech.ac.jp/moodle40a/my/courses.php"
-      ],
+      "matches": ["https://cms7.ict.nitech.ac.jp/moodle40a/my/courses.php"],
       "js": [
         // this is **a special case** to use script in other directory
         "./contentScripts/dashboard/readAndStoreCourses/index.ts"
@@ -54,18 +52,14 @@
         "https://cms7.ict.nitech.ac.jp/moodle40a/mod/scorm/*",
         "https://cms7.ict.nitech.ac.jp/moodle40a/mod/scorm/*/*"
       ],
-      "js": [
-        "./contentScripts/scorm/autoCollapseToc/index.ts"
-      ]
+      "js": ["./contentScripts/scorm/autoCollapseToc/index.ts"]
     },
     {
       "matches": [
         "https://cms7.ict.nitech.ac.jp/moodle40a/pluginfile.php/*/mod_scorm/content/*/*"
       ],
       "all_frames": true,
-      "css": [
-        "./contentScripts/scormContents/main.scss"
-      ]
+      "css": ["./contentScripts/scormContents/main.scss"]
     }
   ],
 
